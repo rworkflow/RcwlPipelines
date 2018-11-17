@@ -1,9 +1,9 @@
 ## Pipeline: fastQC + STAR + featureCounts
 ## Note: output to current dir
-p1 <- InputParam(id = "cwl_prefix", type = "string")
-p2 <- InputParam(id = "cwl_genomeDir", type = "Directory")
-p3 <- InputParam(id = "cwl_sjdbGTFfile", type = "File")
-p4 <- InputParam(id = "cwl_seqfiles", type = "File[]")
+p1 <- InputParam(id = "cwl_seqfiles", type = "File[]")
+p2 <- InputParam(id = "cwl_prefix", type = "string")
+p3 <- InputParam(id = "cwl_genomeDir", type = "Directory")
+p4 <- InputParam(id = "cwl_sjdbGTFfile", type = "File")
 p5 <- InputParam(id = "cwl_runThreadN", type = "int", default = 1L)
 o1 <- OutputParam(id = "cwl_fastqc", type = "File[]", outputSource = "fastqc/QCfile")
 o2a <- OutputParam(id = "cwl_outBAM", type = "File", outputSource = "STAR/outBAM")
@@ -41,7 +41,7 @@ s4 <- Step(id = "s_flagstat", run = samtools_flagstat,
 s5 <- Step(id = "fcount", run = featureCounts,
            In = list(gtf = "cwl_sjdbGTFfile",
                      bam = "STAR/outBAM",
-                     count = list(valueFrom = "($inputs.bam.nameroot).featureCounts.txt")))
+                     count = list(valueFrom = "$(inputs.bam.nameroot).featureCounts.txt")))
 ## RSeQC
 s6 <- Step(id = "RSeQC", run = RSeQC,
            In = list(bam = "STAR/outBAM",
