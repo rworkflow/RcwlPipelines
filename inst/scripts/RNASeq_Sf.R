@@ -1,18 +1,18 @@
 ## Pipeline: fastQC + STAR + featureCounts
 ## Note: output to current dir
-p1 <- InputParam(id = "cwl_seqfiles", type = "File[]")
-p2 <- InputParam(id = "cwl_prefix", type = "string")
-p3 <- InputParam(id = "cwl_genomeDir", type = "Directory")
-p4 <- InputParam(id = "cwl_sjdbGTFfile", type = "File")
-p5 <- InputParam(id = "cwl_runThreadN", type = "int", default = 1L)
-o1 <- OutputParam(id = "cwl_fastqc", type = "File[]", outputSource = "fastqc/QCfile")
-o2a <- OutputParam(id = "cwl_outBAM", type = "File", outputSource = "STAR/outBAM")
-o2b <- OutputParam(id = "cwl_outLog", type = "File", outputSource = "STAR/outLog")
-o2c <- OutputParam(id = "cwl_outCount", type = "File", outputSource = "STAR/outCount")
-o3 <- OutputParam(id = "cwl_idx",type = "File", outputSource = "s_index/idx")
-o4 <- OutputParam(id = "cwl_stat",type = "File", outputSource = "s_flagstat/flagstat")
-o5 <- OutputParam(id = "cwl_count", type = "File", outputSource = "fcount/count")
-o6 <- OutputParam(id = "cwl_dist", type = "File", outputSource = "RSeQC/distribution")
+p1 <- InputParam(id = "in_seqfiles", type = "File[]")
+p2 <- InputParam(id = "in_prefix", type = "string")
+p3 <- InputParam(id = "in_genomeDir", type = "Directory")
+p4 <- InputParam(id = "in_GTFfile", type = "File")
+p5 <- InputParam(id = "in_runThreadN", type = "int", default = 1L)
+o1 <- OutputParam(id = "out_fastqc", type = "File[]", outputSource = "fastqc/QCfile")
+o2a <- OutputParam(id = "out_BAM", type = "File", outputSource = "STAR/outBAM")
+o2b <- OutputParam(id = "out_Log", type = "File", outputSource = "STAR/outLog")
+o2c <- OutputParam(id = "out_Count", type = "File", outputSource = "STAR/outCount")
+o3 <- OutputParam(id = "out_idx",type = "File", outputSource = "samtools_index/idx")
+o4 <- OutputParam(id = "out_stat",type = "File", outputSource = "samtools_flagstat/flagstat")
+o5 <- OutputParam(id = "out_count", type = "File", outputSource = "featureCounts/count")
+o6 <- OutputParam(id = "out_distribution", type = "File", outputSource = "RSeQC/distribution")
     
 req1 <- list(class = "ScatterFeatureRequirement")
 req2 <- list(class = "SubworkflowFeatureRequirement")
@@ -23,28 +23,28 @@ rnaseq_Sf <- cwlStepParam(requirements = list(req1, req2, req3),
 
 ## fastqc
 s1 <- Step(id = "fastqc", run = fastqc,
-           In = list(seqfile = "cwl_seqfiles"),
+           In = list(seqfile = "in_seqfiles"),
            scatter = "seqfile")
 ## STAR
 s2 <- Step(id = "STAR", run = STAR,
-           In = list(prefix = "cwl_prefix",
-                     genomeDir = "cwl_genomeDir",
-                     sjdbGTFfile = "cwl_sjdbGTFfile",
-                     readFilesIn = "cwl_seqfiles",
-                     runThreadN = "cwl_runThreadN"))
+           In = list(prefix = "in_prefix",
+                     genomeDir = "in_genomeDir",
+                     sjdbGTFfile = "in_GTFfile",
+                     readFilesIn = "in_seqfiles",
+                     runThreadN = "in_runThreadN"))
 ## samtools
-s3 <- Step(id = "s_index", run = samtools_index,
+s3 <- Step(id = "samtools_index", run = samtools_index,
            In = list(bam = "STAR/outBAM"))
-s4 <- Step(id = "s_flagstat", run = samtools_flagstat,
+s4 <- Step(id = "samtools_flagstat", run = samtools_flagstat,
            In = list(bam = "STAR/outBAM"))
 ## featureCounts
-s5 <- Step(id = "fcount", run = featureCounts,
-           In = list(gtf = "cwl_sjdbGTFfile",
+s5 <- Step(id = "featureCounts", run = featureCounts,
+           In = list(gtf = "in_GTFfile",
                      bam = "STAR/outBAM",
                      count = list(valueFrom = "$(inputs.bam.nameroot).featureCounts.txt")))
 ## RSeQC
 s6 <- Step(id = "RSeQC", run = RSeQC,
            In = list(bam = "STAR/outBAM",
-                     gtf = "cwl_sjdbGTFfile"))
+                     gtf = "in_GTFfile"))
 ## pipeline
 rnaseq_Sf <- rnaseq_Sf + s1 + s2 + s3 + s4 + s5 + s6
