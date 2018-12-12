@@ -1,7 +1,9 @@
 ## STAR
 ## Note: output to current dir
+## readFilesIn must be full path ##string
 p1 <- InputParam(id = "prefix", type = "string", prefix = "--outFileNamePrefix")
 p2 <- InputParam(id = "readFilesIn", type = "File[]", prefix = "--readFilesIn")
+##p2 <- InputParam(id = "readFilesIn", type = "string[]", prefix = "--readFilesIn")
 p3 <- InputParam(id = "genomeDir", type = "Directory", prefix = "--genomeDir")
 p4 <- InputParam(id = "sjdbGTFfile", type = "File", prefix = "--sjdbGTFfile")
 p5 <- InputParam(id = "runThreadN", type = "int", prefix = "--runThreadN", default = 1L)

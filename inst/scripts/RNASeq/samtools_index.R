@@ -1,5 +1,5 @@
 ## Index bam
-p1 <- InputParam(id = "bam", type = "File")
+p1 <- InputParam(id = "bam", type = "File", position = 1)
 o1 <- OutputParam(id = "idx", type = "File", glob = "$(inputs.bam.basename)", secondaryFiles = ".bai")
 req1 <- list(class = "InitialWorkDirRequirement",
              listing = list("$(inputs.bam)"))
