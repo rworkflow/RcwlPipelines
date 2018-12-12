@@ -1,0 +1,103 @@
+<tool id="tcga-vcf-reheader" name="TCGA VCF ReHeader" version="0.1">
+    <description></description>
+
+    <requirements>
+        <container type="docker">tcgavcf-tool:0.1</container>
+    </requirements>
+
+    <command interpreter="python">
+tcga-vcf-reheader.py ${input_vcf} ${output_vcf} ${config_yaml}
+#if $sample.source == "file":
+${sample.info_file}
+#end if
+    </command>
+
+    <inputs>
+        <param type="data" format="vcf" name="input_vcf" label="Input VCF"/>
+        <param type="text" name="software_name" label="Software Name"/>
+        <param type="text" name="software_version" label="Software Version"/>
+        <param type="text" name="software_params" label="Software Params"/>
+        <param type="text" name="center" label="Center"/>
+        <conditional name="sample">
+          <param type="select" name="source">
+            <option value="manual">Manual</option>
+            <option value="file">Sample Info File</option>
+          </param>
+          <when value="manual">
+            <param type="text" name="reference_genome" label="Reference" size="50"/>
+            <param type="text" name="platform" label="Platform" size="50" default="Illumina"/>
+            <param type="text" name="participant_uuid" label="participant_uuid" size="50"/>
+            <param type="text" name="disease_code" label="disease_code" default="XXXX"/>
+            <param type="text" name="normal_analysis_uuid" label="Normal Analysis UUID" size="50"/>
+            <param type="text" name="normal_bam_name" label="Normal Bam Name" size="50"/>
+            <param type="text" name="normal_aliquot_uuid" label="Normal Aliquot UUID" size="50"/>
+            <param type="text" name="normal_aliquot_barcode" label="Normal Aliquot Barcode" size="50"/>
+            <param type="text" name="tumor_analysis_uuid" label="Tumor Analysis UUID" size="50"/>
+            <param type="text" name="tumor_bam_name" label="Tumor Bam Name" size="50"/>
+            <param type="text" name="tumor_aliquot_uuid" label="Tumor Aliquot UUID" size="50"/>
+            <param type="text" name="tumor_aliquot_barcode" label="Tumor Aliquot Barcode" size="50"/>
+          </when>
+          <when value="file">
+            <param type="data" format="txt" name="info_file" label="Sample Info"/>
+          </when>
+        </conditional>
+    </inputs>
+
+    <outputs>
+        <data format="vcf" name="output_vcf" />
+    </outputs>
+    <configfiles>
+        <configfile name="config_yaml"><![CDATA[
+config:
+    sample_line_format:
+        SAMPLE=<
+        ID={id},
+        Description="{description}",
+        SampleUUID={aliquot_uuid},SampleTCGABarcode={aliquot_barcode},
+        AnalysisUUID={analysis_uuid},File="{bam_name}",
+        Platform="{platform}",
+        Source="dbGAP",Accession="dbGaP",
+        softwareName=<{software_name}>,
+        softwareVer=<{software_version}>,
+        softwareParam=<{software_params}>
+        >
+    fixed_sample_params:
+      software_name:      '${software_name}'
+      software_version:   '${software_version}'
+      software_params:    '"${software_params}"'
+    fixed_headers:  # name, assert, value
+        - [fileformat,  False,   'VCFv4.1']
+        - [tcgaversion, False,   '1.1']
+        - [phasing,     False,  'none']  # TODO: Think about this one.
+        - [center,      False,  '"${center}"']
+        - [vcfProcessLog,   False,  '<InputVCF=<${input_vcf}>, InputVCFSource=<${software_name}>,InputVCFVer=<4.1>, InputVCFParam=<"${software_params}">>']
+#if $sample.source == "manual":
+        - [participant_uuid,  False,  '${sample.participant_uuid}']
+        - [disease_code, False, '${sample.disease_code}']
+samples:
+    NORMAL:
+        description:     'Normal sample'
+        analysis_uuid:   ${sample.normal_analysis_uuid}
+        bam_name:        ${sample.normal_bam_name}
+        aliquot_uuid:    ${sample.normal_aliquot_uuid}
+        aliquot_barcode: ${sample.normal_aliquot_barcode}
+        platform:        ${sample.platform}
+    PRIMARY:
+        description:    'Primary Tumor'
+        analysis_uuid:  ${sample.tumor_analysis_uuid}
+        bam_name:       ${sample.tumor_bam_name}
+        aliquot_uuid:   ${sample.tumor_aliquot_uuid}
+        aliquot_barcode:   ${sample.tumor_aliquot_barcode}
+        platform:       ${sample.platform}
+#end if
+]]>
+        </configfile>
+    </configfiles>
+    <help>
+
+    </help>
+
+    <tests>
+    </tests>
+
+</tool>

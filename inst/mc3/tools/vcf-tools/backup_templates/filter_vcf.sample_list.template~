@@ -1,0 +1,4 @@
+run_uid:	vcf:
+sample_1	/full/path/to/vcf1
+sample_2	/full/path/to/vcf2
+sample_3	/full/path/to/vcf3

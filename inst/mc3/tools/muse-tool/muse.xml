@@ -1,0 +1,55 @@
+<tool id="MuSE" name="MuSE" version="0.9.0">
+    <description>variant caller</description>
+    <requirements>
+        <container type="docker">opengenomics/muse:c039ffa</container>
+    </requirements>
+    <command interpreter="python">
+muse.py
+--tumor-bam ${tumor}
+--tumor-bam-index ${tumor.metadata.bam_index}
+--normal-bam ${normal}
+--normal-bam-index ${normal.metadata.bam_index}
+-f $reference -w ./
+#if $muse.version == "MuSEv0.9.9.5":
+-p ${muse.contamination}
+#end if
+#if $muse.version == "MuSEv1.0rc":
+--mode ${muse.mode}
+#end if
+#if str($dbsnp) != "None"
+-D ${dbsnp}
+#end if
+--cpus \${GALAXY_SLOTS:-4}
+-O muse.vcf
+--muse ${muse.version}
+    </command>
+    <inputs>
+        <param name="reference" type="data" format="bed, fasta" label="Select a reference genome"/>
+        <param name="normal" type="data" format="bam" label="Normal BAM file"/>
+        <param name="tumor" type="data" format="bam" label="Tumor BAM file"/>
+        <param name="dbsnp" type="data" format="vcf" label="dbsnp.vcf file" optional="true"/>
+
+        <conditional name="muse">
+          <param name="version" type="select" label="MuSE Version">
+            <option value="MuSEv0.9.9.5" selected="True">MuSEv0.9.9.5</option>
+            <option value="MuSEv1.0rc" >MuSEv1.0rc</option>
+          </param>
+          <when value="MuSEv0.9.9.5">
+              <param name="contamination" type="float" value="0.05" help="normal data contamination rate" label="Contamination"/>
+          </when>
+          <when value="MuSEv1.0rc">
+            <param name="mode" type="select" label="BAM Mode">
+              <option value="wxs" selected="True">Whole Exome Sequence</option>
+              <option value="wgs" >Whole Genome Sequence</option>
+            </param>
+          </when>
+        </conditional>
+
+    </inputs>
+    <outputs>
+        <data format="vcf" name="mutations" label="MuSE VCF" from_work_dir="muse.vcf"/>
+    </outputs>
+    <help>
+
+  </help>
+</tool>

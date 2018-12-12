@@ -1,0 +1,25 @@
+expDesign :             individual_genetic_characteristics_design       # the experimental design tag
+expDesignOntology :     MGED Ontology   # the experimental design term source reference (e.g. MGED, HUGO, etc.
+expDesignFactorName :   somatic_variant # the experimental design factor name
+expDesignFactorType :   disease_state   # the experimental design factor type
+personLastName :        Radenbaugh      # the submitter's last name
+personFirstName :       Amie            # the submitter's first name
+personMidInitial :      J               # the submitter's middle initial
+personEmail :           aradenba@soe.ucsc.edu   # the submitter's email
+personAddress :         University of California Santa Cruz, 1156 High St, Mail Stop CBSE, Santa Cruz, CA 95064, USA    # the submitter's institutional address
+personAffiliation :     University of California Santa Cruz Genome Institute    # the submitter's affiliation
+personRole :            submitter       # the submitter's role
+pubMedId :              25405470        # the PubMed ID
+pubAuthors :            Radenbaugh AJ, Ma S, Ewing A, Stuart JM, Collisson EA, Zhu J, Haussler D        # the publication author list
+pubTitle :              'RADIA: RNA and DNA Integrated Analysis for Somatic Mutation Detection'   # the publication title, quotes needed to escape colon
+pubStatus :             published       # the publication status
+expDescription :        Detection of somatic variants from the TCGA Whole-Exome Sequencing (WES) and RNA-Seq data using RADIA   # the description of the experiment
+protocolNames :         ucsc.edu:variant_calling:Illumina_DNASeq:01 # the protocol names
+protocolTypes :         Variant Calling # the protocol types
+protocolDescriptions :  Somatic Variant Calling Pipeline:RADIA v1.1.1 (https://github.com/aradenbaugh/radia/),Annotation:SnpEff v3.3_GRCh37.69 (http://snpeff.sourceforge.net/)       # the protocol descriptions
+protocolOntologies :    MGED Ontology,MGED Ontology     # the protocol ontologies
+protocolParameters :    NA              # the protocol parameters
+ontologyName :          MGED Ontology   # the ontology name
+ontologyFile :          http://mged.sourceforge.net/ontologies/MGEDontology.php # the ontology file
+ontologyVersion :       1.3.1.1         # the ontology version
+

@@ -1,0 +1,201 @@
+<tool id="radia" name="radia" version="0.1.0">
+    <requirements>
+      <container type="docker">radia:1.1.5</container>
+    </requirements>
+    <stdio>
+        <exit_code range="1:" />
+    </stdio>
+    <command interpreter="python"><![CDATA[
+radia.py
+
+--outputFilename out.vcf
+#if $patientId:
+--patientId ${patientId}
+#end if
+--fastaFilename ${fastaFile}
+--refId "${refId}"
+--refUrl "${refUrl}"
+--dataSource "${dataSource}"
+--sequencingPlatform "${sequencingPlatform}"
+--statsDir stats
+--disease "${disease}"
+
+--genotypeMinDepth ${genotypeMinDepth}
+--genotypeMinPct ${genotypeMinPct}
+
+## params for normal DNA
+#if $dnaNormal.use == "yes":
+--dnaNormalFilename ${dnaNormal.dn_inputbam}
+--dnaNormalBaiFilename ${dnaNormal.dn_inputbam.metadata.bam_index}
+#if $dnaNormal.fasta.use == "yes"
+--dnaNormalFasta ${dnaNormal.fasta.inputfasta}
+#end if
+--dnaNormalMinTotalBases ${dnaNormal.MinTotalBases}
+--dnaNormalMinAltBases ${dnaNormal.MinAltBases}
+--dnaNormalBaseQual ${dnaNormal.MinBaseQuality}
+--dnaNormalMapQual ${dnaNormal.MinMappingQuality}
+--dnaNormalDescription "${dnaNormal.Description}"
+#end if
+
+## params for normal RNA
+#if $rnaNormal.use == "yes":
+--rnaNormalFilename ${rnaNormal.rn_inputbam}
+--rnaNormalBaiFilename ${rnaNormal.rn_inputbam.metadata.bam_index}
+#if $rnaNormal.fasta.use == "yes"
+--rnaNormalFasta ${rnaNormal.fasta.inputfasta}
+#end if
+--rnaNormalMinTotalBases ${rnaNormal.MinTotalBases}
+--rnaNormalMinAltBases ${rnaNormal.MinAltBases}
+--rnaNormalBaseQual ${rnaNormal.MinBaseQuality}
+--rnaNormalMapQual ${rnaNormal.MinMappingQuality}
+--rnaNormalDescription "${rnaNormal.Description}"
+#end if
+
+
+## params for tumor DNA
+#if $dnaTumor.use == "yes":
+--dnaTumorFilename ${dnaTumor.dt_inputbam}
+--dnaTumorBaiFilename ${dnaTumor.dt_inputbam.metadata.bam_index}
+#if $dnaTumor.fasta.use == "yes"
+--dnaTumorFasta ${dnaTumor.fasta.inputfasta}
+#end if
+--dnaTumorMinTotalBases ${dnaTumor.MinTotalBases}
+--dnaTumorMinAltBases ${dnaTumor.MinAltBases}
+--dnaTumorBaseQual ${dnaTumor.MinBaseQuality}
+--dnaTumorMapQual ${dnaTumor.MinMappingQuality}
+--dnaTumorDescription "${dnaTumor.Description}"
+#end if
+
+## params for tumor RNA
+#if $rnaTumor.use == "yes":
+--rnaTumorFilename ${rnaTumor.rt_inputbam}
+--rnaTumorBaiFilename ${rnaTumor.rt_inputbam.metadata.bam_index}
+#if $rnaTumor.fasta.use == "yes"
+--rnaTumorFasta ${rnaTumor.fasta.inputfasta}
+#end if
+--rnaTumorMinTotalBases ${rnaTumor.MinTotalBases}
+--rnaTumorMinAltBases ${rnaTumor.MinAltBases}
+--rnaTumorBaseQual ${rnaTumor.MinBaseQuality}
+--rnaTumorMapQual ${rnaTumor.MinMappingQuality}
+--rnaTumorDescription "${rnaTumor.Description}"
+#end if
+
+--outputDir ./
+--scriptsDir /opt/radia-1.1.5/scripts/
+--number_of_procs \${GALAXY_SLOTS:-1}
+    ]]></command>
+    <inputs>
+      <param name="patientId" label="Patient ID (no spaces)" type="text" value="Patient" help="Patient's unique ID number"/>
+      <param name="fastaFile" label="Reference Genome" type="data" format="fasta" help="Fasta file used for read alignments"/>
+      <param name="refId" label="Reference Genome ID" type="text" value="hg19" help="Genome used for read alignments"/>
+      <param name="refUrl" label="Reference Genome URL" type="text" value="" help="URL for genome fasta file(s)"/>
+      <param name="dataSource" label="Data Source" type="text" value="" help="Original location of bam files"/>
+      <param name="sequencingPlatform" label="SequencingPlatform" type="text" value="" help="E.g. Illumina"/>
+      <param name="disease" label="Disease Code" type="text" value="" help="Short disease code such as BRCA or LGG"/>
+
+      <param name="genotypeMinDepth" label="genotypeMinDepth" type="integer" value="2" help="the minimum number of bases required for the genotype"/>
+      <param name="genotypeMinPct" label="genotypeMinPct" type="float" value=".10" help="the minimum percentage of reads required for the genotype"/>
+
+      <conditional name="dnaNormal">
+        <param name="use" type="select" label="Use DNA Normal">
+          <option value="yes">yes</option>
+          <option value="no" selected="True">no</option>
+        </param>
+        <when value="yes">
+          <param name="dn_inputbam" label="DNA Normal InputBam" type="data" format="bam" help="Input BAM"/>
+          <conditional name="fasta">
+            <param name="use" type="select" label="Use different fasta">
+              <option value="yes">yes</option>
+              <option value="no" selected="True">no</option>
+            </param>
+            <when value="yes">
+              <param name="inputfasta" label="Fasta file used to create Bam file (if different from top)" type="data" format="fasta" help="Fasta file used to create this bam file"/>
+            </when>
+          </conditional>
+          <param name="MinTotalBases" label="MinTotalBases" type="integer" value="4" help="the minimum number of overall reads covering a position"/>
+          <param name="MinAltBases" label="MinAltBases" type="integer" value="2" help="the minimum number of alternative reads supporting a variant at a position"/>
+          <param name="MinBaseQuality" label="MinBaseQuality" type="integer" value="10" help="the minimum base quality"/>
+          <param name="MinMappingQuality" label="MinMappingQuality" type="integer" value="10" help="the minimum mapping quality"/>
+          <param name="Description" label="Description" value="NormalDNASample" type="text" help="the single word description for the sample in the VCF header"/>
+        </when>
+      </conditional>
+
+      <conditional name="dnaTumor">
+        <param name="use" type="select" label="Use DNA Tumor">
+          <option value="yes">yes</option>
+          <option value="no" selected="True">no</option>
+        </param>
+        <when value="yes">
+          <param name="dt_inputbam" label="DNA Tumor InputBam" type="data" format="bam" help="Input BAM"/>
+          <conditional name="fasta">
+            <param name="use" type="select" label="Use different fasta">
+              <option value="yes">yes</option>
+              <option value="no" selected="True">no</option>
+            </param>
+            <when value="yes">
+              <param name="inputfasta" label="Fasta file used to create Bam file (if different from top)" type="data" format="fasta" help="Fasta file used to create this bam file"/>
+            </when>
+          </conditional>
+          <param name="MinTotalBases" label="MinTotalBases" type="integer" value="4" help="the minimum number of overall reads covering a position"/>
+          <param name="MinAltBases" label="MinAltBases" type="integer" value="2" help="the minimum number of alternative reads supporting a variant at a position"/>
+          <param name="MinBaseQuality" label="MinBaseQuality" type="integer" value="10" help="the minimum base quality"/>
+          <param name="MinMappingQuality" label="MinMappingQuality" type="integer" value="10" help="the minimum mapping quality"/>
+          <param name="Description" label="Description" value="NormalDNASample" type="text" help="the single word description for the sample in the VCF header"/>
+        </when>
+      </conditional>
+
+      <conditional name="rnaNormal">
+        <param name="use" type="select" label="Use RNA Normal">
+          <option value="yes">yes</option>
+          <option value="no" selected="True">no</option>
+        </param>
+        <when value="yes">
+          <param name="rn_inputbam" label="RNA Normal InputBam" type="data" format="bam" help="Input BAM"/>
+          <conditional name="fasta">
+          <param name="use" type="select" label="Use different fasta">
+            <option value="yes">yes</option>
+            <option value="no" selected="True">no</option>
+          </param>
+          <when value="yes">
+            <param name="inputfasta" label="Fasta file used to create Bam file (if different from top)" type="data" format="fasta" help="Fasta file used to create this bam file"/>
+          </when>
+        </conditional>
+          <param name="MinTotalBases" label="MinTotalBases" type="integer" value="4" help="the minimum number of overall reads covering a position"/>
+          <param name="MinAltBases" label="MinAltBases" type="integer" value="2" help="the minimum number of alternative reads supporting a variant at a position"/>
+          <param name="MinBaseQuality" label="MinBaseQuality" type="integer" value="10" help="the minimum base quality"/>
+          <param name="MinMappingQuality" label="MinMappingQuality" type="integer" value="10" help="the minimum mapping quality"/>
+          <param name="Description" label="Description" value="NormalDNASample" type="text" help="the single word description for the sample in the VCF header"/>
+        </when>
+      </conditional>
+
+      <conditional name="rnaTumor">
+        <param name="use" type="select" label="Use RNA Tumor">
+          <option value="yes">yes</option>
+          <option value="no" selected="True">no</option>
+        </param>
+        <when value="yes">
+          <param name="rt_inputbam" label="RNA Tumor InputBam" type="data" format="bam" help="Input BAM"/>
+          <conditional name="fasta">
+          <param name="use" type="select" label="Use different fasta">
+            <option value="yes">yes</option>
+            <option value="no" selected="True">no</option>
+          </param>
+          <when value="yes">
+            <param name="inputfasta" label="Fasta file used to create Bam file (if different from top)" type="data" format="fasta" help="Fasta file used to create this bam file"/>
+          </when>
+        </conditional>
+          <param name="MinTotalBases" label="MinTotalBases" type="integer" value="4" help="the minimum number of overall reads covering a position"/>
+          <param name="MinAltBases" label="MinAltBases" type="integer" value="2" help="the minimum number of alternative reads supporting a variant at a position"/>
+          <param name="MinBaseQuality" label="MinBaseQuality" type="integer" value="10" help="the minimum base quality"/>
+          <param name="MinMappingQuality" label="MinMappingQuality" type="integer" value="10" help="the minimum mapping quality"/>
+          <param name="Description" label="Description" value="NormalDNASample" type="text" help="the single word description for the sample in the VCF header"/>
+        </when>
+      </conditional>
+    </inputs>
+    <outputs>
+      <data name="output_vcf" format="vcf" from_work_dir="out.vcf"/>
+    </outputs>
+    <help><![CDATA[
+        TODO: Fill in help.
+    ]]></help>
+</tool>

@@ -1,0 +1,269 @@
+<tool id="pindel" name="pindel" version="0.0.1">
+    <description></description>
+
+    <requirements>
+        <container type="docker">pindel:0.2.5b8</container>
+    </requirements>
+
+    <command interpreter="python">
+pindel.py
+<!-- required -->
+-r $inputReferenceFile
+-R $referenceName
+#if $inputs.mode == 'single':
+  -b $inputs.inputBamFile
+  -t $inputs.sampleTag
+  -bi $inputs.inputBamFile.metadata.bam_index
+  #if $inputs.defineInsertSize.manual_define == "yes":
+    -s $inputs.defineInsertSize.insertSize
+  #end if
+#end if 
+
+#if $inputs.mode == 'pair':
+  -b $inputs.normalInputBamFile
+  -b $inputs.tumorInputBamFile
+  -t NORMAL
+  -t TUMOR
+  -bi $inputs.normalInputBamFile.metadata.bam_index
+  -bi $inputs.tumorInputBamFile.metadata.bam_index
+  #if $inputs.defineInsertSize.manual_define == "yes":
+    -s $inputs.defineInsertSize.normalInsertSize
+    -s $inputs.defineInsertSize.tumorInsertSize
+  #end if
+#end if 
+
+-o1 $outputRawFile
+-o2 $outputVcfFile
+#if $inputs.mode == 'pair':
+-o3 $outputSomaticVcfFile
+#end if
+
+--number_of_procs \${GALAXY_SLOTS:-4}
+        
+--window_size ${window_size}
+        
+<!-- Parameters affecting which structural variants are reported -->
+#if $reportInversions:
+    --report_inversions
+#end if
+#if $reportDuplications:
+    --report_duplications
+#end if
+#if $reportLongInsertions:
+    --report_long_insertions
+#end if
+#if $reportBreakpoints:
+    --report_breakpoints
+#end if
+#if $report_only_close_mapped_reads:
+    -S
+#end if
+#if $report_interchromosomal_events:
+    --report_interchromosomal_events
+#end if
+    -v $min_inversion_size
+#if str($options_DD.options_DD_selector) == "yes":
+    #if $options_DD.report_close_mapped_reads:
+        -s
+    #end if
+    -q
+    --MAX_DD_BREAKPOINT_DISTANCE $options_DD.MAX_DD_BREAKPOINT_DISTANCE
+    --MAX_DISTANCE_CLUSTER_READS $options_DD.MAX_DISTANCE_CLUSTER_READS
+    --MIN_DD_CLUSTER_SIZE $options_DD.MIN_DD_CLUSTER_SIZE
+    --MIN_DD_BREAKPOINT_SUPPORT $options_DD.MIN_DD_BREAKPOINT_SUPPORT
+    --MIN_DD_MAP_DISTANCE $options_DD.MIN_DD_MAP_DISTANCE
+    #if $options_DD.DD_REPORT_DUPLICATION_READS:
+        --DD_REPORT_DUPLICATION_READS
+    #end if
+#end if
+
+<!-- Parameters affecting sensitivity and selectivity -->
+-d $min_num_matched_bases
+-x $max_range_index
+-a $additional_mismatch
+-m $min_perfect_match_around_BP
+--sequencing_error_rate $sequencing_error_rate
+--maximum_allowed_mismatch_rate $maximum_allowed_mismatch_rate
+--sensitivity $sensitivity
+-n $NM
+#if $NormalSamples:
+    -N
+#end if
+-B $balance_cutoff
+-A $anchor_quality
+-M $minimum_support_for_event
+
+<!-- Miscellaneous parameters -->
+#if $breakdancer.checking == "yes":
+    -input1 $breakdancer.input1
+#end if
+
+#if $IndelCorrection:
+    -C
+#end if
+
+#if $input_SV_Calls_for_assembly.checking == "yes":
+    -z $input_SV_Calls_for_assembly.input_SV_Calls
+#end if
+
+#if str($exclude_list) != "None":
+    --exclude ${exclude_list}
+#end if
+
+#if $inputs.mode == 'pair':
+--somatic_vaf $inputs.somatic_vaf
+--somatic_cov $inputs.somatic_cov
+--somatic_hom $inputs.somatic_hom
+#end if
+    </command>
+
+
+    <inputs>
+        <!-- required -->
+        <param format="fasta" name="inputReferenceFile" type="data" label="reference file" help="" />
+        <param name="referenceName" type="text" label="Reference Name" help="Name of the Reference Genome" value="HG19" />
+        <conditional name="inputs" title="Input Mode">
+            <param name="mode" type="select" label="Input Mode">
+              <option value="single" selected="True">Single</option>
+              <option value="pair">Tumor/Normal Pair</option>
+            </param>
+            <when value="single">
+              <param format="bam" name="inputBamFile" type="data" label="bam file" help="" />
+              <param name="sampleTag" type="text" label="Tag" help="tag for this sample" value="sample" />
+              <conditional name="defineInsertSize">
+                  <param name="manual_define" type="select" label="Manually Define Insert Size">
+                      <option value="yes">yes</option>
+                      <option value="no" selected="True">no</option>
+                  </param>
+                  <when value="yes">
+                      <param name="insertSize" type="integer" label="Insert size" help="insert size of the reads" value="" />
+                  </when>
+              </conditional>
+            </when>
+            <when value="pair">
+              <param format="bam" name="normalInputBamFile" type="data" label="Normal Bam file" help="" />
+              <param format="bam" name="tumorInputBamFile" type="data" label="Tumor Bam file" help="" />
+
+              <param name="somatic_vaf" type="float" label="Somatic Filter VAF" value="0.08"/>
+              <param name="somatic_cov" type="integer" label="Somatic Filter COV" value="20"/>
+              <param name="somatic_hom" type="integer" label="Somatic Filter HOM" value="6"/>
+
+              <conditional name="defineInsertSize">
+                <param name="manual_define" type="select" label="Manually Define Insert Size">
+                  <option value="yes">yes</option>
+                  <option value="no" selected="True">no</option>
+                </param>
+                <when value="yes">
+                  <param name="normalInsertSize" type="integer" label="Normal Insert size" help="insert size of the reads" value="" />
+                  <param name="tumorInsertSize" type="integer" label="Tumor Insert size" help="insert size of the reads" value="" />
+                </when>
+              </conditional>
+
+            </when>
+        </conditional>
+        <!-- optional -->
+
+        <!-- Parameters affecting runtime and memory usage -->
+        <param name="window_size" type="integer" value="5" label="Window size" help="for saving RAM, divides the reference in bins of X million bases and only analyzes the reads that belong in the current bin, (default=5 million)" />
+
+        <!-- Parameters affecting which structural variants are reported -->
+        <param name="reportInversions" type="boolean" label="Report inversions" checked="true"/>
+        <param name="reportDuplications" type="boolean" label="Report duplications" checked="true"/>
+        <param name="reportLongInsertions" type="boolean" label="Report long insertions" checked="true"/>
+        <param name="reportBreakpoints" type="boolean" label="Report breakpoints" checked="true"/>
+        <param name="report_only_close_mapped_reads" type="boolean" label="Report only close mapped reads" help="do not search for SVs, only report reads of which only one end (the one closest to the mapped read of the paired-end read) could be mapped (the output file can then be used as an input file for another run of pindel, which may save size if you need to transfer files)." checked="false" />
+        <param name="report_interchromosomal_events" type="boolean" label="Report interchromosomal events" help="search for interchromosomal events. Note: will require the computer to have at least 4 GB of memory" checked="false" />
+        <param name="min_inversion_size" type="integer" value="50" label="min inversion size" help="only report inversions greater than this number of bases" />
+        <conditional name="options_DD">
+            <param name="options_DD_selector" type="select" label="Display paramters affecting Dispersed Duplications">
+                <option value="yes">yes</option>
+                <option value="no" selected="True">no</option>
+            </param>
+            <when value="yes">
+                <!-- <param name="detect_DD" type="boolean" label="Flag indicating whether to detect dispersed duplications" checked="false" /> -->
+                <param name="MAX_DD_BREAKPOINT_DISTANCE" type="integer" value="350" label="MAX DD BREAKPOINT DISTANCE" help="Maximum distance between dispersed duplication breakpoints to assume they refer to the same event" />
+                <param name="MAX_DISTANCE_CLUSTER_READS" type="integer" value="100" label="MAX DISTANCE CLUSTER READS" help="Maximum distance between reads for them to provide evidence for a single breakpoint for dispersed duplications" />
+                <param name="MIN_DD_CLUSTER_SIZE" type="integer" value="3" label="MIN DD CLUSTER SIZE" help="Minimum number of reads needed for calling a breakpoint for dispersed duplications" />
+                <param name="MIN_DD_BREAKPOINT_SUPPORT" type="integer" value="3" label="MIN DD BREAKPOINT SUPPORT" help="Minimum number of split reads for calling an exact breakpoint for dispersed duplications" />
+                <param name="MIN_DD_MAP_DISTANCE" type="integer" value="8000" label="MIN DD MAP DISTANCE" help="Minimum mapping distance of read pairs for them to be considered discordant" />
+                <param name="DD_REPORT_DUPLICATION_READS" type="boolean" label="DD REPORT DUPLICATION READS" checked="false" help="Report discordant sequences and positions for mates of reads mapping inside dispersed duplications"/>
+                <param name="report_close_mapped_reads" type="boolean" label="Report close mapped reads" help="report reads of which only one end (the one closest to the mapped read of the paired-end read) could be mapped." checked="false" />
+            </when>
+            <when value="no">
+                <!-- Do nothing here -->
+            </when>
+        </conditional>
+
+
+        <!-- Parameters affecting sensitivity and selectivity -->
+        <param name="sequencing_error_rate" type="float" value="0.01" label="Sequencing error rate" help="the expected fraction of sequencing errors"/>
+
+        <param name="sensitivity" type="float" value="0.95" label="Sensitivity" help="Increasing this parameter to say 0.99 will increase the sensitivity of pindel though you may get more false positives" />
+        <param name="balance_cutoff" type="integer" value="0" label="balance cutoff" help="the number of bases of a SV above which a more stringent filter is applied which demands that both sides of the SV are mapped with sufficiently long strings of bases" />
+
+        <param name="anchor_quality" type="integer" value="0" label="anchor quality" help="the minimal mapping quality of the reads Pindel uses as anchor If you only need high confident calls, set to 30 or higher" />
+        <param name="maximum_allowed_mismatch_rate" type="float" value="0.02" label="Maximum allowed mismatch rate" help="Only reads with more than this fraction of mismatches than the reference genome will be considered as harboring potential SVs." />
+        <param name="max_range_index" type="integer" value="4" label="the maximum size of structural variations to be detected" help="the higher this number, the greater the number of SVs reported, but the  computational cost and memory requirements increase, as does the rate of false positives. 1=128, 2=512, 3=2,048, 4=8,092, 5=32,368, 6=129,472, 7=517,888, 8=2,071,552, 9=8,286,208." />
+        <param name="NM" type="integer" value="2" label="NM" help="the minimum number of edit distance between reads and reference genome. reads at least NM edit distance (>= NM) will be realigned" />
+        <param name="additional_mismatch" type="integer" value="1" label="additional mismatch" help="Pindel will only map part of a read to the reference genome if there are no other candidate positions with no more than the specified number of mismatches position. The bigger the value, the more accurate but less sensitive (minimum value 1)" />
+        <param name="min_perfect_match_around_BP" type="integer" value="3" label="min perfect match around BP" help="at the point where the read is split into two, there should at least be this number of perfectly matching bases between read and reference" />
+        <param name="min_num_matched_bases" type="integer" value="30" label="min num matched bases" help="only consider reads as evidence if they map with more than X bases to the reference" />
+        <param name="NormalSamples" type="boolean" label="Normal Samples" help="Turn on germline filtering, less sensistive and you may miss somatic calls" checked="false" />
+        <param name="minimum_support_for_event" type="integer" value="3" label="minimum support for event" help="Pindel only calls events which have this number or more supporting reads" />
+
+
+        <!-- Miscellaneous parameters -->
+
+        <conditional name="breakdancer">
+            <param name="checking" type="select" label="use calls from an other method?">
+                <option value="yes">Yes</option>
+                <option value="no" selected="True">No</option>
+            </param>
+            <when value="yes">
+                <param name="input1" type="data" format="tabular" label="variant call file" help="Pindel is able to use calls from other SV methods such as BreakDancer to further increase sensitivity and specificity. BreakDancer result or calls from any methods must in the format: ChrA LocA stringA ChrB LocB stringB other" />
+            </when>
+            <when value="no" />
+        </conditional>
+
+        <param name="IndelCorrection" type="boolean" label="Indel Correction" help="search for consensus indels to corret contigs" checked="false" />
+
+        <conditional name="input_SV_Calls_for_assembly">
+            <param name="checking" type="select" label="input SV Calls for assembly ?" >
+                <option value="yes">Yes</option>
+                <option value="no" selected="True">No</option>
+            </param>
+            <when value="yes">
+                <param name="input_SV_Calls" type="data" format="tabular" label="variant call file" help="A filename of a list of SV calls for assembling breakpoints
+                    Types: DEL, INS, DUP, INV, CTX and ITX
+                    File format: Type chrA posA Confidence_Range_A chrB posB
+                    Confidence_Range_B
+                    Example: DEL chr1 10000 50 chr2 20000 100" />
+            </when>
+            <when value="no" />
+        </conditional>
+        
+        <param name="exclude_list" type="data" format="bed" label="Exclude File" help="Locations to exclude, like centromeres" optional="True"/>
+
+    </inputs>
+
+    <outputs>
+        <data format="tabular" name="outputRawFile" label="pindel.raw"/>
+        <data format="vcf" name="outputVcfFile" label="pindel.vcf"/>
+        <data format="vcf" name="outputSomaticVcfFile" label="pindel.somatic.vcf">
+          <filter>inputs['mode'] == 'pair'</filter>
+        </data>
+    </outputs>
+
+    <stdio>
+      <exit_code range="1:" level="fatal" />
+    </stdio>
+
+    <help>
+        <!--
+        help="Pindel only reports reads if they can be fit around an event within a certain number of mismatches. If the fraction of sequencing errors is 0.01, (so we'd expect a total error rate of 0.011 since on average 1 in 1000 bases is a SNP) and pindel calls a deletion, but there are 4 mismatched bases in the new fit of the pindel read (100 bases) to the reference genome, Pindel would calculate that with an error rate of 0.01 (=0.011 including SNPs) the chance that there are 0, 1 or 2 mismatched bases in the reference genome is 90%. Setting -E to .90 (=90%) will thereforethrow away all reads with 3 or more mismatches, even though that means that you throw away 1 in 10 valid reads. Increasing this parameter to say 0.99 will increase the sensitivity of pindel though you may get more false positives, decreasing the parameter ensures you only get very good matches but pindel may not find as many events. (default 0.95)" -->
+    </help>
+
+    <tests>
+    </tests>
+
+</tool>

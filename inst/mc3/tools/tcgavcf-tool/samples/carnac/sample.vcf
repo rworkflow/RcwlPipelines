@@ -1,0 +1,23 @@
+##fileformat=VCFv4.1
+##fileDate=20130321
+##tcgaversion=1.1
+##reference=<ID=hg19,source=.>
+##center="BCM"
+##phasing=none
+##geneAnno=none
+##vcfProcessLog=<InputVCF=</users/jenn/datalinks/chromophobe/illumina/we/atlas-indel/filtered/TCGA-KL-8324-01A-11D-2310-10.indel.cond.vs-1.merged.dbsnp.annotated.vcf>,InputVCFSource=<CA>,InputVCFVer=<1.0>,InputVCFParam=<none>,InputVCFgeneAnno=<none>>
+##SAMPLE=<ID=NORMAL,SampleUUID=5831a933-9b5f-4f33-94d8-ba2a844f27ef,SampleTCGABarcode=TCGA-KL-8324-11A-01D-2310-10,Description="Normal",softwareName=<Carnac>,softwareVer=<1.0>,softwareParam=<>,File="TCGA-KL-8324-11A-01D-2310-10.bam",Platform="illumina",Source="dbGAP",Accession="dbGaP">
+##SAMPLE=<ID=PRIMARY,SampleUUID=47e52141-87f5-4718-8497-950711774cd8,SampleTCGABarcode=TCGA-KL-8324-01A-11D-2310-10,Description="Primary tumor",softwareName=<Carnac>,softwareVer=<1.0>,softwareParam=<>,File="TCGA-KL-8324-01A-11D-2310-10.bam",Platform="illumina",Source="dbGAP",Accession="dbGaP">
+##INFO=<ID=VT,Number=1,Type=String,Description="Variant type, can be SNP, INS or DEL">
+##INFO=<ID=VLS,Number=1,Type=Integer,Description="Final validation status relative to non-adjacent Normal,0=wildtype,1=germline,2=somatic,3=LOH,4=post transcriptional modification,5=unknown">
+##FILTER=<ID=CA,Description="Fail Carnac (Tumor and normal coverage, tumor variant count, mapping quality, allele fraction, strand, variant read position, base quality)">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read depth at this position in the sample">
+##FORMAT=<ID=AD,Number=.,Type=Integer,Description="Depth of reads supporting alleles 0/1/2/3...">
+##FORMAT=<ID=BQ,Number=.,Type=Integer,Description="Average base quality for reads supporting alleles">
+##FORMAT=<ID=SS,Number=1,Type=Integer,Description="Variant status relative to non-adjacent Normal,0=wildtype,1=germline,2=somatic,3=LOH,4=post-transcriptional modification,5=unknown">
+##FORMAT=<ID=SSC,Number=1,Type=Integer,Description="Somatic score between 0 and 255">
+##FORMAT=<ID=MQ60,Number=1,Type=Integer,Description="Number of reads (mapping quality=60) supporting variant">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	NORMAL	PRIMARY
+1	17961	.	TG	T	.	PASS	VT=DEL;VLS=5	GT:DP:AD:BQ:SS:SSC:MQ60	0/1:10:.,4:.:1:.:0	0/1:11:.,3:.:1:.:0
+1	69270	.	A	G	.	CA	VT=SNP;VLS=5	GT:DP:AD:BQ:SS:SSC:MQ60	0/1:862:.,163:27:1:.:0	0/1:1058:.,238:26:1:.:0

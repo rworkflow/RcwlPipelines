@@ -1,0 +1,34 @@
+<tool id="vcf-filter" name="VCF Filter" version="0.1">
+    <description></description>
+
+    <requirements>
+        <container type="docker">tcgavcf-tool:0.1</container>
+    </requirements>
+
+    <command interpreter="python">
+vcf-filter.py ${input_vcf} ${filter} ${output_vcf}
+#if $filterRejects:
+--filter
+#end if
+    </command>
+
+    <inputs>
+        <param type="data" format="vcf" name="input_vcf" label="Input VCF"/>
+        <param type="text" area="True" size="5x25" name="filter_text" label="Allowed Sequences"/>
+        <param name="filterRejects" type="boolean" label="Filter Rejected calls" checked="true"/>
+    </inputs>
+
+    <outputs>
+        <data format="vcf" name="output_vcf" />
+    </outputs>
+    <configfiles>
+        <configfile name="filter"><![CDATA[${filter_text}]]></configfile>
+    </configfiles>
+    <help>
+
+    </help>
+
+    <tests>
+    </tests>
+
+</tool>

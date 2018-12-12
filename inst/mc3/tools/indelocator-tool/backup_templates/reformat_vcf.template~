@@ -1,0 +1,10 @@
+#####
+# If generating JSON for multiple samples, replace '</full/file/path>' or 'null' with '<>', then complete reformat_vcf.sample_list.tab. See
+# ./backup_templates/reformat_vcf.sample_list.template for examples. Be certain to provide a unique identifier under the 'run_uid' header to
+# clearly distinguish samples/runs. If *optional* sample-specific values are desired, the appropriate key from this template may be used as
+# a column header in reformat_vcf.sample_list.tab (be careful to maintain tab-delimited format).
+####
+input_vcf: {
+    class: File
+    path: </full/file/path>         # Required file; replace '</full/file/path>' with full path to Indelocator-generated VCF to be filtered [e.g., /my/path/to/indelocator.vcf]
+output_vcf: null	            # Optional string; name of output VCF; 'null' defaults to '<input_vcf>.reformatted.vcf'

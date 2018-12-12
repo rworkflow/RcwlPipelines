@@ -1,0 +1,14 @@
+#####
+# If generating JSON for multiple samples, replace '</full/file/path>' or 'null' with '<>', then complete key-map.sample_list.tab. See
+# ./backup_templates/key-map.sample_list.template for examples. Be certain to provide a unique identifier under the 'run_uid' header to
+# clearly distinguish samples/runs. If *optional* sample-specific values are desired, the appropriate key from this template may be used as
+# a column header in key-map.sample_list.tab (be careful to maintain tab-delimited format).
+####
+mergedMAF: {
+    class: File
+    path: </full/file/path>         # Required file; replace '<full/file/path>' with full path to input MAF [e.g., /my/path/to/input.maf]
+markList: {
+    class: File
+    path: </full/file/path>         # Required file; replace '<full/file/path>' with full path to TXT file of sample-specific "marks" to be mapped (run sample-level marks [i.e., those in ./markfiles/mark_samples] and variant-level marks [i.e., those in ./markfiles/mark_variants]) separately [e.g., /my/path/to/grepped_id.txt]
+outMAF: null                        # Optional string; name of mapped MAF; 'null' defaults to 'mapped.maf'
+useNorm: null                       # Optional integer; replace 'null' with '1' to use the normal in the key; 'null' defaults to '0'

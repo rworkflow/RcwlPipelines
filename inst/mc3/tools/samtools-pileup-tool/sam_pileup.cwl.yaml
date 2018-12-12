@@ -1,0 +1,44 @@
+cwlVersion: v1.0
+class: CommandLineTool
+label: SamTools Pileup
+baseCommand: ["samtools", "mpileup", "-o", "output.pileup"]
+requirements:
+  - class: "DockerRequirement"
+    dockerPull: "opengenomics/samtools-pileup:latest"
+# samtools mpileup  -B  -q 1  -f reference.fa > output
+inputs:
+  
+  - id: noBaq
+    type: boolean
+    doc: disable BAQ (per-Base Alignment Quality)
+    default: False
+    inputBinding:
+      prefix: "-B"
+
+  - id: minMapQ
+    doc:   -q, --min-MQ INT        skip alignments with mapQ smaller than INT [0]
+    type: int
+    default: 0
+    inputBinding:
+      prefix: "-q"
+  
+  - id: reference
+    type: File
+    inputBinding:
+      prefix: -f
+    secondaryFiles:
+      - .fai
+
+  - id: input
+    type: File
+    inputBinding:
+      position: 1
+    secondaryFiles:
+      - .bai
+
+outputs:
+  - id: output
+    type: File
+    outputBinding:
+      glob: output.pileup
+

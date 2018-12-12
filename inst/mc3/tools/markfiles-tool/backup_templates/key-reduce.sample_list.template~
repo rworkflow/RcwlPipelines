@@ -1,0 +1,4 @@
+run_uid:	mappedMAF:	origMAF:
+sample_1	/full/path/to/mapped_1.maf	/full/path/to/merged_1.maf
+sample_2	/full/path/to/mapped_2.maf	/full/path/to/merged_2.maf
+sample_3	/full/path/to/mapped_3.maf	/full/path/to/merged_3.maf

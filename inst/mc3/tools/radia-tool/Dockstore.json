@@ -1,0 +1,27 @@
+{
+  "refseq": {
+    "path": "http://hgwdev.cse.ucsc.edu/~jeltje/public_data/genome.fa.gz",
+    "class": "File"
+  },
+  "number_of_procs": 2,
+  "dnaTumorFilename": {
+    "path": "https://dcc.icgc.org/api/v1/download?fn=/PCAWG/reference_data/data_for_testing/HCC1143_ds/HCC1143.bam",
+    "class": "File"
+  },
+  "dnaTumorBaiFilename": {
+    "path": "https://dcc.icgc.org/api/v1/download?fn=/PCAWG/reference_data/data_for_testing/HCC1143_ds/HCC1143.bam.bai",
+    "class": "File"
+  },
+  "dnaNormalFilename": {
+    "path": "https://dcc.icgc.org/api/v1/download?fn=/PCAWG/reference_data/data_for_testing/HCC1143_ds/HCC1143_BL.bam",
+    "class": "File"
+  },
+  "dnaNormalBaiFilename": {
+    "path": "https://dcc.icgc.org/api/v1/download?fn=/PCAWG/reference_data/data_for_testing/HCC1143_ds/HCC1143_BL.bam.bai",
+    "class": "File"
+  },
+  "mutations": {
+    "path": "/mnt/radia.vcf",
+    "class": "File"
+  }
+}
