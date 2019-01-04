@@ -4,8 +4,10 @@ p1 <- InputParam(id = "ibam", type = InputArrayParam(items = "File",
                                                     separate = FALSE))
 p2 <- InputParam(id = "obam", type = "string", prefix = "O=", separate = FALSE)
 o1 <- OutputParam(id = "oBam", type = "File", glob = "$(inputs.obam)")
-mergeBam <- cwlParam(baseCommand = c("java", "-jar",
-                                     "/home/qhu/bin/picard.jar", "MergeSamFiles"),
+req1 <- list(class = "DockerRequirement",
+             dockerPull = "biocontainers/picard:2.3.0")
+mergeBam <- cwlParam(baseCommand = c("picard", "MergeSamFiles"),
+                     requirements = list(req1),
                      inputs = InputParamList(p1, p2),
                      outputs = OutputParamList(o1))
 
@@ -15,29 +17,18 @@ p2 <- InputParam(id = "obam", type = "string", prefix = "O=", separate = FALSE)
 p3 <- InputParam(id = "matrix", type = "string", prefix = "M=", separate = FALSE)
 o1 <- OutputParam(id = "mBam", type = "File", glob = "$(inputs.obam)")
 o2 <- OutputParam(id = "Mat", type = "File", glob = "$(inputs.matrix)")
-markdup <- cwlParam(baseCommand = c("java", "-jar",
-                                    "/home/qhu/bin/picard.jar",
-                                    "MarkDuplicates"),
+markdup <- cwlParam(baseCommand = c("picard", "MarkDuplicates"),
+                    requirements = list(req1),
                     inputs = InputParamList(p1, p2, p3),
                     outputs = OutputParamList(o1, o2))
-
-## ## Index bam
-## p1 <- InputParam(id = "bam", type = "File", position = 1)
-## o1 <- OutputParam(id = "idx", type = "File", glob = "$(inputs.bam.basename)", secondaryFiles = ".bai")
-## req1 <- list(class = "InitialWorkDirRequirement",
-##              listing = list("$(inputs.bam)"))
-## samtools_index <- cwlParam(baseCommand = c("samtools", "index"),
-##                            requirements = list(req1),
-##                            inputs = InputParamList(p1),
-##                            outputs = OutputParamList(o1))
 
 ## bam flagstat
 p1 <- InputParam(id = "bam", type = "File")
 o1 <- OutputParam(id = "flagstat", type = "File", glob = "$(inputs.bam.nameroot).flagstat.txt")
-req1 <- list(class = "DockerRequirement",
-             dockerPull = "hubentu/rcwl-rnaseq")
+req2 <- list(class = "DockerRequirement",
+             dockerPull = "biocontainers/samtools")
 samtools_flagstat <- cwlParam(baseCommand = c("samtools", "flagstat"),
-                              ##requirements = list(req1),
+                              requirements = list(req2),
                               inputs = InputParamList(p1),
                               outputs = OutputParamList(o1),
                               stdout = "$(inputs.bam.nameroot).flagstat.txt")

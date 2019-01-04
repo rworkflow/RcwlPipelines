@@ -5,7 +5,10 @@ p3 <- InputParam(id = "Ref", type = "string", position = 3)
 p4 <- InputParam(id = "FQ1", type = "File", position = 4)
 p5 <- InputParam(id = "FQ2", type = "File?", position = 5)
 o1 <- OutputParam(id = "sam", type = "File", glob = "*.sam")
+req1 <- list(class = "DockerRequirement",
+             dockerPull = "biocontainers/bwa:0.7.15")
 bwa <- cwlParam(baseCommand = c("bwa", "mem"),
+                requirements = list(req1),
                 inputs = InputParamList(p1, p2, p3, p4, p5),
                 output = OutputParamList(o1),
                 stdout = "bwaOutput.sam")
@@ -13,8 +16,11 @@ bwa <- cwlParam(baseCommand = c("bwa", "mem"),
 ## samtools sam to bam
 p1 <- InputParam(id = "sam", type = "File")
 o1 <- OutputParam(id = "bam", type = "File", glob = "$(inputs.sam.basename).bam")
+req2 <- list(class = "DockerRequirement",
+             dockerPull = "biocontainers/samtools")
 sam2bam <- cwlParam(baseCommand = c("samtools", "view"),
                     arguments = list("-b"),
+                    requirements = list(req2),
                     inputs = InputParamList(p1),
                     outputs = OutputParamList(o1),
                     stdout = "$(inputs.sam.basename).bam")
@@ -23,6 +29,7 @@ sam2bam <- cwlParam(baseCommand = c("samtools", "view"),
 p1 <- InputParam(id = "bam", type = "File")
 o1 <- OutputParam(id = "sbam", type = "File", glob = "$(inputs.bam.nameroot).sorted.bam")
 sortBam <- cwlParam(baseCommand = c("samtools", "sort"),
+                    requirements = list(req2),
                     inputs = InputParamList(p1),
                     outputs = OutputParamList(o1),
                     stdout = "$(inputs.bam.nameroot).sorted.bam")
@@ -30,10 +37,10 @@ sortBam <- cwlParam(baseCommand = c("samtools", "sort"),
 ## Index bam
 p1 <- InputParam(id = "bam", type = "File", position = 1)
 o1 <- OutputParam(id = "idx", type = "File", glob = "$(inputs.bam.basename)", secondaryFiles = ".bai")
-req1 <- list(class = "InitialWorkDirRequirement",
+req3 <- list(class = "InitialWorkDirRequirement",
              listing = list("$(inputs.bam)"))
 samtools_index <- cwlParam(baseCommand = c("samtools", "index"),
-                           requirements = list(req1),
+                           requirements = list(req2, req3),
                            inputs = InputParamList(p1),
                            outputs = OutputParamList(o1))
 
