@@ -49,7 +49,7 @@ p1 <- InputParam(id = "threads", type = "int")
 p2 <- InputParam(id = "RG", type = "string")
 p3 <- InputParam(id = "Ref", type = "string")
 p4 <- InputParam(id = "FQ1", type = "File")
-p5 <- InputParam(id = "FQ2", type = "File")
+p5 <- InputParam(id = "FQ2", type = "File?")
 
 o1 <- OutputParam(id = "Bam", type = "File", outputSource = "sortBam/sbam")
 o2 <- OutputParam(id = "Idx", type = "File", outputSource = "idxBam/idx")
