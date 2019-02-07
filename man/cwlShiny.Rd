@@ -4,12 +4,14 @@
 \alias{cwlShiny}
 \title{cwlShiny}
 \usage{
-cwlShiny(cwl, inputList = list(), ...)
+cwlShiny(cwl, inputList = list(), upload = FALSE, ...)
 }
 \arguments{
 \item{cwl}{A cwlParam object.}
 
 \item{inputList}{a list of choices for the inputs of cwl object. The name of the list must match the inputs of the cwl object.}
+
+\item{upload}{Whether to upload file. If FALSE, the upload field will be text input (file path) instead of file input.}
 
 \item{...}{More options for `runCWL`.}
 }

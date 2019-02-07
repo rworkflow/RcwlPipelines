@@ -6,7 +6,7 @@ Authors@R:
            family = "Hu",
            role = c("aut", "cre"),
            email = "qiang.hu@roswellpark.org")
-Description: A collection of pipeline recipes based on Rcwl.
+Description: A collection of Bioinformatics pipeline recipes based on Rcwl.
 Depends: R (>= 3.5), Rcwl, BiocParallel, jsonlite, shiny
 License: GPL
 Encoding: UTF-8
