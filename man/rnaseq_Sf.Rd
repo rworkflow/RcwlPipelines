@@ -25,6 +25,6 @@ RNASeq pipeline by STAR and featureCounts.
 }
 \examples{
 ## scripts to build the pipeline
-dir(system.file("scripts/RNASeq", package="RcwlPipelines"))
+demo("RNASeq_Sf")
 }
 \keyword{datasets}

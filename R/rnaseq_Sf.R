@@ -14,5 +14,5 @@
 #' @source \url{https://hubentu.github.io/others/Rcwl_RNASeq.html}
 #' @examples
 #' ## scripts to build the pipeline
-#' dir(system.file("scripts/RNASeq", package="RcwlPipelines"))
+#' demo("RNASeq_Sf")
 "rnaseq_Sf"

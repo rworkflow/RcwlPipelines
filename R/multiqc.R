@@ -10,5 +10,5 @@
 #' @source \url{https://multiqc.info}
 #' @examples
 #' ## scripts to build the pipeline
-#' dir(system.file("scripts/DNAalign", package="RcwlPipelines"))
+#' demo("multiqc")
 "multiqc"
