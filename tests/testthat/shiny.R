@@ -1,4 +1,19 @@
-.inputUI <- function(cwl, inputList, upload){
+
+library(shiny)
+library(Rcwl)
+input1 <- InputParam(id = "sth")
+echo <- cwlParam(baseCommand = "echo", inputs = InputParamList(input1))
+
+e1 <- InputParam(id = "flag", type = "boolean", prefix = "-f", doc = "boolean flag")
+e2 <- InputParam(id = "string", type = "string", prefix = "-s")
+e3 <- InputParam(id = "int", type = "int", prefix = "-i", default = 123)
+e4 <- InputParam(id = "file", type = "File", prefix = "--file=", separate = FALSE)
+e5 <- InputParam(id = "array", type = "string[]", prefix = "-A", doc = "separated by comma")
+echoA <- cwlParam(baseCommand = "echo", id = "mulEcho", label = "Test parameter types",
+                  inputs = InputParamList(e1, e2, e3, e4, e5),
+                  stdout = "output.txt")
+
+.inputUI <- function(cwl, inputList, upload=FALSE){
     ilist <- inputs(cwl)
     dList <- lapply(ilist, function(x){
         if(x@id %in% names(inputList)){
@@ -14,12 +29,7 @@
                 d <- selectInput(inputId = x@id,
                                  label = paste0(x@id, " (", x@type, ")"),
                                  choices = list("TRUE" = TRUE, "FALSE" = FALSE))
-            }else if(x@type == "int"){
-                v <- ifelse(length(x@default) == 0, NA, x@default)
-                d <- numericInput(inputId = x@id,
-                                  label = paste0(x@id, " (int)"),
-                                  value = v)
-            }else if(x@type %in% c("string", "File", "Directory")){
+            }else if(x@type %in% c("string", "int", "File", "Directory")){
                 if(x@type == "File" & upload){
                     d <- fileInput(inputId = x@id,
                                    label = paste0(x@id, " (", x@type, ")"))
@@ -29,13 +39,9 @@
                                    value = x@default)
                 }
             }else if(grepl("\\[", x@type)){
-                d <- textAreaInput(inputId = x@id,
-                                   label = paste0(x@id, " (", x@type, ")"),
-                                   value = x@default)
+                d <- textAreaInput(inputId = x@id, label = paste0(x@id, " (", x@type, ")"), value = x@default)
             }else{
-                d <- textInput(inputId = x@id,
-                               label = paste0(x@id, " (", x@type, ")"),
-                               value = x @default)
+                d <- textInput(inputId = x@id, label = paste0(x@id, " (", x@type, ")"), value = x @default)
             }
         }
         
@@ -48,23 +54,7 @@
     dList
 }
 
-#' cwlShiny
-#'
-#' Function to generate shiny app automaticlly for a `cwlParam` object.
-#' @param cwl A cwlParam object.
-#' @param inputList a list of choices for the inputs of cwl object. The name of the list must match the inputs of the cwl object.
-#' @param upload Whether to upload file. If FALSE, the upload field will be text input (file path) instead of file input.
-#' @param ... More options for `runCWL`.
-#' @import Rcwl
-#' @import shiny
-#' @export
-#' @examples
-#' input1 <- InputParam(id = "sth")
-#' echo <- cwlParam(baseCommand = "echo", inputs = InputParamList(input1))
-#' echoApp <- cwlShiny(echo)
-
 cwlShiny <- function(cwl, inputList = list(), upload = FALSE, ...){
-    stopifnot(class(cwl) == "cwlParam")
     tList <- titlePanel(cwl@id)
     if(length(cwl@label) > 0) tList <- list(tList, h3(cwl@label))
     divList <- .inputUI(cwl, inputList, upload)
@@ -92,13 +82,8 @@ cwlShiny <- function(cwl, inputList = list(), upload = FALSE, ...){
                    grepl("\\[", ilist[[x]]@type)){
                     v <- unlist(strsplit(input[[x]], split = ","))
                     eval(parse(text=paste0("cwl$",x," <- v")))
-                }else{
-                    if(ilist[[x]]@type == "File" & upload){
-                        eval(parse(text=paste0("cwl$",x," <- input$", x,
-                                               "$datapath")))
-                    }else{
-                        eval(parse(text=paste0("cwl$",x," <- input$", x)))
-                    }
+                }else{    
+                    eval(parse(text=paste0("cwl$",x," <- input$", x)))
                 }
             }
             print("Running...")
@@ -116,3 +101,13 @@ cwlShiny <- function(cwl, inputList = list(), upload = FALSE, ...){
 
     shinyApp(ui, server)
 }
+
+tmp1 <- tempfile()
+tmp2 <- tempfile()
+file.create(tmp1)
+file.create(tmp2)
+inputList <- list(file = c(tmp1, tmp2))
+echoS <- cwlShiny(echoA, inputList)
+runApp(echoS)
+
+inputList <- list()

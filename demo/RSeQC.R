@@ -29,14 +29,27 @@ read_distribution <- cwlParam(baseCommand = c("read_distribution.py"),
                               outputs = OutputParamList(o1),
                               stdout = "$(inputs.bam.nameroot).distribution.txt")
 
+## gene body coverage
+p1 <- InputParam(id = "bam", type = "File", prefix = "-i")
+p2 <- InputParam(id = "bed", type = "File", prefix = "-r")
+p3 <- InputParam(id = "prefix", type = "string", prefix = "-o")
+o1 <- OutputParam(id = "gCovPDF", type = "File", glob = "*.geneBodyCoverage.curves.pdf")
+o2 <- OutputParam(id = "gCovTXT", type = "File", glob = "*.geneBodyCoverage.txt")
+geneBody_coverage <- cwlParam(baseCommand = c("geneBody_coverage.py"),
+                              requirements = list(req1),
+                              inputs = InputParamList(p1, p2, p3),
+                              outputs = OutputParamList(o1, o2))
+
 ## Pipeline
 p1 <- InputParam(id = "bam", type = "File")
 p2 <- InputParam(id = "gtf", type = "File")
 o1 <- OutputParam(id = "distribution", type = "File", outputSource = "r_distribution/distOut")
+o2 <- OutputParam(id = "gCovP", type = "File", outputSource = "gCoverage/gCovPDF")
+o3 <- OutputParam(id = "gCovT", type = "File", outputSource = "gCoverage/gCovTXT")
 req1 <- list(class = "StepInputExpressionRequirement")
 RSeQC <- cwlStepParam(requirements = list(req1),
                       inputs = InputParamList(p1, p2),
-                      outputs = OutputParamList(o1))
+                      outputs = OutputParamList(o1, o2, o3))
 
 s1 <- Step(id = "gtfToGenePred", run = gtfToGenePred,
            In = list(gtf = "gtf",
@@ -49,5 +62,9 @@ s2 <- Step(id = "genePredToBed", run = genePredToBed,
 s3 <- Step(id = "r_distribution", run = read_distribution,
            In = list(bam = "bam",
                      bed = "genePredToBed/bed"))
+s4 <- Step(id = "gCoverage", run = geneBody_coverage,
+           In = list(bam = "bam",
+                     bed = "genePredToBed/bed",
+                     prefix = list(valueFrom = "$(inputs.bam.nameroot)")))
 
-RSeQC  <- RSeQC + s1 + s2 + s3
+RSeQC  <- RSeQC + s1 + s2 + s3 + s4

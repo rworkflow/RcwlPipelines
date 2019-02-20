@@ -20,13 +20,14 @@ o3 <- OutputParam(id = "out_idx",type = "File", outputSource = "samtools_index/i
 o4 <- OutputParam(id = "out_stat",type = "File", outputSource = "samtools_flagstat/flagstat")
 o5 <- OutputParam(id = "out_count", type = "File", outputSource = "featureCounts/count")
 o6 <- OutputParam(id = "out_distribution", type = "File", outputSource = "RSeQC/distribution")
-    
+o7 <- OutputParam(id = "out_gCovP", type = "File", outputSource = "RSeQC/gCovP")
+o8 <- OutputParam(id = "out_gCovT", type = "File", outputSource = "RSeQC/gCovT")
 req1 <- list(class = "ScatterFeatureRequirement")
 req2 <- list(class = "SubworkflowFeatureRequirement")
 req3 <- list(class = "StepInputExpressionRequirement")
 rnaseq_Sf <- cwlStepParam(requirements = list(req1, req2, req3),
                        inputs = InputParamList(p1, p2, p3, p4, p5),
-                       outputs = OutputParamList(o1, o2a, o2b, o2c, o3, o4, o5, o6))
+                       outputs = OutputParamList(o1, o2a, o2b, o2c, o3, o4, o5, o6, o7, o8))
 
 ## fastqc
 s1 <- Step(id = "fastqc", run = fastqc,
