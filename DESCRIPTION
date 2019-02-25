@@ -8,7 +8,7 @@ Authors@R:
            email = "qiang.hu@roswellpark.org")
 Description: A collection of Bioinformatics pipeline recipes based on Rcwl.
 Depends: R (>= 3.5), Rcwl, BiocParallel
-License: GPL
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Suggests: 
@@ -17,3 +17,4 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
+SystemRequirements: nodejs

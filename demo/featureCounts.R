@@ -3,7 +3,7 @@
 f1 <- InputParam(id = "gtf", type = "File", prefix = "-a")
 f2 <- InputParam(id = "count", type = "string", prefix = "-o")
 f3 <- InputParam(id = "bam", type = "File")
-o1 <- OutputParam(id = "count", type = "File", glob = "$(inputs.count)", secondaryFiles = ".summary")
+o1 <- OutputParam(id = "Count", type = "File", glob = "$(inputs.count)", secondaryFiles = ".summary")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "hubentu/rcwl-rnaseq")

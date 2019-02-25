@@ -18,7 +18,7 @@ o2b <- OutputParam(id = "out_Log", type = "File", outputSource = "STAR/outLog")
 o2c <- OutputParam(id = "out_Count", type = "File", outputSource = "STAR/outCount")
 o3 <- OutputParam(id = "out_idx",type = "File", outputSource = "samtools_index/idx")
 o4 <- OutputParam(id = "out_stat",type = "File", outputSource = "samtools_flagstat/flagstat")
-o5 <- OutputParam(id = "out_count", type = "File", outputSource = "featureCounts/count")
+o5 <- OutputParam(id = "out_count", type = "File", outputSource = "featureCounts/Count")
 o6 <- OutputParam(id = "out_distribution", type = "File", outputSource = "RSeQC/distribution")
 o7 <- OutputParam(id = "out_gCovP", type = "File", outputSource = "RSeQC/gCovP")
 o8 <- OutputParam(id = "out_gCovT", type = "File", outputSource = "RSeQC/gCovT")
@@ -52,7 +52,7 @@ s5 <- Step(id = "featureCounts", run = featureCounts,
                      count = list(valueFrom = "$(inputs.bam.nameroot).featureCounts.txt")))
 ## RSeQC
 s6 <- Step(id = "RSeQC", run = RSeQC,
-           In = list(bam = "STAR/outBAM",
+           In = list(bam = "samtools_index/idx",
                      gtf = "in_GTFfile"))
 ## pipeline
 rnaseq_Sf <- rnaseq_Sf + s1 + s2 + s3 + s4 + s5 + s6

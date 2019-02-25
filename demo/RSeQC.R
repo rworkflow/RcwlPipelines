@@ -30,7 +30,7 @@ read_distribution <- cwlParam(baseCommand = c("read_distribution.py"),
                               stdout = "$(inputs.bam.nameroot).distribution.txt")
 
 ## gene body coverage
-p1 <- InputParam(id = "bam", type = "File", prefix = "-i")
+p1 <- InputParam(id = "bam", type = "File", prefix = "-i", secondaryFiles = ".bai")
 p2 <- InputParam(id = "bed", type = "File", prefix = "-r")
 p3 <- InputParam(id = "prefix", type = "string", prefix = "-o")
 o1 <- OutputParam(id = "gCovPDF", type = "File", glob = "*.geneBodyCoverage.curves.pdf")
@@ -41,7 +41,7 @@ geneBody_coverage <- cwlParam(baseCommand = c("geneBody_coverage.py"),
                               outputs = OutputParamList(o1, o2))
 
 ## Pipeline
-p1 <- InputParam(id = "bam", type = "File")
+p1 <- InputParam(id = "bam", type = "File", secondaryFiles = ".bai")
 p2 <- InputParam(id = "gtf", type = "File")
 o1 <- OutputParam(id = "distribution", type = "File", outputSource = "r_distribution/distOut")
 o2 <- OutputParam(id = "gCovP", type = "File", outputSource = "gCoverage/gCovPDF")
