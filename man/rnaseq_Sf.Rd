@@ -3,7 +3,7 @@
 \docType{data}
 \name{rnaseq_Sf}
 \alias{rnaseq_Sf}
-\title{rnaseq_Sf}
+\title{RNASeq pipeline with STAR and featureCounts}
 \format{A `cwlStepParam` object.
 \describe{
  An RNASeq alignment and quantification pipeline built by `Rcwl`, which contains steps:

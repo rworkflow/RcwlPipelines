@@ -1,13 +1,13 @@
 Package: RcwlPipelines
 Title: Bioinformatics pipelines based on Rcwl
-Version: 0.0.0.9000
+Version: 0.99.0
 Authors@R: 
     person(given = "Qiang",
            family = "Hu",
            role = c("aut", "cre"),
            email = "qiang.hu@roswellpark.org")
 Description: A collection of Bioinformatics pipeline recipes based on Rcwl.
-Depends: R (>= 3.5), Rcwl, BiocParallel
+Depends: R (>= 3.5), Rcwl
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
@@ -17,4 +17,5 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
+biocViews: Software, WorkflowStep
 SystemRequirements: nodejs

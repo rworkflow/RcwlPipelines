@@ -1,4 +1,4 @@
-#' rnaseq_Sf
+#' RNASeq pipeline with STAR and featureCounts
 #'
 #' RNASeq pipeline by STAR and featureCounts.
 #' @format A `cwlStepParam` object.
