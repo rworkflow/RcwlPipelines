@@ -3,7 +3,7 @@
 \docType{data}
 \name{alignMerge}
 \alias{alignMerge}
-\title{DNASeq alignment and markduplicates}
+\title{DNASeq alignment, merge and markduplicates}
 \format{A `cwlStepParam` object.
 \describe{
  \item{bwaAlign}{to align with bwa and sort with samtools}
@@ -20,6 +20,6 @@ The DNASeq pipeline to run bwa alignment, merge and mark duplicates.
 }
 \examples{
 ## scripts to build the pipeline
-demo("alignMerge")
+## demo("alignMerge")
 }
 \keyword{datasets}

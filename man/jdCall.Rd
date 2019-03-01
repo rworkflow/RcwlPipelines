@@ -23,6 +23,6 @@ whole-genome sequencing (WGS) and exome sequencing data.
 }
 \examples{
 ## scripts to build the pipeline
-demo("jdCall")
+## demo("jdCall")
 }
 \keyword{datasets}

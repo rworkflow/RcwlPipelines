@@ -23,6 +23,6 @@ update: 11/5/2018) from github was cloned to the package.
 }
 \examples{
 ## scripts to build the pipeline
-demo("mc3")
+## demo("mc3")
 }
 \keyword{datasets}

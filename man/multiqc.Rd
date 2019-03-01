@@ -22,6 +22,6 @@ The mutliQC command tool
 }
 \examples{
 ## scripts to build the pipeline
-demo("multiqc")
+## demo("multiqc")
 }
 \keyword{datasets}

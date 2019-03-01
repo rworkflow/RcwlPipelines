@@ -25,6 +25,6 @@ this package.
 }
 \examples{
 ## scripts to build the pipeline
-demo("hapCall")
+## demo("hapCall")
 }
 \keyword{datasets}

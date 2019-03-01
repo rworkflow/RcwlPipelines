@@ -12,5 +12,5 @@
 #' @source \url{https://hubentu.github.io/others/Rcwl_MC3.html}
 #' @examples
 #' ## scripts to build the pipeline
-#' demo("mc3")
+#' ## demo("mc3")
 "mc3"

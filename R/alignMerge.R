@@ -9,5 +9,5 @@
 #' @source \url{https://hubentu.github.io/others/Rcwl_DNASeq_Align.html}
 #' @examples
 #' ## scripts to build the pipeline
-#' demo("alignMerge")
+#' ## demo("alignMerge")
 "alignMerge"

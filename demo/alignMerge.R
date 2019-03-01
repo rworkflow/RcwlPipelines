@@ -1,5 +1,5 @@
-source(system.file("demo", "DNASeq_bwa.R", package = "RcwlPipelines"))
-source(system.file("demo", "DNASeq_merge.R", package = "RcwlPipelines"))
+source(system.file("demo", "src", "DNASeq_bwa.R", package = "RcwlPipelines"))
+source(system.file("demo", "src", "DNASeq_merge.R", package = "RcwlPipelines"))
 
 ## bwaAlign + mergeBamDup
 p1 <- InputParam(id = "idBam", type = "string")

@@ -10,5 +10,5 @@
 #' @source \url{https://multiqc.info}
 #' @examples
 #' ## scripts to build the pipeline
-#' demo("multiqc")
+#' ## demo("multiqc")
 "multiqc"

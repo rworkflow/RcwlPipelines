@@ -1,9 +1,9 @@
-source(system.file("demo", "fastQC.R", package = "RcwlPipelines"))
-source(system.file("demo", "featureCounts.R", package = "RcwlPipelines"))
-source(system.file("demo", "samtools_flagstat.R", package = "RcwlPipelines"))
-source(system.file("demo", "samtools_index.R", package = "RcwlPipelines"))
-source(system.file("demo", "RSeQC.R", package = "RcwlPipelines"))
-source(system.file("demo", "STAR.R", package = "RcwlPipelines"))
+source(system.file("demo", "src", "fastQC.R", package = "RcwlPipelines"))
+source(system.file("demo", "src", "featureCounts.R", package = "RcwlPipelines"))
+source(system.file("demo", "src", "samtools_flagstat.R", package = "RcwlPipelines"))
+source(system.file("demo", "src", "samtools_index.R", package = "RcwlPipelines"))
+source(system.file("demo", "src", "RSeQC.R", package = "RcwlPipelines"))
+source(system.file("demo", "src", "STAR.R", package = "RcwlPipelines"))
 
 ## Pipeline: fastQC + STAR + featureCounts
 ## Note: output to current dir

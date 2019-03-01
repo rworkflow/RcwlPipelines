@@ -28,6 +28,6 @@ package.
 }
 \examples{
 ## scripts to build the pipeline
-demo("GAlign")
+## demo("GAlign")
 }
 \keyword{datasets}

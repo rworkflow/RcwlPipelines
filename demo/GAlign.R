@@ -1,4 +1,4 @@
-source(system.file("demo", "runWDL.R", package = "RcwlPipelines"))
+source(system.file("demo", "src", "runWDL.R", package = "RcwlPipelines"))
 
 ## prepare Json for fq2ubam
 rscripts <- "args <- commandArgs(TRUE)

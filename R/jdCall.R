@@ -12,5 +12,5 @@
 #' @source \url{https://hubentu.github.io/others/Rcwl_GATK4.html}
 #' @examples
 #' ## scripts to build the pipeline
-#' demo("jdCall")
+#' ## demo("jdCall")
 "jdCall"
