@@ -3,7 +3,7 @@
 \docType{data}
 \name{alignMerge}
 \alias{alignMerge}
-\title{alignMerge}
+\title{DNASeq alignment and markduplicates}
 \format{A `cwlStepParam` object.
 \describe{
  \item{bwaAlign}{to align with bwa and sort with samtools}
