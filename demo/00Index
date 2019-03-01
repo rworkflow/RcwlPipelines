@@ -1,0 +1,7 @@
+alignMerge	DNASeq alignment and markduplicates
+rnaseq_Sf	RNASeq pipeline with STAR and featureCounts
+multiqc		The mutliQC command tool
+mc3		TCGA MC3 pipeline
+GAlign		GATK alignment pipeline
+hapCall		GATK haplotypecaller pipeline
+jdCall		GATK joint discovery pipeline

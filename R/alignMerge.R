@@ -1,4 +1,4 @@
-#' DNASeq alignment and markduplicates
+#' DNASeq alignment, merge and markduplicates
 #'
 #' The DNASeq pipeline to run bwa alignment, merge and mark duplicates.
 #' @format A `cwlStepParam` object.
