@@ -1,3 +1,5 @@
+source(system.file("demo", "runWDL.R", package = "RcwlPipelines"))
+
 ## haplotypecaller
 rscripts <- "args <- commandArgs(TRUE)
 bam <- args[1]

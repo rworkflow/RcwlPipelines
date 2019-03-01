@@ -1,3 +1,5 @@
+source(system.file("demo", "runWDL.R", package = "RcwlPipelines"))
+
 ## joint discovery
 rscripts <- "args <- commandArgs(TRUE)
 splitList <- function(s)as.list(unlist(strsplit(s, split = ',')))

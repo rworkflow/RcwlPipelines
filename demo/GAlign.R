@@ -1,3 +1,5 @@
+source(system.file("demo", "runWDL.R", package = "RcwlPipelines"))
+
 ## prepare Json for fq2ubam
 rscripts <- "args <- commandArgs(TRUE)
 splitList <- function(s)as.list(unlist(strsplit(s, split = ',')))
@@ -30,17 +32,6 @@ fq2ubamJson <- cwlParam(baseCommand = c("Rscript", "-e", rscripts),
                    inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9),
                    outputs = OutputParamList(o1),
                    stdout = "tmpl1.json")
-
-## RUN WDL
-p1 <- InputParam(id = "cromwell", type = "File", position = 1, prefix = "-jar")
-p2 <- InputParam(id = "run", type = "string", default = "run", position = 2)
-p3 <- InputParam(id = "wdl", type = "File", position = 3)
-p4 <- InputParam(id = "json", type = "File", position = 4, prefix = "-i")
-o1 <- OutputParam(id = "log", type = "File", glob="$(inputs.wdl.basename).log")
-runWDL <- cwlParam(baseCommand = "java",
-                   inputs = InputParamList(p1, p2, p3, p4),
-                   outputs = OutputParamList(o1),
-                   stdout = "$(inputs.wdl.basename).log")
 
 ## prepare json for ubam to bam
 rscripts <- "args <- commandArgs(TRUE)
