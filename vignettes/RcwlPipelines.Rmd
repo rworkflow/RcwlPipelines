@@ -48,6 +48,7 @@ format. It can take paired fastqs, read groups from multiple batches
 as input.
 
 ```{r}
+data(alignMerge)
 inputs(alignMerge)
 ```
 
@@ -92,6 +93,7 @@ quantification by `featureCounts` and `RSeQC` quality control. Here
 are the inputs.
 
 ```{r}
+data(rnaseq_Sf)
 inputs(rnaseq_Sf)
 ```
 
@@ -127,6 +129,7 @@ The pipeline requires a paired of tumor/normal BAM files and genomic
 annotation files as inputs.
 
 ```{r}
+data(mc3)
 inputs(mc3)
 ```
 
