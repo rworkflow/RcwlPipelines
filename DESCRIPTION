@@ -1,6 +1,6 @@
 Package: RcwlPipelines
 Title: Bioinformatics pipelines based on Rcwl
-Version: 0.99.0
+Version: 0.99.1
 Authors@R: 
     person(given = "Qiang",
            family = "Hu",
