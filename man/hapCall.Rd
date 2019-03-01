@@ -19,7 +19,9 @@ hapCall
 \description{
 The workflow runs HaplotypeCaller from GATK4 in GVCF mode on a
 single sample according to the GATK Best Practices (June 2016),
-scattered across intervals.
+scattered across intervals. The workflow from github,
+gatk4-germline-snps-indels (last update: 7/23/2018) was cloned to
+this package.
 }
 \examples{
 ## scripts to build the pipeline

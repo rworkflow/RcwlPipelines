@@ -21,7 +21,10 @@ GAlign
 }
 \description{
 Workflows for processing high-throughput sequencing data for
-variant discovery with GATK4 and related tools.
+variant discovery with GATK4 and related tools. Two workflows from
+github, seq-format-conversion (last update: 7/13/2018) and
+gatk4-data-processing (last update: 8/1/2018) were cloned to the
+package.
 }
 \examples{
 ## scripts to build the pipeline
