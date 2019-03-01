@@ -7,15 +7,15 @@ Authors@R:
            role = c("aut", "cre"),
            email = "qiang.hu@roswellpark.org")
 Description: A collection of Bioinformatics pipeline recipes based on Rcwl.
-Depends: R (>= 3.5), Rcwl
+Depends: R (>= 3.6), Rcwl
 License: GPL-2
 Encoding: UTF-8
-LazyData: true
 Suggests: 
     testthat,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
-biocViews: Software, WorkflowStep
+biocViews: Software, WorkflowStep, Alignment, Preprocessing, QualityControl,
+	   Workflow, BasicWorkflow, GeneExpressionWorkflow, GenomicVariantsWorkflow
 SystemRequirements: nodejs
