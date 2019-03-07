@@ -8,7 +8,4 @@
 #' }
 #' @source \url{https://hubentu.github.io/others/Rcwl_DNASeq_Align.html}
 #' @source \url{https://multiqc.info}
-#' @examples
-#' ## scripts to build the pipeline
-#' ## demo("multiqc")
 "multiqc"

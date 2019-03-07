@@ -12,7 +12,4 @@
 #' }
 #' @source \url{https://github.com/gatk-workflows/gatk4-germline-snps-indels}
 #' @source \url{https://hubentu.github.io/others/Rcwl_GATK4.html}
-#' @examples
-#' ## scripts to build the pipeline
-#' ## demo("hapCall")
 "hapCall"

@@ -14,7 +14,4 @@
 #' @source \url{https://github.com/gatk-workflows/seq-format-conversion}
 #' @source \url{https://github.com/gatk-workflows/gatk4-data-processing}
 #' @source \url{https://hubentu.github.io/others/Rcwl_GATK4.html}
-#' @examples
-#' ## scripts to build the pipeline
-#' ## demo("GAlign")
 "GAlign"

@@ -23,8 +23,4 @@ scattered across intervals. The workflow from github,
 gatk4-germline-snps-indels (last update: 7/23/2018) was cloned to
 this package.
 }
-\examples{
-## scripts to build the pipeline
-## demo("hapCall")
-}
 \keyword{datasets}

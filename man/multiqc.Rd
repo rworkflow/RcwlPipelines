@@ -20,8 +20,4 @@ multiqc
 \description{
 The mutliQC command tool
 }
-\examples{
-## scripts to build the pipeline
-## demo("multiqc")
-}
 \keyword{datasets}

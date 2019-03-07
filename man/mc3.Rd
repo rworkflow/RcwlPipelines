@@ -21,8 +21,4 @@ mc3
 The MC3 somatic variant calling pipeline. The mc3 workflow (last
 update: 11/5/2018) from github was cloned to the package.
 }
-\examples{
-## scripts to build the pipeline
-## demo("mc3")
-}
 \keyword{datasets}

@@ -12,7 +12,4 @@
 #'  \item{RSeQC}{QC for RNASeq alignments by RSeQC}
 #' }
 #' @source \url{https://hubentu.github.io/others/Rcwl_RNASeq.html}
-#' @examples
-#' ## scripts to build the pipeline
-#' ## demo("RNASeq_Sf")
 "rnaseq_Sf"

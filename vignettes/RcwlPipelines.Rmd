@@ -37,6 +37,101 @@ BiocManager::install("hubentu/RcwlPipelines")
 library(RcwlPipelines)
 ```
 
+# Tools and pipelines scripts
+The R scripts to build the CWL tools and pipelines based on the `Rcwl`
+package are stored in the "tools" and "pipelines" folder respectively.
+The function `cwlTools` can be used to collect the available scripts.
+The `cachePath` can be your existing cache directory or a new folder.
+
+```{r}
+tools <- cwlTools(cachePath = tempdir())
+tools
+```
+
+The full paths can be pulled from the "fpath" column.
+```{r}
+library(dplyr)
+bfcinfo(tools) %>% select(rname, fpath)
+```
+
+# Build a pipeline
+We can develop a pipline by utilizing the available tools. For
+example, a simple alignment pipelines with mapping and marking
+duplicates can be built from the `tools`.
+
+First, we load the required tools, bwa, samtools and picard
+markduplicates.
+
+```{r}
+scripts <- bfcinfo(tools) %>%
+    filter(rname %in% c("bwa",
+                        "samtools_samTobam",
+                        "samtools_sortBam",
+                        "samtools_index",
+                        "markdup")) %>%
+    pull(rpath)
+invisible(sapply(scripts, source))
+```
+
+Next, we define the input parameters.
+```{r}
+p1 <- InputParam(id = "threads", type = "int")
+p2 <- InputParam(id = "RG", type = "string")
+p3 <- InputParam(id = "Ref", type = "string")
+p4 <- InputParam(id = "FQ1", type = "File")
+p5 <- InputParam(id = "FQ2", type = "File?")
+```
+
+Then we define the pipeline steps, from raw fastqs to duplicates
+marked alignments.
+
+```{r}
+## bwa
+s1 <- Step(id = "bwa", run = bwa,
+           In = list(threads = "threads",
+                     RG = "RG",
+                     Ref = "Ref",
+                     FQ1 = "FQ1",
+                     FQ2 = "FQ2"))
+## sam to bam
+s2 <- Step(id = "sam2bam", run = sam2bam,
+           In = list(sam = "bwa/sam"))
+## sort bam
+s3 <- Step(id = "sortBam", run = sortBam,
+           In = list(bam = "sam2bam/bam"))
+## mark duplicates
+s4 <- Step(id = "markdup", run = markdup,
+           In = list(ibam = "sortBam/sbam",
+                     obam = list(
+                         valueFrom="$(inputs.ibam.nameroot).mdup.bam"),
+                     matrix = list(
+                         valueFrom="$(inputs.ibam.nameroot).markdup.txt")))
+## index bam
+s5 <- Step(id = "idxBam", run = samtools_index,
+           In = list(bam = "markdup/mBam"))
+```
+
+Last, we define the outputs and connect the steps to a new pipeline.
+```{r}
+req1 <- list(class = "StepInputExpressionRequirement")
+req2 <- list(class = "InlineJavascriptRequirement")
+## outputs
+o1 <- OutputParam(id = "Bam", type = "File", outputSource = "markdup/mBam")
+o2 <- OutputParam(id = "Idx", type = "File", outputSource = "idxBam/idx")
+## stepParam
+Align <- cwlStepParam(requirements = list(req1, req2),
+                      inputs = InputParamList(p1, p2, p3, p4, p5),
+                      outputs = OutputParamList(o1, o2))
+## build pipeline
+Align <- Align + s1 + s2 + s3 + s4 + s5
+```
+
+The pipeline is ready for use. We can plot the pipeline with
+`plotCWL` from the `Rcwl` package.
+```{r}
+plotCWL(Align)
+```
+
 # Pipelines summary
 There are mainly 4 pipelines are collected in this package. Here is a
 breif introduction to these pipelines. More pipelines and tools are

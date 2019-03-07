@@ -20,8 +20,4 @@ alignMerge
 The DNASeq pipeline to run bwa alignment, merge and mark
 duplicates.
 }
-\examples{
-## scripts to build the pipeline
-## demo("alignMerge")
-}
 \keyword{datasets}

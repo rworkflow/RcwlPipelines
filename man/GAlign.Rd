@@ -26,8 +26,4 @@ github, seq-format-conversion (last update: 7/13/2018) and
 gatk4-data-processing (last update: 8/1/2018) were cloned to the
 package.
 }
-\examples{
-## scripts to build the pipeline
-## demo("GAlign")
-}
 \keyword{datasets}

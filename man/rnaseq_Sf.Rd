@@ -23,8 +23,4 @@ rnaseq_Sf
 \description{
 RNASeq pipeline by STAR and featureCounts.
 }
-\examples{
-## scripts to build the pipeline
-## demo("RNASeq_Sf")
-}
 \keyword{datasets}

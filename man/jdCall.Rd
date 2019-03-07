@@ -21,8 +21,4 @@ The joint discovery and VQSR filtering portion of the GATK Best
 Practices (June 2016) for germline SNP and Indel discovery in human
 whole-genome sequencing (WGS) and exome sequencing data.
 }
-\examples{
-## scripts to build the pipeline
-## demo("jdCall")
-}
 \keyword{datasets}

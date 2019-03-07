@@ -1,4 +1,4 @@
-source(system.file("scripts", "runWDL.R", package = "RcwlPipelines"))
+source(system.file("tools", "runWDL.R", package = "RcwlPipelines"))
 
 ## joint discovery
 rscripts <- "args <- commandArgs(TRUE)
