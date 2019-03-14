@@ -1,9 +1,9 @@
 ## bowtie2_2.3.0-2-deb
 
 p1 <- InputParam(id = "threads", type = "int", prefix = "-p", position = 1)
-p2 <- InputParam(id = "Ref Index prefix", type = "string", prefix = "-x", position = 3)
-p3 <- InputParam(id = "FQ1", type = "File", prefix = "-1", position = 4)
-p4 <- InputParam(id = "FQ2", type = "File?", prefix = "-2", position -5)
+p2 <- InputParam(id = "Ref Index prefix", type = "string", prefix = "-x", position = 2)
+p3 <- InputParam(id = "FQ1", type = "File", prefix = "-1", position = 3)
+p4 <- InputParam(id = "FQ2", type = "File?", prefix = "-2", position = 4)
 o1 <- OutputParam(id = "sam", type = "File", prefix = "-S", glob = "*.sam")
 req1 <- list(class = "DockerRequirement", 
              dockerPull = "biocontainers/bowtie2:2.3.0-2-deb")
