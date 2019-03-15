@@ -7,8 +7,8 @@ p3 <- InputParam(id = "FQ1", type = "File", prefix = "-U", position = 3)
 o1 <- OutputParam(id = "sam", type = "File", prefix = "-S", glob = "*.sam")
 req1 <- list(class = "DockerRequirement", 
              dockerPull = "biocontainers/bowtie2:2.3.0-2-deb")
-bowtie2 <- cwlParam(baseCommand = c("bowtie2"),
-                    requirements = lsit(req1), 
+bowtie2 <- cwlParam(baseCommand = "bowtie2",
+                    requirements = list(req1), 
                     inputs = InputParamList(p1, p2, p3),
                     output = OutputParamList(o1),
                     stdout = "bowtie2Output.sam")
