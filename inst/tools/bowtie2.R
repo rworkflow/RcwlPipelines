@@ -1,7 +1,7 @@
 ## bowtie2_2.3.0-2-deb
 
 p1 <- InputParam(id = "threadN", type = "int", prefix = "-p", position = 1)
-p2 <- InputParam(id = "IndexPrefix", type = "string", prefix = "-x", position = 2)
+# p2 <- InputParam(id = "IndexPrefix", type = "string", prefix = "-x", position = 2) #To be solved 
 p3 <- InputParam(id = "fastq", type = "File[]", prefix = "-U", position = 3)
 o1 <- OutputParam(id = "sam", type = "File", glob = "*.sam")
 req1 <- list(class = "DockerRequirement", 
