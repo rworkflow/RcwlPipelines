@@ -11,5 +11,5 @@ req1 <- list(class = "DockerRequirement",
 bwa <- cwlParam(baseCommand = c("bwa", "mem"),
                 requirements = list(req1),
                 inputs = InputParamList(p1, p2, p3, p4, p5),
-                output = OutputParamList(o1),
+                outputs = OutputParamList(o1),
                 stdout = "bwaOutput.sam")
