@@ -1,0 +1,9 @@
+^RcwlPipelines\.Rproj$
+^\.Rproj\.user$
+inst/mc3/backup_templates/utils/backup_templates
+inst/mc3/tools/indelocator-tool/backup_templates
+inst/mc3/tools/markfiles-tool/backup_templates
+inst/mc3/tools/tcgavcf-tool/backup_templates
+inst/mc3/tools/vcf-tools/backup_templates
+inst/mc3/tools/vcf2maf-tools/backup_templates
+inst/mc3/utils/backup_templates
