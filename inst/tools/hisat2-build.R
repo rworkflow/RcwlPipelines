@@ -1,5 +1,6 @@
 ## hisat2:v2.0.5-1-deb_cv1
 ## The ref does not exceed 4 billion characters
+## Basename of "ref" should be exactly same with Name of "outPrefix" 
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "biocontainers/hisat2:v2.0.5-1-deb_cv1")
