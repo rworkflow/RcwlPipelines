@@ -6,7 +6,8 @@
 \title{RNASeq pipeline with STAR and featureCounts}
 \format{A `cwlStepParam` object.
 \describe{
- An RNASeq alignment and quantification pipeline built by `Rcwl`, which contains steps:
+ An RNASeq alignment and quantification pipeline built by
+`Rcwl`, which contains steps:
  \item{fastqc}{The reads QC step by fastQC}
  \item{STAR}{The alignment step by STAR}
  \item{samtools_index}{Index bam file by samtools}

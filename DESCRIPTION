@@ -1,13 +1,15 @@
 Package: RcwlPipelines
 Title: Bioinformatics pipelines based on Rcwl
-Version: 0.99.4
+Version: 0.99.10
 Authors@R: 
-    person(given = "Qiang",
-           family = "Hu",
-           role = c("aut", "cre"),
-           email = "qiang.hu@roswellpark.org")
+    c(person(given = "Qiang", family = "Hu",
+             role = c("aut", "cre"),
+             email = "qiang.hu@roswellpark.org"),
+      person(given = "Shuang", family = "Gao",
+	     role = c("aut"),
+	     email = "shuang.gao@roswellpark.org"))
 Description: A collection of Bioinformatics pipeline recipes based on Rcwl.
-Depends: R (>= 3.5), Rcwl, BiocFileCache
+Depends: R (>= 3.6), Rcwl, BiocFileCache
 Imports: dplyr, rappdirs
 License: GPL-2
 Encoding: UTF-8
@@ -18,5 +20,5 @@ Suggests:
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 biocViews: Software, WorkflowStep, Alignment, Preprocessing, QualityControl,
-	   ImmunoOncology
+	   DNASeq, RNASeq, DataImport, ImmunoOncology
 SystemRequirements: nodejs
