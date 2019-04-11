@@ -2,7 +2,7 @@
 p1 <- InputParam(id = "sam", type = "File")
 o1 <- OutputParam(id = "bam", type = "File", glob = "$(inputs.sam.basename).bam")
 req2 <- list(class = "DockerRequirement",
-             dockerPull = "biocontainers/samtools")
+             dockerPull = "biocontainers/samtools:v1.7.0_cv3")
 sam2bam <- cwlParam(baseCommand = c("samtools", "view"),
                     arguments = list("-b"),
                     requirements = list(req2),
