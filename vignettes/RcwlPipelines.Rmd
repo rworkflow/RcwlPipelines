@@ -224,7 +224,8 @@ The pipeline requires a paired of tumor/normal BAM files and genomic
 annotation files as inputs.
 
 ```{r}
-data(mc3)
+source(system.file("pipelines", "mc3.R",
+                   package = "RcwlPipelines"))
 inputs(mc3)
 ```
 
