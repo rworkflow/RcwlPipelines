@@ -220,12 +220,15 @@ CWL and available at <https://github.com/OpenGenomics/mc3>. Two major
 steps, variant calling and merging VCFs to MAF, was imported to the
 `mc3` pipeline in this package.
 
+The steps of the pipeline was built on the CWL files from its github
+repository, which were also contained in the package. Thereforce, we
+need the load the pipleine by sourcing it from the script.
+
 The pipeline requires a paired of tumor/normal BAM files and genomic
 annotation files as inputs.
 
 ```{r}
-source(system.file("pipelines", "mc3.R",
-                   package = "RcwlPipelines"))
+bfcinfo(tools) %>% filter(rname == "mc3") %>% pull(rpath) %>% source
 inputs(mc3)
 ```
 
