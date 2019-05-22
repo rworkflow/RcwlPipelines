@@ -1,3 +1,8 @@
+source(system.file("tools", "gtfToGenePred.R", package = "RcwlPipelines"))
+source(system.file("tools", "genePredToBed.R", package = "RcwlPipelines"))
+source(system.file("tools", "read_distribution.R", package = "RcwlPipelines"))
+source(system.file("tools", "geneBody_coverage.R", package = "RcwlPipelines"))
+
 ## RSeQC Pipeline
 p1 <- InputParam(id = "bam", type = "File", secondaryFiles = ".bai")
 p2 <- InputParam(id = "gtf", type = "File")
