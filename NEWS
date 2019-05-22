@@ -1,3 +1,6 @@
+Changes in version 1.1.2 (2019-05-22)
++ fix samtools index bug for cwltool 2019
+
 Changes in version 1.0.1 (2019-05-06)
 + fix mc3 path bug.
 
