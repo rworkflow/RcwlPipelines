@@ -5,7 +5,8 @@ source(system.file("pipelines", "DNASeq_merge.R", package = "RcwlPipelines"))
 p1 <- InputParam(id = "idBam", type = "string")
 p2 <- InputParam(id = "RG", type = "string[]")
 p3 <- InputParam(id = "threads", type = "int")
-p4 <- InputParam(id = "Ref", type = "string")
+p4 <- InputParam(id = "Ref", type = "File",
+                 secondaryFiles = c(".amb", ".ann", ".bwt", ".pac", ".sa"))
 p5 <- InputParam(id = "FQ1s", type = "File[]")
 p6 <- InputParam(id = "FQ2s", type = "File[]")
 
