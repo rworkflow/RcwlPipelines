@@ -6,7 +6,8 @@ source(system.file("tools", "samtools_index.R", package = "RcwlPipelines"))
 ## params
 p1 <- InputParam(id = "threads", type = "int")
 p2 <- InputParam(id = "RG", type = "string")
-p3 <- InputParam(id = "Ref", type = "string")
+p3 <- InputParam(id = "Ref", type = "File",
+                 secondaryFiles = c(".amb", ".ann", ".bwt", ".pac", ".sa"))
 p4 <- InputParam(id = "FQ1", type = "File")
 p5 <- InputParam(id = "FQ2", type = "File?")
 
