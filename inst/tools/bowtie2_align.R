@@ -16,7 +16,7 @@ p2 <- InputParam(id = "IndexPrefix", type = "File", prefix = "-x",
                                     "$(sefl.basename + '.rev.2.bt2')"), 
                  position = 2) 
 p3 <- InputParam(id = "fq1", type = "File", prefix = "-1")
-p4 <- InputParam(id = "fq2", type = "File", prefix = "-2"
+p4 <- InputParam(id = "fq2", type = "File", prefix = "-2")
 o1 <- OutputParam(id = "sam", type = "File", glob = "*.sam")
                  
 bowtie2 <- cwlParam(baseCommand = "bowtie2",
