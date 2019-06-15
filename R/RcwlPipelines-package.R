@@ -9,7 +9,6 @@
 #' \item{\link{alignMerge}:}{DNASeq alignment}
 #' \item{\link{GAlign}, \link{hapCall}, \link{jdCall}:}{GATK4
 #' pipeline for Germline calling}
-#' \item{\link{mc3}:}{TCGA MC3 pipeline for Somatic calling}
 #' }
 #' @import Rcwl
 #' @docType package
