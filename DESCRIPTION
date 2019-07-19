@@ -1,6 +1,6 @@
 Package: RcwlPipelines
 Title: Bioinformatics pipelines based on Rcwl
-Version: 1.1.4
+Version: 1.1.5
 Authors@R: 
     c(person(given = "Qiang", family = "Hu",
              role = c("aut", "cre"),
@@ -22,3 +22,56 @@ RoxygenNote: 6.1.1
 biocViews: Software, WorkflowStep, Alignment, Preprocessing, QualityControl,
 	   DNASeq, RNASeq, DataImport, ImmunoOncology
 SystemRequirements: nodejs
+Collate: 
+    'RcwlPipelines-package.R'
+    'cwlTools.R'
+    'doc_pipelines.R'
+    'doc_tools.R'
+    'tl_runWDL.R'
+    'tl_mvOut.R'
+    'pl_GAlign.R'
+    'tl_PoN.R'
+    'tl_GenomicsDB.R'
+    'pl_GPoN.R'
+    'tl_bcfview.R'
+    'tl_FilterOBias.R'
+    'tl_ColSeqArtifact.R'
+    'tl_FilterMutectCalls.R'
+    'tl_CalculateContamination.R'
+    'tl_GetPileupSummaries.R'
+    'tl_Mutect2.R'
+    'pl_Mutect2PL.R'
+    'tl_geneBody_coverage.R'
+    'tl_read_distribution.R'
+    'tl_genePredToBed.R'
+    'tl_gtfToGenePred.R'
+    'pl_RSeQC.R'
+    'tl_samtools_flagstat.R'
+    'tl_samtools_index.R'
+    'tl_markdup.R'
+    'tl_mergeBam.R'
+    'pl_mergeBamDup.R'
+    'tl_sortBam.R'
+    'tl_sam2bam.R'
+    'tl_bwa.R'
+    'pl_bwaAlign.R'
+    'pl_alignMerge.R'
+    'pl_hapCall.R'
+    'pl_jdCall.R'
+    'tl_featureCounts.R'
+    'tl_STAR.R'
+    'tl_fastqc.R'
+    'pl_rnaseq_Sf.R'
+    'tl_Funcotator.R'
+    'tl_blastn.R'
+    'tl_bowtie2.R'
+    'tl_bowtie2_build.R'
+    'tl_bwa_index.R'
+    'tl_cutadapt.R'
+    'tl_hisat2_align.R'
+    'tl_hisat2_build.R'
+    'tl_htseq.R'
+    'tl_makeblastdb.R'
+    'tl_multiqc.R'
+    'tl_salmon_index.R'
+    'tl_salmon_quant.R'

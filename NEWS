@@ -1,3 +1,9 @@
+Changes in version 1.1.5 (2019-07-19)
++ Structure updates: export all tools and pipelines.
++ Added GATK4 Mutect2 tools and pipelines.
++ Added Command and Container to metadata of cwlTools.
++ Vignette updated.
+
 Changes in version 1.1.2 (2019-05-22)
 + fix samtools index bug for cwltool 2019
 

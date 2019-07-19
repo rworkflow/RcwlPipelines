@@ -7,3 +7,5 @@ inst/mc3/tools/tcgavcf-tool/backup_templates
 inst/mc3/tools/vcf-tools/backup_templates
 inst/mc3/tools/vcf2maf-tools/backup_templates
 inst/mc3/utils/backup_templates
+^doc$
+^Meta$

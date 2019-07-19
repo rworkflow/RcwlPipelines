@@ -39,19 +39,34 @@ library(RcwlPipelines)
 
 # Tools and pipelines scripts
 The R scripts to build the CWL tools and pipelines based on the `Rcwl`
-package are stored in the "tools" and "pipelines" folder respectively.
-The function `cwlTools` can be used to collect the available scripts.
-The `cachePath` can be your existing cache directory or a new folder.
+package are stored in the "src" folder with "tl_" and "pl_" prefix
+respectively. The function `cwlTools` can be used to collect the
+available scripts.  The `cachePath` can be your existing cache
+directory or a new folder.
 
 ```{r}
 tools <- cwlTools(cachePath = tempdir())
 tools
 ```
 
-The full paths can be pulled from the "fpath" column.
+The full paths can be pulled from the "fpath" column. The scripts can
+be viewed to demonstrate how the tools and pipelines were built.
+
 ```{r, message=FALSE}
 library(dplyr)
 bfcinfo(tools) %>% select(rname, fpath)
+```
+
+The commands and docker containers from the wrapped tools are included
+in the metadata.
+
+```{r}
+tls <- bfcinfo(tools) %>% filter(Type == "tool") %>%
+    select(rname, Command, Container)
+```
+
+```{r, results = 'asis'}
+knitr::kable(tls)
 ```
 
 # Build a pipeline
@@ -59,18 +74,13 @@ We can develop a pipline by utilizing the available tools. For
 example, a simple alignment pipelines with mapping and marking
 duplicates can be built from the `tools`.
 
-First, we load the required tools, bwa, samtools and picard
-markduplicates.
+First, we check whether the required tools (bwa, samtools and picard
+markduplicates) are available.
 
 ```{r}
-scripts <- bfcinfo(tools) %>%
-    filter(rname %in% c("bwa",
-                        "samtools_samTobam",
-                        "samtools_sortBam",
-                        "samtools_index",
-                        "markdup")) %>%
-    pull(rpath)
-invisible(sapply(scripts, source))
+bfcquery(tools, "bwa|sam2bam|sortBam|samtools_index|markdup") %>%
+    filter(Type == "tool") %>%
+    select(rname, Command, Container)
 ```
 
 Next, we define the input parameters.
@@ -143,7 +153,6 @@ format. It can take paired fastqs, read groups from multiple batches
 as input.
 
 ```{r}
-data(alignMerge)
 inputs(alignMerge)
 ```
 
@@ -188,7 +197,6 @@ quantification by `featureCounts` and `RSeQC` quality control. Here
 are the inputs.
 
 ```{r}
-data(rnaseq_Sf)
 inputs(rnaseq_Sf)
 ```
 
@@ -276,6 +284,45 @@ of germline variants will be collected.
 
 An example to run the pipeline.\
 <https://hubentu.github.io/others/Rcwl/application.html#gatk4-germline-variant-calling-pipeline>
+
+## GATK4 Somatic short variant pipeline
+The GATK4 Mutect2 pipeline for germline variant calling was also
+available in WDL. The pipeline was reimplemented with `Rcwl` based on
+the best practice documents.
+<https://software.broadinstitute.org/gatk/best-practices/workflow?id=11146>
+
+1. Variant calling on normal samples
+
+First, we need to run Mutect2 in tumor-only mode for each normal
+sample by the tool `Mutect2`. The argument "--max-mnp-distance 0" is
+required to be added because the next step, "GenpmicsDBImport", can't
+handle MNPs.
+
+```{r}
+arguments(Mutect2) <- list("--max-mnp-distance", "0")
+Mutect2
+```
+
+2. Panel of normals 
+
+This step is to create a GenomicsDB and then combine to a VCF output
+for the panel of normals from all the normal Mutect2 calls. A cwl
+pipeline `GPoN` was built to create the panel VCF.
+
+```{r}
+runs(GPoN)
+```
+
+3. Mutect2 and variant filtering
+
+This pipeline includes two main steps. First we call a large set of
+candidate somatic variants, then filter them by estimated
+contamination and orientation bias artifacts. We can plot the
+`Mutect2PL` pipeline to show the details.
+
+```{r}
+plotCWL(Mutect2PL)
+```
 
 # SessionInfo
 ```{r}
