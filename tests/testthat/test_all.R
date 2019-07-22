@@ -1,11 +1,14 @@
 
+tools <- cwlTools(tempdir())
 ## mc3 removed
-test_that("total pipelines number", {
-    expect_equal(nrow(data(package="RcwlPipelines")$results),
-                 6)
+test_that("check source tool scripts", {
+    expect_is(tools, "BiocFileCache")
 })
 
-test_that("check source tool scripts", {
-    tools <- cwlTools(tempdir())
-    expect_is(tools, "BiocFileCache")
+test_that("check tool type", {
+    expect_equal(bfcquery(tools, "bcfview")$Type, "tool")
+})
+
+test_that("check pipeline type", {
+    expect_equal(bfcquery(tools, "mc3")$Type, "Pipeline")
 })
