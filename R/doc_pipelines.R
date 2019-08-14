@@ -121,3 +121,19 @@
 ## #' #' @source \url{https://hubentu.github.io/others/Rcwl_MC3.html}
 ## #' @export
 ## "mc3"
+
+#' RNASeq quality control by RSeQC
+#'
+#' RNASeq pipeline by STAR and featureCounts.
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  An RNASeq QC pipeline by RSeQC
+#'  which contains steps:
+#'  \item{gtfToGenePred}{GTF to GenePred format}
+#'  \item{genePredToBed}{GenePred format to Bed format}
+#'  \item{read_distribution}{Reads distribution over genome feature}
+#'  \item{geneBody_coverage}{Reads coverage over gene body}
+#' }
+#' @source \url{http://rseqc.sourceforge.net/}
+#' @export
+"RSeQC"

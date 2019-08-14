@@ -207,4 +207,6 @@
 #' @export
 "STAR"
 
-
+#' STAR-Fusion
+#' @export
+"starFusion"

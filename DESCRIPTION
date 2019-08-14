@@ -1,6 +1,6 @@
 Package: RcwlPipelines
 Title: Bioinformatics pipelines based on Rcwl
-Version: 1.1.5
+Version: 1.1.6
 Authors@R: 
     c(person(given = "Qiang", family = "Hu",
              role = c("aut", "cre"),
@@ -8,7 +8,7 @@ Authors@R:
       person(given = "Shuang", family = "Gao",
 	     role = c("aut"),
 	     email = "shuang.gao@roswellpark.org"))
-Description: A collection of Bioinformatics pipeline recipes based on Rcwl.
+Description: A collection of Bioinformatics tools and pipelines based on R and the Common Workflow Language.
 Depends: R (>= 3.6), Rcwl, BiocFileCache
 Imports: dplyr, rappdirs
 License: GPL-2
@@ -16,7 +16,8 @@ Encoding: UTF-8
 Suggests: 
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    BiocStyle
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 biocViews: Software, WorkflowStep, Alignment, Preprocessing, QualityControl,
@@ -75,3 +76,4 @@ Collate:
     'tl_multiqc.R'
     'tl_salmon_index.R'
     'tl_salmon_quant.R'
+    'tl_starFusion.R'

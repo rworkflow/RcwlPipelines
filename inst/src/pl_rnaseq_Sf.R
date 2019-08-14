@@ -19,9 +19,9 @@ o2c <- OutputParam(id = "out_Count", type = "File", outputSource = "STAR/outCoun
 o3 <- OutputParam(id = "out_idx",type = "File", outputSource = "samtools_index/idx")
 o4 <- OutputParam(id = "out_stat",type = "File", outputSource = "samtools_flagstat/flagstat")
 o5 <- OutputParam(id = "out_count", type = "File", outputSource = "featureCounts/Count")
-o6 <- OutputParam(id = "out_distribution", type = "File", outputSource = "RSeQC/distribution")
-o7 <- OutputParam(id = "out_gCovP", type = "File", outputSource = "RSeQC/gCovP")
-o8 <- OutputParam(id = "out_gCovT", type = "File", outputSource = "RSeQC/gCovT")
+o6 <- OutputParam(id = "out_distribution", type = "File", outputSource = "r_distribution/distOut")
+o7 <- OutputParam(id = "out_gCovP", type = "File", outputSource = "gCoverage/gCovPDF")
+o8 <- OutputParam(id = "out_gCovT", type = "File", outputSource = "gCoverage/gCovTXT")
 req1 <- list(class = "ScatterFeatureRequirement")
 req2 <- list(class = "SubworkflowFeatureRequirement")
 req3 <- list(class = "StepInputExpressionRequirement")
@@ -55,9 +55,29 @@ s5 <- Step(id = "featureCounts", run = featureCounts,
                      bam = "STAR/outBAM",
                      count = list(valueFrom = "$(inputs.bam.nameroot).featureCounts.txt")))
 ## RSeQC
-#' @include pl_RSeQC.R
-s6 <- Step(id = "RSeQC", run = RSeQC,
-           In = list(bam = "samtools_index/idx",
-                     gtf = "in_GTFfile"))
+## #' @include pl_RSeQC.R
+## s6 <- Step(id = "RSeQC", run = RSeQC,
+##            In = list(bam = "samtools_index/idx",
+##                      gtf = "in_GTFfile"))
+#' @include tl_gtfToGenePred.R tl_genePredToBed.R tl_read_distribution.R tl_geneBody_coverage.R
+s6a <- Step(id = "gtfToGenePred", run = gtfToGenePred,
+            In = list(gtf = "in_GTFfile",
+                      gPred = list(valueFrom = "$(inputs.gtf.nameroot).genePred")))
+
+s6b <- Step(id = "genePredToBed", run = genePredToBed,
+            In = list(genePred = "gtfToGenePred/genePred",
+                      Bed = list(valueFrom = "$(inputs.genePred.nameroot).bed")))
+
+s6c <- Step(id = "r_distribution", run = read_distribution,
+            In = list(bam = "samtools_index/idx",
+                      bed = "genePredToBed/bed"))
+gCoverage <- geneBody_coverage
+gCoverage@inputs$bam@secondaryFiles <- character()
+s6d <- Step(id = "gCoverage", run = gCoverage,
+            In = list(bam = "samtools_index/idx",
+                      bed = "genePredToBed/bed",
+                      prefix = list(valueFrom = "$(inputs.bam.nameroot)")))
+
+
 ## pipeline
-rnaseq_Sf <- rnaseq_Sf + s1 + s2 + s3 + s4 + s5 + s6
+rnaseq_Sf <- rnaseq_Sf + s1 + s2 + s3 + s4 + s5 + s6a + s6b + s6c + s6d
