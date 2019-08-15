@@ -1,6 +1,6 @@
 Package: RcwlPipelines
 Title: Bioinformatics pipelines based on Rcwl
-Version: 1.1.6
+Version: 1.1.7
 Authors@R: 
     c(person(given = "Qiang", family = "Hu",
              role = c("aut", "cre"),
@@ -28,6 +28,12 @@ Collate:
     'cwlTools.R'
     'doc_pipelines.R'
     'doc_tools.R'
+    'tl_samtools_stats.R'
+    'tl_samtools_flagstat.R'
+    'tl_samtools_index.R'
+    'tl_ApplyBQSR.R'
+    'tl_BaseRecalibrator.R'
+    'pl_BaseRecal.R'
     'tl_runWDL.R'
     'tl_mvOut.R'
     'pl_GAlign.R'
@@ -47,8 +53,6 @@ Collate:
     'tl_genePredToBed.R'
     'tl_gtfToGenePred.R'
     'pl_RSeQC.R'
-    'tl_samtools_flagstat.R'
-    'tl_samtools_index.R'
     'tl_markdup.R'
     'tl_mergeBam.R'
     'pl_mergeBamDup.R'
@@ -57,6 +61,7 @@ Collate:
     'tl_bwa.R'
     'pl_bwaAlign.R'
     'pl_alignMerge.R'
+    'pl_bwaAlignRecal.R'
     'pl_hapCall.R'
     'pl_jdCall.R'
     'tl_featureCounts.R'
