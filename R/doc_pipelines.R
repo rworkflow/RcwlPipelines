@@ -13,6 +13,38 @@
 #' @export
 "alignMerge"
 
+#' DNASeq alignment, merge, markduplicates and recalibration
+#'
+#' The DNASeq pipeline to run bwa alignment, merge, mark
+#' duplicates and recalibration.
+#' 
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  \item{bwaAlign}{to align fastqs with bwa and sort with samtools}
+#'  \item{mergeBamDup}{to merge BAMs from different flowcells
+#' and then mark duplicates with picard}
+#'  \item{BaseRecal}{Base quality recalibration}
+#' }
+#' @source \url{https://hubentu.github.io/others/Rcwl_DNASeq_Align.html}
+#' @export
+"bwaMMRecal"
+
+#' DNASeq alignment, markduplicates and recalibration
+#'
+#' The DNASeq pipeline to run bwa alignment, mark duplicates and
+#' recalibration.
+#' 
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  \item{bwaAlign}{to align fastqs with bwa and sort with samtools}
+#'  \item{markdup}{to mark duplicates with picard}
+#'  \item{BaseRecal}{Base quality recalibration}
+#' }
+#' @source \url{https://hubentu.github.io/others/Rcwl_DNASeq_Align.html}
+#' @export
+"bwaMRecal"
+
+
 #' GATK alignment pipeline
 #'
 #' Workflows for processing high-throughput sequencing data for

@@ -20,9 +20,9 @@ o4 <- OutputParam(id = "stats", type = "File", outputSource = "BaseRecal/stats")
 
 req1 <- list(class = "SubworkflowFeatureRequirement")
 req2 <- list(class = "ScatterFeatureRequirement")
-bwaAlignRecal <- cwlStepParam(requirements = list(req1, req2),
-                              inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
-                              outputs = OutputParamList(o1, o2, o3, o4))
+bwaMMRecal <- cwlStepParam(requirements = list(req1, req2),
+                           inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
+                           outputs = OutputParamList(o1, o2, o3, o4))
 
 s1 <- Step(id = "bwaAlign", run = bwaAlign,
            In = list(threads = "threads",
@@ -43,4 +43,4 @@ s3 <- Step(id = "BaseRecal", run = BaseRecal,
                      knowSites = "knowSites",
                      oBam = "outBam"))
 
-bwaAlignRecal <- bwaAlignRecal + s1 + s2 + s3
+bwaMMRecal <- bwaMMRecal + s1 + s2 + s3
