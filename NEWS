@@ -1,3 +1,7 @@
+Changes in version 1.1.8 (2019-08-22)
++ Add more Somatic Variant Callers:
+  VarScan2, LoFreq, MuSE, SomaticSniper, VarDict, lancet, manta, strelka2
+
 Changes in version 1.1.5 (2019-07-19)
 + Structure updates: export all tools and pipelines.
 + Added GATK4 Mutect2 tools and pipelines.

@@ -210,3 +210,79 @@
 #' STAR-Fusion
 #' @export
 "starFusion"
+
+#' tabix index
+#' @export
+"tabix_index"
+
+#' bgzip
+#' @export
+"bgzip"
+
+#' manta
+#' @export
+"manta"
+
+#' strelka
+#' @export
+"strelka"
+
+#' MuSE
+#' @export
+"MuSE"
+
+#' VarDict
+#' @export
+"VarDict"
+
+#' SomaticSniper
+#' @export
+"SomaticSniper"
+
+#' LoFreq
+#' @export
+"LoFreq"
+
+#' MuSE
+#' @export
+"MuSE"
+
+#' VarDict
+#' @export
+"VarDict"
+
+#' VarScan2_processSomatic
+#' @export
+"VarScan2_processSomatic"
+
+#' VarScan2_somatic
+#' @export
+"VarScan2_somatic"
+
+#' VarScan2_somaticFilter
+#' @export
+"VarScan2_somaticFilter"
+
+#' bgzip
+#' @export
+"bgzip"
+
+#' lancet
+#' @export
+"lancet"
+
+#' manta
+#' @export
+"manta"
+
+#' samtools_mpileup
+#' @export
+"samtools_mpileup"
+
+#' strelka
+#' @export
+"strelka"
+
+#' tabix_index
+#' @export
+"tabix_index"

@@ -169,3 +169,19 @@
 #' @source \url{http://rseqc.sourceforge.net/}
 #' @export
 "RSeQC"
+
+#' VarScan2 somatic caller
+#'
+#' VarScan2 Somatic caller pipeline.
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  VarScan2 Somatic caller pipeline,
+#'  which contains steps:
+#'  \item{mpileup}{mpileup by samtools}
+#'  \item{somatic}{somatic calling by VarScan2 somatic}
+#'  \item{processSomatic}{processSomatic by VarScan2}
+#'  \item{somaticFilter}{Filter by VarScan2}
+#' }
+#' @source \url{http://varscan.sourceforge.net}
+#' @export
+"VarScan2Somatic"

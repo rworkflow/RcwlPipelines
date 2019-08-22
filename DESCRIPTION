@@ -1,6 +1,6 @@
 Package: RcwlPipelines
 Title: Bioinformatics pipelines based on Rcwl
-Version: 1.1.7
+Version: 1.1.8
 Authors@R: 
     c(person(given = "Qiang", family = "Hu",
              role = c("aut", "cre"),
@@ -53,6 +53,9 @@ Collate:
     'tl_genePredToBed.R'
     'tl_gtfToGenePred.R'
     'pl_RSeQC.R'
+    'tl_VarScan2_somatic.R'
+    'tl_samtools_mpileup.R'
+    'pl_VarScan2Somatic.R'
     'tl_markdup.R'
     'tl_mergeBam.R'
     'pl_mergeBamDup.R'
@@ -70,6 +73,14 @@ Collate:
     'tl_fastqc.R'
     'pl_rnaseq_Sf.R'
     'tl_Funcotator.R'
+    'tl_LoFreq.R'
+    'tl_MuSE.R'
+    'tl_SomaticSniper.R'
+    'tl_VarDict.R'
+    'tl_VarScan2.R'
+    'tl_VarScan2_processSomatic.R'
+    'tl_VarScan2_somaticFilter.R'
+    'tl_bgzip.R'
     'tl_blastn.R'
     'tl_bowtie2.R'
     'tl_bowtie2_build.R'
@@ -78,8 +89,12 @@ Collate:
     'tl_hisat2_align.R'
     'tl_hisat2_build.R'
     'tl_htseq.R'
+    'tl_lancet.R'
     'tl_makeblastdb.R'
+    'tl_manta.R'
     'tl_multiqc.R'
     'tl_salmon_index.R'
     'tl_salmon_quant.R'
     'tl_starFusion.R'
+    'tl_strelka.R'
+    'tl_tabix_index.R'
