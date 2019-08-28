@@ -1,4 +1,4 @@
-
+## http://varscan.sourceforge.net
 p1 <- InputParam(id = "vcf", type = "File")
 o1 <- OutputParam(id = "somaticHC", type = "File",
                   glob = "$(inputs.vcf.nameroot).Somatic.hc.vcf")

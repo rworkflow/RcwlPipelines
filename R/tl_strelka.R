@@ -9,7 +9,12 @@ p4 <- InputParam(id = "callRegions", type = "File?", prefix = "--callRegions",
                  secondaryFiles = ".tbi", position = 4)
 p5 <- InputParam(id = "indelCandidates", type = "File?", prefix = "--indelCandidates",
                  position = 5)
-o1 <- OutputParam(id = "outDir", type = "Directory", glob = "strelkaRunDir")
+o1 <- OutputParam(id = "snvs", type = "File",
+                  glob = "strelkaRunDir/results/variants/somatic.snvs.vcf.gz",
+                  secondaryFiles = ".tbi")
+o2 <- OutputParam(id = "indels", type = "File",
+                  glob = "strelkaRunDir/results/variants/somatic.indels.vcf.gz",
+                  secondaryFiles = ".tbi")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "cmopipeline/strelka2_manta")
@@ -24,4 +29,4 @@ strelka <- cwlParam(baseCommand = "configureStrelkaSomaticWorkflow.py",
                         list(valueFrom = "-m", position = 8L),
                         list(valueFrom = "local", position = 9L)),
                     inputs = InputParamList(p1, p2, p3, p4, p5),
-                    outputs = OutputParamList(o1))
+                    outputs = OutputParamList(o1, o2))

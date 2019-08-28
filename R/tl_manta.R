@@ -7,7 +7,18 @@ p3 <- InputParam(id = "ref", type = "File", prefix = "--referenceFasta",
                  secondaryFiles = ".fai", position = 3)
 p4 <- InputParam(id = "callRegions", type = "File?", prefix = "--callRegions",
                  secondaryFiles = ".tbi", position = 4)
-o1 <- OutputParam(id = "outDir", type = "Directory", glob = "mantaRunDir")
+o1 <- OutputParam(id = "somaticSV", type = "File",
+                  glob = "mantaRunDir/results/variants/somaticSV.vcf.gz",
+                  secondaryFiles = ".tbi")
+o2 <- OutputParam(id = "diploidSV", type = "File",
+                  glob = "mantaRunDir/results/variants/diploidSV.vcf.gz",
+                  secondaryFiles = ".tbi")
+o3 <- OutputParam(id = "candidateSV", type = "File",
+                  glob = "mantaRunDir/results/variants/candidateSV.vcf.gz",
+                  secondaryFiles = ".tbi")
+o4 <- OutputParam(id = "candidateSmallIndels", type = "File",
+                  glob = "mantaRunDir/results/variants/candidateSmallIndels.vcf.gz",
+                  secondaryFiles = ".tbi")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "cmopipeline/strelka2_manta")
@@ -22,4 +33,4 @@ manta <- cwlParam(baseCommand = "configManta.py",
                       list(valueFrom = "-m", position = 7L),
                       list(valueFrom = "local", position = 8L)),
                   inputs = InputParamList(p1, p2, p3, p4),
-                  outputs = OutputParamList(o1))
+                  outputs = OutputParamList(o1, o2, o3, o4))

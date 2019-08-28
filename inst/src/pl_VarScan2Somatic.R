@@ -1,6 +1,5 @@
 
-#' @include tl_samtools_mpileup.R tl_VarScan2_somatic.R
-#'     tl_VarScan2_processSomatic.R tl_VarScan2_somaticFilter.R
+#' @include tl_samtools_mpileup.R tl_VarScan2_somatic.R tl_VarScan2_processSomatic.R tl_VarScan2_somaticFilter.R
 
 p1 <- InputParam(id = "tbam", type = "File")
 p2 <- InputParam(id = "nbam", type = "File")

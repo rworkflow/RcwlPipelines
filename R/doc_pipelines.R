@@ -185,3 +185,31 @@
 #' @source \url{http://varscan.sourceforge.net}
 #' @export
 "VarScan2Somatic"
+
+#' strelka somatic caller
+#'
+#' Strelka2 Somatic caller pipeline.
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  steps:
+#'  \item{manta}{Call candidate small indels}
+#'  \item{strelka}{somatic calling by strelka2}
+#' }
+#' @source \url{https://github.com/Illumina/strelka}
+#' @export
+"mantaStrelka"
+
+#' neusomatic caller
+#'
+#' neusomatic caller pipeline with ensemble mode.
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  steps:
+#'  \item{preprocess}{Preprocess step in call mode}
+#'  \item{call}{Call variants}
+#'  \item{postprocess}{Postprocess step (resolve long INDEL sequences,
+#' report vcf)}
+#' }
+#' @source \url{https://github.com/bioinform/neusomatic}
+#' @export
+"neusomatic"

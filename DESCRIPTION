@@ -1,6 +1,6 @@
 Package: RcwlPipelines
 Title: Bioinformatics pipelines based on Rcwl
-Version: 1.1.8
+Version: 1.1.9
 Authors@R: 
     c(person(given = "Qiang", family = "Hu",
              role = c("aut", "cre"),
@@ -10,7 +10,7 @@ Authors@R:
 	     email = "shuang.gao@roswellpark.org"))
 Description: A collection of Bioinformatics tools and pipelines based on R and the Common Workflow Language.
 Depends: R (>= 3.6), Rcwl, BiocFileCache
-Imports: dplyr, rappdirs
+Imports: dplyr, rappdirs, jsonlite, methods
 License: GPL-2
 Encoding: UTF-8
 Suggests: 
@@ -53,6 +53,8 @@ Collate:
     'tl_genePredToBed.R'
     'tl_gtfToGenePred.R'
     'pl_RSeQC.R'
+    'tl_VarScan2_somaticFilter.R'
+    'tl_VarScan2_processSomatic.R'
     'tl_VarScan2_somatic.R'
     'tl_samtools_mpileup.R'
     'pl_VarScan2Somatic.R'
@@ -68,6 +70,13 @@ Collate:
     'pl_bwaMRecal.R'
     'pl_hapCall.R'
     'pl_jdCall.R'
+    'tl_strelka.R'
+    'tl_manta.R'
+    'pl_mantaStrelka.R'
+    'tl_neusomatic_postprocess.R'
+    'tl_neusomatic_call.R'
+    'tl_neusomatic_preprocess.R'
+    'pl_neusomatic.R'
     'tl_featureCounts.R'
     'tl_STAR.R'
     'tl_fastqc.R'
@@ -78,8 +87,6 @@ Collate:
     'tl_SomaticSniper.R'
     'tl_VarDict.R'
     'tl_VarScan2.R'
-    'tl_VarScan2_processSomatic.R'
-    'tl_VarScan2_somaticFilter.R'
     'tl_bgzip.R'
     'tl_blastn.R'
     'tl_bowtie2.R'
@@ -91,10 +98,9 @@ Collate:
     'tl_htseq.R'
     'tl_lancet.R'
     'tl_makeblastdb.R'
-    'tl_manta.R'
     'tl_multiqc.R'
+    'tl_polysolver.R'
     'tl_salmon_index.R'
     'tl_salmon_quant.R'
     'tl_starFusion.R'
-    'tl_strelka.R'
     'tl_tabix_index.R'

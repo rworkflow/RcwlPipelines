@@ -286,3 +286,7 @@
 #' tabix_index
 #' @export
 "tabix_index"
+
+#' polysolver
+#' @export
+"polysolver"
