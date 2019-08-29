@@ -22,8 +22,3 @@ o2 <- OutputParam(id = "indels", type = "File", outputSource = "strelka/indels")
 mantaStrelka <- cwlStepParam(inputs = InputParamList(p1, p2, p3, p4),
                              outputs = OutputParamList(o1, o2))
 mantaStrelka <- mantaStrelka + s1 + s2
-
-mantaStrelka$ref <- "/rpcc/bioinformatics/reference/current/human_g1k_v37.fa"
-mantaStrelka$tbam <- "/mnt/lustre/users/qhu/TESLA/output/BAM/Patient20_tumor/Patient20_tumor.bam"
-mantaStrelka$nbam <- "/mnt/lustre/users/qhu/TESLA/output/BAM/Patient20_normal/Patient20_normal.bam"
-mantaStrelka$region <- "/mnt/lustre/users/qhu/TESLA/output/neusomatic/Patient20_tumor/1/1.test.bed.gz"
