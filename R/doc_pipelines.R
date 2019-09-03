@@ -13,6 +13,38 @@
 #' @export
 "alignMerge"
 
+#' DNASeq alignment, merge, markduplicates and recalibration
+#'
+#' The DNASeq pipeline to run bwa alignment, merge, mark
+#' duplicates and recalibration.
+#' 
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  \item{bwaAlign}{to align fastqs with bwa and sort with samtools}
+#'  \item{mergeBamDup}{to merge BAMs from different flowcells
+#' and then mark duplicates with picard}
+#'  \item{BaseRecal}{Base quality recalibration}
+#' }
+#' @source \url{https://hubentu.github.io/others/Rcwl_DNASeq_Align.html}
+#' @export
+"bwaMMRecal"
+
+#' DNASeq alignment, markduplicates and recalibration
+#'
+#' The DNASeq pipeline to run bwa alignment, mark duplicates and
+#' recalibration.
+#' 
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  \item{bwaAlign}{to align fastqs with bwa and sort with samtools}
+#'  \item{markdup}{to mark duplicates with picard}
+#'  \item{BaseRecal}{Base quality recalibration}
+#' }
+#' @source \url{https://hubentu.github.io/others/Rcwl_DNASeq_Align.html}
+#' @export
+"bwaMRecal"
+
+
 #' GATK alignment pipeline
 #'
 #' Workflows for processing high-throughput sequencing data for
@@ -121,3 +153,63 @@
 ## #' #' @source \url{https://hubentu.github.io/others/Rcwl_MC3.html}
 ## #' @export
 ## "mc3"
+
+#' RNASeq quality control by RSeQC
+#'
+#' RNASeq pipeline by STAR and featureCounts.
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  An RNASeq QC pipeline by RSeQC
+#'  which contains steps:
+#'  \item{gtfToGenePred}{GTF to GenePred format}
+#'  \item{genePredToBed}{GenePred format to Bed format}
+#'  \item{read_distribution}{Reads distribution over genome feature}
+#'  \item{geneBody_coverage}{Reads coverage over gene body}
+#' }
+#' @source \url{http://rseqc.sourceforge.net/}
+#' @export
+"RSeQC"
+
+#' VarScan2 somatic caller
+#'
+#' VarScan2 Somatic caller pipeline.
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  VarScan2 Somatic caller pipeline,
+#'  which contains steps:
+#'  \item{mpileup}{mpileup by samtools}
+#'  \item{somatic}{somatic calling by VarScan2 somatic}
+#'  \item{processSomatic}{processSomatic by VarScan2}
+#'  \item{somaticFilter}{Filter by VarScan2}
+#' }
+#' @source \url{http://varscan.sourceforge.net}
+#' @export
+"VarScan2Somatic"
+
+#' strelka somatic caller
+#'
+#' Strelka2 Somatic caller pipeline.
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  steps:
+#'  \item{manta}{Call candidate small indels}
+#'  \item{strelka}{somatic calling by strelka2}
+#' }
+#' @source \url{https://github.com/Illumina/strelka}
+#' @export
+"mantaStrelka"
+
+#' neusomatic caller
+#'
+#' neusomatic caller pipeline with ensemble mode.
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  steps:
+#'  \item{preprocess}{Preprocess step in call mode}
+#'  \item{call}{Call variants}
+#'  \item{postprocess}{Postprocess step (resolve long INDEL sequences,
+#' report vcf)}
+#' }
+#' @source \url{https://github.com/bioinform/neusomatic}
+#' @export
+"neusomatic"

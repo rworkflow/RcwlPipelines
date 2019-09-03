@@ -8,6 +8,7 @@
 #' @import dplyr
 #' @import BiocFileCache
 #' @return A BiocFileCache object for existing CWL tools.
+#' @importFrom methods is
 #' @export
 #' @examples
 #' tools <- cwlTools()
@@ -31,7 +32,11 @@ cwlTools <- function(cachePath = "Rcwl", ...) {
                 rname <- sub("^tl_", "", rname)
                 Type <- "tool"
                 cwl <- get(rname, environment())
-                Command <- paste(baseCommand(cwl), collapse = " ")
+                if(is(baseCommand(cwl), "function")){
+                    Command <- "R function"
+                }else{
+                    Command <- paste(baseCommand(cwl), collapse = " ")
+                }
                 Container <- unlist(requirements(cwl))["dockerPull"]
                 if(is.null(Container)) Container <- NA
             }else{
