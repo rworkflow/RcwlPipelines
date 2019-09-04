@@ -1,3 +1,31 @@
+#' bwaAlign
+#'
+#' bwa alignment
+#' 
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  \item{bwa}{to align fastqs with bwa}
+#'  \item{sam2bam}{samtools view sam to bam format}
+#'  \item{sortBam}{sort Bam file by samtools sort}
+#'  \item{idxBam}{index Bam by samtools index}
+#' }
+#' @export
+"bwaAlign"
+
+#' mergeBamDup
+#'
+#' merge Bam files and mark duplicates
+#' 
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  \item{mergeBam}{picard merge Bam files}
+#'  \item{markdup}{picard mark duplicated alignments}
+#'  \item{samtools_index}{index Bam by samtools index}
+#'  \item{samtools_flagstat}{samtools flagstat}
+#' }
+#' @export
+"mergeBamDup"
+
 #' DNASeq alignment, merge and markduplicates
 #'
 #' The DNASeq pipeline to run bwa alignment, merge and mark
@@ -44,6 +72,19 @@
 #' @export
 "bwaMRecal"
 
+#' Base quality recalibration
+#' 
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  \item{BaseRecalibrator}{Detect systematic errors in base quality scores}
+#'  \item{ApplyBQSR}{Apply base quality score recalibration}
+#'  \item{samtools_index}{samtools index}
+#'  \item{samtools_flagstat}{samtools flagstat}
+#'  \item{samtools_stats}{samtools stats}
+#' }
+#' @source \url{https://software.broadinstitute.org/gatk/best-practices/workflow?id=11165}
+#' @export
+"BaseRecal"
 
 #' GATK alignment pipeline
 #'

@@ -41,7 +41,7 @@ cwlTools <- function(cachePath = "Rcwl", ...) {
                 if(is.null(Container)) Container <- NA
             }else{
                 rname <- sub("^pl_", "", rname)
-                Type <- "Pipeline"
+                Type <- "pipeline"
                 Command <- Container <- NA
             }
 
