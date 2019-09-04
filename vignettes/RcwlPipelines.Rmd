@@ -60,13 +60,25 @@ bfcinfo(tools) %>% select(rname, fpath)
 The commands and docker containers from the wrapped tools are included
 in the metadata.
 
-```{r}
+```{r, results = 'asis'}
 tls <- bfcinfo(tools) %>% filter(Type == "tool") %>%
     select(rname, Command, Container)
+knitr::kable(tls)
 ```
 
+Numbers of pipelines have been built on the wrapped tools. Here we
+show the built-in pipelines and their corresponding steps.
+
 ```{r, results = 'asis'}
-knitr::kable(tls)
+pls <- bfcinfo(tools) %>% filter(Type == "pipeline") %>% pull(rname)
+pls <- setdiff(pls, "mc3")
+Steps <- sapply(pls, function(x) {
+    cwl <- get(x, envir = environment())
+    ss <- names(steps(cwl))
+    paste(ss, collapse = "+")
+})
+
+knitr::kable(data.frame(Pipelines = pls, Steps), row.names = FALSE)
 ```
 
 # Build a pipeline

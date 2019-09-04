@@ -10,5 +10,5 @@ test_that("check tool type", {
 })
 
 test_that("check pipeline type", {
-    expect_equal(bfcquery(tools, "mc3")$Type, "Pipeline")
+    expect_equal(bfcquery(tools, "neusomatic$")$Type, "pipeline")
 })
