@@ -5,7 +5,7 @@ p2 <- InputParam(id = "Ref", type = "File",
                  secondaryFiles = c(".fai", "$(self.nameroot).dict"))
 p3 <- InputParam(id = "intervals", type = "File")
 p4 <- InputParam(id = "pvcf", type = "string")
-p5 <- InputParam(id = "gresource", type = "File", secondaryFiles = ".idx")
+p5 <- InputParam(id = "gresource", type = "File?", secondaryFiles = ".idx")
 
 s1 <- Step(id = "GenomicsDB", run = GenomicsDB,
            In = list(vcf = "nvcf",

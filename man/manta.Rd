@@ -7,12 +7,8 @@
 \format{An object of class \code{cwlParam} of length 1.}
 \usage{
 manta
-
-manta
 }
 \description{
-manta
-
 manta
 }
 \keyword{datasets}

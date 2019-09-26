@@ -254,3 +254,15 @@
 #' @source \url{https://github.com/bioinform/neusomatic}
 #' @export
 "neusomatic"
+
+#' miRDeep2
+#'
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  steps:
+#'  \item{miRMapper}{run mapple.pl}
+#'  \item{miRDeep2}{run mirdeep2.pl}
+#' }
+#' @source \url{https://github.com/rajewsky-lab/mirdeep2}
+#' @export
+"miRDeep2PL"

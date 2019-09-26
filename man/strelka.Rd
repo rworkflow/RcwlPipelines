@@ -7,12 +7,8 @@
 \format{An object of class \code{cwlParam} of length 1.}
 \usage{
 strelka
-
-strelka
 }
 \description{
-strelka
-
 strelka
 }
 \keyword{datasets}

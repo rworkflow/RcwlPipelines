@@ -147,6 +147,9 @@
 #' @export
 "markdup"
 
+#' picard SamToFastq
+#' @export
+"SamToFastq"
 
 #' picard MergeSamFiles
 #' @export
@@ -243,10 +246,6 @@
 #' @export
 "LoFreq"
 
-#' MuSE
-#' @export
-"MuSE"
-
 #' VarDict
 #' @export
 "VarDict"
@@ -271,17 +270,9 @@
 #' @export
 "lancet"
 
-#' manta
-#' @export
-"manta"
-
 #' samtools_mpileup
 #' @export
 "samtools_mpileup"
-
-#' strelka
-#' @export
-"strelka"
 
 #' tabix_index
 #' @export
@@ -290,3 +281,59 @@
 #' polysolver
 #' @export
 "polysolver"
+
+#' vep
+#' @export
+"vep"
+
+#' vt decompose
+#' @export
+"vt_decompose"
+
+#' bam_readcount
+#' @export
+"bam_readcount"
+
+#' vcf_readcount_annotator
+#' @export
+"vcf_readcount_annotator"
+
+#' vcf_expression_annotator
+#' @export
+"vcf_expression_annotator"
+
+#' CombineVariants
+#' @export
+"CombineVariants"
+
+#' SortVcf
+#' @export
+"SortVcf"
+
+#' ReadBackedPhasing
+#' @export
+"ReadBackedPhasing"
+
+#' pvacseq
+#' @export
+"pvacseq"
+
+#' Picard DepthOfCoverage
+#' @export
+"DepthOfCoverage"
+
+#' Picard BedToIntervalList
+#' @export
+"BedToIntervalList"
+
+#' annovar
+#' @export
+"annovar"
+
+#' miRDeep2 mapper
+#' @export
+"miRMapper"
+
+#' miRDeep2
+#' @export
+"miRDeep2"

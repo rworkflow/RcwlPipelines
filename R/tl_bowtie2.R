@@ -13,7 +13,7 @@ p2 <- InputParam(id = "IndexPrefix", type = "File", prefix = "-x",
                                     "$(self.basename + '.3.bt2')",
                                     "$(self.basename + '.4.bt2')",
                                     "$(self.basename + '.rev.1.bt2')", 
-                                    "$(sefl.basename + '.rev.2.bt2')"), 
+                                    "$(self.basename + '.rev.2.bt2')"), 
                  position = 2) 
 p3 <- InputParam(id = "fq1", type = "File", prefix = "-1")
 p4 <- InputParam(id = "fq2", type = "File", prefix = "-2")

@@ -8,7 +8,7 @@ p5 <- InputParam(id = "version", type = "string", prefix = "--ref-version", defa
 p6 <- InputParam(id = "maf", type = "string", prefix = "-O")
 o1 <- OutputParam(id = "mout", type = "File", glob = "$(inputs.maf)")
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "broadinstitute/gatk:4.1.2.0")
+             dockerPull = "broadinstitute/gatk:latest")
 
 Funcotator <- cwlParam(baseCommand = c("gatk",
                                        "Funcotator"),

@@ -7,7 +7,7 @@ p4 <- InputParam(id = "ref", prefix = "-R", type = "File",
                  secondaryFiles = c(".fai", "$(self.nameroot).dict"))
 o1 <- OutputParam(id = "fout", type = "File", glob = "$(inputs.fvcf)")
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "broadinstitute/gatk:4.1.2.0")
+             dockerPull = "broadinstitute/gatk:latest")
 
 FilterMutectCalls <- cwlParam(baseCommand = c("gatk", "FilterMutectCalls"),
                               requirements = list(req1),

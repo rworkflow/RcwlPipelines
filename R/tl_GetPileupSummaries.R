@@ -5,7 +5,7 @@ p3 <- InputParam(id = "interval", type = "File", prefix = "-L", secondaryFiles =
 p4 <- InputParam(id = "pileup", type = "string", prefix = "-O")
 o1 <- OutputParam(id = "pout", type = "File", glob = "$(inputs.pileup)")
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "broadinstitute/gatk:4.1.2.0")
+             dockerPull = "broadinstitute/gatk:latest")
 
 GetPileupSummaries <- cwlParam(baseCommand = c("gatk", "GetPileupSummaries"),
                                requirements = list(req1),

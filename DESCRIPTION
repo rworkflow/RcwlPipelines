@@ -1,6 +1,6 @@
 Package: RcwlPipelines
 Title: Bioinformatics pipelines based on Rcwl
-Version: 1.1.11
+Version: 1.1.12
 Authors@R: 
     c(person(given = "Qiang", family = "Hu",
              role = c("aut", "cre"),
@@ -73,6 +73,9 @@ Collate:
     'tl_strelka.R'
     'tl_manta.R'
     'pl_mantaStrelka.R'
+    'tl_miRDeep2.R'
+    'tl_miRMapper.R'
+    'pl_miRDeep2PL.R'
     'tl_neusomatic_postprocess.R'
     'tl_neusomatic_call.R'
     'tl_neusomatic_preprocess.R'
@@ -81,12 +84,20 @@ Collate:
     'tl_STAR.R'
     'tl_fastqc.R'
     'pl_rnaseq_Sf.R'
+    'tl_BedToIntervalList.R'
+    'tl_CombineVariants.R'
+    'tl_DepthOfCoverage.R'
     'tl_Funcotator.R'
     'tl_LoFreq.R'
     'tl_MuSE.R'
+    'tl_ReadBackedPhasing.R'
+    'tl_SamToFastq.R'
     'tl_SomaticSniper.R'
+    'tl_SortVcf.R'
     'tl_VarDict.R'
     'tl_VarScan2.R'
+    'tl_annovar.R'
+    'tl_bam_readcount.R'
     'tl_bgzip.R'
     'tl_blastn.R'
     'tl_bowtie2.R'
@@ -96,11 +107,17 @@ Collate:
     'tl_hisat2_align.R'
     'tl_hisat2_build.R'
     'tl_htseq.R'
+    'tl_kallisto_quant.R'
     'tl_lancet.R'
     'tl_makeblastdb.R'
     'tl_multiqc.R'
     'tl_polysolver.R'
+    'tl_pvacseq.R'
     'tl_salmon_index.R'
     'tl_salmon_quant.R'
     'tl_starFusion.R'
     'tl_tabix_index.R'
+    'tl_vcf_expression_annotator.R'
+    'tl_vcf_readcount_annotator.R'
+    'tl_vep.R'
+    'tl_vt_decompose.R'

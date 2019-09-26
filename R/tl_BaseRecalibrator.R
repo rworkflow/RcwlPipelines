@@ -10,7 +10,7 @@ p4 <- InputParam(id = "recal", type = "string", prefix = "-O")
 o1 <- OutputParam(id = "rtable", type = "File",
                   glob = "$(inputs.recal)")
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "broadinstitute/gatk:4.1.2.0")
+             dockerPull = "broadinstitute/gatk:latest")
 
 BaseRecalibrator <- cwlParam(baseCommand = c("gatk",
                                              "BaseRecalibrator"),

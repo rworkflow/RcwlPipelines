@@ -6,7 +6,7 @@ p4 <- InputParam(id = "art", type = "string", prefix = "-O")
 o1 <- OutputParam(id = "aout", type = "File",
                   glob = "$(inputs.art).pre_adapter_detail_metrics.txt")
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "broadinstitute/gatk:4.1.2.0")
+             dockerPull = "broadinstitute/gatk:latest")
 
 ColSeqArtifact <- cwlParam(baseCommand = c("gatk",
                                            "CollectSequencingArtifactMetrics"),

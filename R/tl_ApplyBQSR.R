@@ -6,7 +6,7 @@ p4 <- InputParam(id = "oBam", type = "string", prefix = "-O")
 o1 <- OutputParam(id = "Bam", type = "File",
                   glob = "$(inputs.oBam)")
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "broadinstitute/gatk:4.1.2.0")
+             dockerPull = "broadinstitute/gatk:latest")
 
 ApplyBQSR <- cwlParam(baseCommand = c("gatk",
                                       "ApplyBQSR"),
