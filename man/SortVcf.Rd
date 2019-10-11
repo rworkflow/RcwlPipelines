@@ -3,12 +3,12 @@
 \docType{data}
 \name{SortVcf}
 \alias{SortVcf}
-\title{SortVcf}
+\title{Picard SortVcf}
 \format{An object of class \code{cwlParam} of length 1.}
 \usage{
 SortVcf
 }
 \description{
-SortVcf
+Picard SortVcf
 }
 \keyword{datasets}

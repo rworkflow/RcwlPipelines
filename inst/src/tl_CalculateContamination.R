@@ -4,7 +4,7 @@ p2 <- InputParam(id = "ntable", type = "File", prefix = "-matched")
 p3 <- InputParam(id = "cont", type = "string", prefix = "-O")
 o1 <- OutputParam(id = "cout", type = "File", glob = "$(inputs.cont)")
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "broadinstitute/gatk:4.1.2.0")
+             dockerPull = "broadinstitute/gatk:latest")
 
 CalculateContamination <- cwlParam(baseCommand = c("gatk", "CalculateContamination"),
                                    requirements = list(req1),

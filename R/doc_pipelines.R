@@ -255,6 +255,25 @@
 #' @export
 "neusomatic"
 
+#' Combined Somatic Mutation Callers
+#'
+#' Combined caller pipelines with neosomatic ensemble mode.
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  steps:
+#'  \item{Mutect2PL}{mutect2 pipeline}
+#'  \item{MuSE}{MuSE}
+#'  \item{manta strelka2}{strelka2 with manta}
+#'  \item{SomaticSniper}{SomaticSniper}
+#'  \item{VarDict}{VarDict}
+#'  \item{LoFreq}{LoFreq}
+#'  \item{VarScan2}{VarScan2 pipeline}
+#'  \item{neusomatic}{neusomatic ensemble mode}
+#' }
+#' @source \url{https://github.com/bioinform/neusomatic}
+#' @export
+"SomaticCallers"
+
 #' miRDeep2
 #'
 #' @format A `cwlStepParam` object.
@@ -266,3 +285,56 @@
 #' @source \url{https://github.com/rajewsky-lab/mirdeep2}
 #' @export
 "miRDeep2PL"
+
+#' vcfCoverage
+#'
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  steps:
+#'  \item{decompose}{vt decompose}
+#'  \item{readcount}{bam-readcount}
+#'  \item{readcount_annotator_snv}{add snv counts}
+#'  \item{readcount_annotator_indel}{add indel counts}
+#' }
+#' @source \url{https://pvactools.readthedocs.io/en/latest/pvacseq/input_file_prep/readcounts.html}
+#' @export
+"vcfCoverage"
+
+#' vcfExpression
+#'
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  steps:
+#'  \item{kallistoQuant}{transcript quantification using kallisto quant}
+#'  \item{cleanExp}{R function to clean results from kallisto}
+#'  \item{vcf_expression_annotator}{add expression to vcf}
+#' }
+#' @source \url{https://pvactools.readthedocs.io/en/latest/pvacseq/input_file_prep/expression.html}
+#' @export
+"vcfExpression"
+
+#' phase VCF
+#'
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  steps:
+#'  \item{CombineVariants}{combine germline and somatic variant}
+#'  \item{ReadBackedPhasing}{Phasing using GATK ReadBackedPhasing}
+#' }
+#' @source \url{https://pvactools.readthedocs.io/en/latest/pvacseq/input_file_prep/proximal_vcf.html}
+#' @export
+"phaseVcf"
+
+#' AnnPhaseVcf
+#'
+#' @format A `cwlStepParam` object.
+#' \describe{
+#'  steps:
+#'  \item{VCFvep}{annotate VCF with VEP}
+#'  \item{VCFcoverage}{add reads counts to VCF}
+#'  \item{VCFexpression}{add expression data to VCF}
+#'  \item{phaseVcf}{combine germline and somatic variant and phase}
+#' }
+#' @source \url{https://pvactools.readthedocs.io/en/latest/pvacseq/input_file_prep.html}
+#' @export
+"AnnPhaseVcf"

@@ -1,7 +1,9 @@
 ## gatk Mutect2
 
-p1a <- InputParam(id = "tbam", type = "File", prefix = "-I")
-p1b <- InputParam(id = "nbam", type = "File?", prefix = "-I")
+p1a <- InputParam(id = "tbam", type = "File",
+                  prefix = "-I", secondaryFiles = ".bai")
+p1b <- InputParam(id = "nbam", type = "File?",
+                  prefix = "-I", secondaryFiles = ".bai")
 p2 <- InputParam(id = "Ref", prefix = "-R", type = "File", secondaryFiles = c(".fai", "$(self.nameroot).dict"))
 p3 <- InputParam(id = "normal", type = "string?", prefix = "-normal")
 p4 <- InputParam(id = "germline", type = "File?", prefix = "--germline-resource", secondaryFiles = ".idx")
@@ -10,7 +12,7 @@ p6 <- InputParam(id = "interval", type = "File?", prefix = "-L")
 p7 <- InputParam(id = "out", type = "string", prefix = "-O")
 o1 <- OutputParam(id = "vout", type = "File", glob = "$(inputs.out)", secondaryFiles = c(".idx", ".stats"))
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "broadinstitute/gatk:4.1.2.0")
+             dockerPull = "broadinstitute/gatk:latest")
 
 Mutect2 <- cwlParam(baseCommand = c("gatk", "Mutect2"),
                     requirements = list(req1),

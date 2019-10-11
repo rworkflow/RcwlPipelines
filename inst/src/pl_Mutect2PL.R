@@ -15,8 +15,8 @@
 
 ##3. Mutect2 + GetPileupSummaries + CalculateContamination + FilterMutectCalls + CollectSequencingArtifactMetrics + FilterByOrientationBias
 
-p1a <- InputParam(id = "tbam", type = "File")
-p1b <- InputParam(id = "nbam", type = "File")
+p1a <- InputParam(id = "tbam", type = "File", secondaryFiles = ".bai")
+p1b <- InputParam(id = "nbam", type = "File", secondaryFiles = ".bai")
 p2 <- InputParam(id = "Ref", type = "File",
                  secondaryFiles = c(".fai", "$(self.nameroot).dict"))
 p3 <- InputParam(id = "normal", type = "string")

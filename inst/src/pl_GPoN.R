@@ -3,14 +3,14 @@
 p1 <- InputParam(id = "nvcf", type = InputArrayParam(items = "File"), secondaryFiles = ".idx")
 p2 <- InputParam(id = "Ref", type = "File",
                  secondaryFiles = c(".fai", "$(self.nameroot).dict"))
-p3 <- InputParam(id = "intervals", type = "File")
+p3 <- InputParam(id = "interval", type = "File")
 p4 <- InputParam(id = "pvcf", type = "string")
-p5 <- InputParam(id = "gresource", type = "File", secondaryFiles = ".idx")
+p5 <- InputParam(id = "gresource", type = "File?", secondaryFiles = ".idx")
 
 s1 <- Step(id = "GenomicsDB", run = GenomicsDB,
            In = list(vcf = "nvcf",
                      Ref = "Ref",
-                     intervals = "intervals"))
+                     intervals = "interval"))
 s2 <- Step(id = "PoN", run = PoN,
            In = list(db = "GenomicsDB/dbout",
                      Ref = "Ref",

@@ -1,7 +1,7 @@
 ### bwa_index : only for long genome (-a bwtsw)
 
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "biocontainers/bwa:v0.7.15_cv4")
+             dockerPull = "biocontainers/bwa:v0.7.17-3-deb_cv1")
 req2 <- list(class = "InitialWorkDirRequirement", 
              listing = list("$(inputs.Ref)"))
 req3 <- list(class = "InlineJavascriptRequirement")

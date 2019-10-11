@@ -5,7 +5,7 @@ p3 <- InputParam(id = "mode", type = InputArrayParam(items = "string", prefix = 
 p4 <- InputParam(id = "avcf", type = "string", prefix = "-O")
 o1 <- OutputParam(id = "fout", type = "File", glob = "$(inputs.avcf)")
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "broadinstitute/gatk:4.1.2.0")
+             dockerPull = "broadinstitute/gatk:latest")
 
 FilterOBias <- cwlParam(baseCommand = c("gatk",
                                         "FilterByOrientationBias"),

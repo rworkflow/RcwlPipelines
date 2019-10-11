@@ -20,7 +20,7 @@ o4 <- OutputParam(id = "stats", type = "File", outputSource = "BaseRecal/stats")
 
 req1 <- list(class = "SubworkflowFeatureRequirement")
 req2 <- list(class = "StepInputExpressionRequirement")
-##req2 <- list(class = "ScatterFeatureRequirement")
+## req3 <- list(class = "InlineJavascriptRequirement")
 bwaMRecal <- cwlStepParam(requirements = list(req1, req2),
                           inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
                           outputs = OutputParamList(o1, o2, o3, o4))
@@ -37,7 +37,7 @@ s2 <- Step(id = "markdup", run = markdup,
                      obam = list(valueFrom="$(inputs.ibam.nameroot).mdup.bam"),
                      matrix = list(
                          source = list("outBam"),
-                         valueFrom="$(self[0].nameroot).markdup.txt")))
+                         valueFrom="$(self).markdup.txt")))
 
 s3 <- Step(id = "BaseRecal", run = BaseRecal,
            In = list(bam = "markdup/mBam",

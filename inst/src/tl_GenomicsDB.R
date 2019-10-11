@@ -5,7 +5,7 @@ p3 <- InputParam(id = "db", prefix = "--genomicsdb-workspace-path", type = "stri
 p4 <- InputParam(id = "intervals", prefix = "-L", type = "File")
 o1 <- OutputParam(id = "dbout", type = "Directory", glob = "$(inputs.db)")
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "broadinstitute/gatk:4.1.2.0")
+             dockerPull = "broadinstitute/gatk:latest")
 
 GenomicsDB <- cwlParam(baseCommand = c("gatk", "GenomicsDBImport"),
                        requirements = list(req1),

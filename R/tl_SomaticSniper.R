@@ -9,6 +9,6 @@ req1 <- list(class = "DockerRequirement",
 
 SomaticSniper <- cwlParam(baseCommand = "/opt/somatic-sniper/build/bin/bam-somaticsniper",
                           requirements = list(req1),
-                          arguments = list("-q", "10"),
+                          arguments = list("-q", "10", "-F", "vcf"),
                           inputs = InputParamList(p1, p2 , p3, p4),
                           outputs = OutputParamList(o1))

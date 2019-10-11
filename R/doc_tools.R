@@ -37,6 +37,9 @@
 #' @export
 "bowtie2_build"
 
+#' bowtie-build
+#' @export
+"bowtie_build"
 
 #' bwa index
 #' @export
@@ -306,9 +309,13 @@
 #' @export
 "CombineVariants"
 
-#' SortVcf
+#' Picard SortVcf
 #' @export
 "SortVcf"
+
+#' Picard RenameSampleInVcf
+#' @export
+"RenameSampleInVcf"
 
 #' ReadBackedPhasing
 #' @export
@@ -337,3 +344,15 @@
 #' miRDeep2
 #' @export
 "miRDeep2"
+
+#' cnvkit batch
+#' @export
+"cnvkit_batch"
+
+#' Kallisto index
+#' @export
+"kallisto_index"
+
+#' Kallisto quant
+#' @export
+"kallisto_quant"
