@@ -1,3 +1,6 @@
+Changes in version 1.1.14 (2019-10-21)
++ Add pvactools neoantigen prediction pipeline
+
 Changes in version 1.1.8 (2019-08-22)
 + Add more Somatic Variant Callers:
   VarScan2, LoFreq, MuSE, SomaticSniper, VarDict, lancet, manta, strelka2

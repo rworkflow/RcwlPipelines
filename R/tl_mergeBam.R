@@ -5,8 +5,8 @@ p1 <- InputParam(id = "ibam", type = InputArrayParam(items = "File",
 p2 <- InputParam(id = "obam", type = "string", prefix = "O=", separate = FALSE)
 o1 <- OutputParam(id = "oBam", type = "File", glob = "$(inputs.obam)")
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "broadinstitute/picard")
-mergeBam <- cwlParam(baseCommand = c("java", "-jar", "/usr/picard/picard.jar",
+             dockerPull = "quay.io/biocontainers/picard:2.21.1--0")
+mergeBam <- cwlParam(baseCommand = c("picard",
                                      "MergeSamFiles"),
                      requirements = list(req1),
                      inputs = InputParamList(p1, p2),

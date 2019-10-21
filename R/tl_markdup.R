@@ -5,8 +5,8 @@ p3 <- InputParam(id = "matrix", type = "string", prefix = "M=", separate = FALSE
 o1 <- OutputParam(id = "mBam", type = "File", glob = "$(inputs.obam)")
 o2 <- OutputParam(id = "Mat", type = "File", glob = "$(inputs.matrix)")
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "broadinstitute/picard")
-markdup <- cwlParam(baseCommand = c("java", "-jar", "/usr/picard/picard.jar",
+             dockerPull = "quay.io/biocontainers/picard:2.21.1--0")
+markdup <- cwlParam(baseCommand = c("picard",
                                     "MarkDuplicates"),
                     requirements = list(req1),
                     inputs = InputParamList(p1, p2, p3),
