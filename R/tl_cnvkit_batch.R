@@ -6,7 +6,8 @@ p2 <- InputParam(id = "ref", type = "File?", prefix = "--fasta",
 p3 <- InputParam(id = "outdir", type = "string", prefix = "--output-dir")
 p4 <- InputParam(id = "normal", type = "File[]?", prefix = "--normal",
                  secondaryFiles = ".bai")
-p5 <- InputParam(id = "outref", type = "string?", prefix = "--output-reference")
+p5a <- InputParam(id = "outref", type = "string?", prefix = "--output-reference")
+p5b <- InputParam(id = "reference", type = "File?", prefix = "-r")
 p6 <- InputParam(id = "target", type = "File?", prefix = "--targets")
 p7 <- InputParam(id = "anti", type = "File?", prefix = "--antitargets")
 p8 <- InputParam(id = "access", type = "File?", prefix = "--access")
@@ -23,6 +24,6 @@ req1 <- list(class = "DockerRequirement",
              dockerPull = "etal/cnvkit")
 cnvkit_batch <- cwlParam(baseCommand = c("cnvkit.py", "batch"),
                          requirements = list(req1),
-                         inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12),
+                         inputs = InputParamList(p1, p2, p3, p4, p5a, p5b, p6, p7, p8, p9, p10, p11, p12),
                          outputs = OutputParamList(o1, o2))
 

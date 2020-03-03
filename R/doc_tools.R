@@ -356,3 +356,15 @@
 #' Kallisto quant
 #' @export
 "kallisto_quant"
+
+#' Structural Variation Engine
+#' @export
+"SVE"
+
+#' deeptools bamCoverage
+#' @export
+"bamCoverage"
+
+#' svaba somatic
+#' @export
+"svaba_somatic"

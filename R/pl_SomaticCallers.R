@@ -20,8 +20,8 @@ s1 <- Step(id = "Mutect2PL", run = Mutect2PL,
            In = list(tbam = "tbam",
                      nbam = "nbam",
                      Ref = "Ref",
-                     normal = list(valueFrom = "$(inputs.nbam.nameroot)"),
-                     tumor = list(valueFrom = "$(inputs.tbam.nameroot)"),
+                     normal = list(valueFrom = "$(inputs.nbam.nameroot.split('_')[0])"),
+                     tumor = list(valueFrom = "$(inputs.tbam.nameroot.split('_')[0])"),
                      gresource = "gresource",
                      pon = "pon",
                      interval = "interval",
@@ -33,7 +33,7 @@ s2 <- Step(id = "MuSE", run = MuSE,
                      ref = "Ref",
                      region = "interval",
                      dbsnp = "dbsnp",
-                     vcf = list(valueFrom = "$(inputs.tbam.nameroot)_MuSE.vcf")))
+                     vcf = list(valueFrom = "$(inputs.tbam.nameroot.split('_')[0])_MuSE.vcf")))
 #' @include pl_mantaStrelka.R
 s3a <- Step(id = "bgzip", run = bgzip,
             In = list(ifile = "interval"))
@@ -50,14 +50,14 @@ s4 <- Step(id = "SomaticSniper", run = SomaticSniper,
            In = list(tbam = "tbam",
                      nbam = "nbam",
                      ref = "Ref",
-                     vcf = list(valueFrom = "$(inputs.tbam.nameroot)_SomaticSniper.vcf")))
+                     vcf = list(valueFrom = "$(inputs.tbam.nameroot.split('_')[0])_SomaticSniper.vcf")))
 #' @include tl_VarDict.R
 s5 <- Step(id = "VarDict", run = VarDict,
            In = list(tbam = "tbam",
                      nbam = "nbam",
                      ref = "Ref",
                      region = "interval",
-                     vcf = list(valueFrom = "$(inputs.tbam.nameroot)_VarDict.vcf")))
+                     vcf = list(valueFrom = "$(inputs.tbam.nameroot.split('_')[0])_VarDict.vcf")))
 #' @include tl_LoFreq.R
 s6 <- Step(id = "LoFreq", run = LoFreq,
            In = list(tbam = "tbam",
@@ -66,7 +66,7 @@ s6 <- Step(id = "LoFreq", run = LoFreq,
                      region = "interval",
                      dbsnp = "dbsnp",
                      threads = "threads",
-                     out = list(valueFrom = "$(inputs.tbam.nameroot)_LoFreq.vcf")))
+                     out = list(valueFrom = "$(inputs.tbam.nameroot.split('_')[0])_LoFreq.vcf")))
 #' @include pl_VarScan2Somatic.R
 s7 <- Step(id = "VarScanPL", run = VarScan2Somatic,
            In = list(tbam = "tbam",
@@ -119,7 +119,7 @@ s10 <- Step(id = "neusomaticPL", run = neusomatic,
                       region = "interval",
                       ensemble = "mergeTSV/tsv",
                       threads = "threads",
-                      ovcf = list(valueFrom = "$(inputs.tbam.nameroot)_neusomatic.vcf")))
+                      ovcf = list(valueFrom = "$(inputs.tbam.nameroot.split('_')[0])_neusomatic.vcf")))
 
 o1a <- OutputParam(id = "mutect2filterVCF", type = "File", outputSource = "Mutect2PL/filterVCF")
 o1b <- OutputParam(id = "mutect2passVCF", type = "File", outputSource = "Mutect2PL/passVCF")

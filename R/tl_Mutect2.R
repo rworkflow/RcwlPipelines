@@ -12,7 +12,7 @@ p6 <- InputParam(id = "interval", type = "File?", prefix = "-L")
 p7 <- InputParam(id = "out", type = "string", prefix = "-O")
 o1 <- OutputParam(id = "vout", type = "File", glob = "$(inputs.out)", secondaryFiles = c(".idx", ".stats"))
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "broadinstitute/gatk:latest")
+             dockerPull = "broadinstitute/gatk:4.1.3.0")
 
 Mutect2 <- cwlParam(baseCommand = c("gatk", "Mutect2"),
                     requirements = list(req1),
