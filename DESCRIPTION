@@ -1,6 +1,6 @@
 Package: RcwlPipelines
 Title: Bioinformatics pipelines based on Rcwl
-Version: 1.3.0
+Version: 1.3.1
 Authors@R: 
     c(person(given = "Qiang", family = "Hu",
              role = c("aut", "cre"),
@@ -10,7 +10,7 @@ Authors@R:
 	     email = "shuang.gao@roswellpark.org"))
 Description: A collection of Bioinformatics tools and pipelines based on R and the Common Workflow Language.
 Depends: R (>= 3.6), Rcwl, BiocFileCache
-Imports: dplyr, rappdirs, jsonlite, methods, utils, tximport
+Imports: rappdirs, methods, utils
 License: GPL-2
 Encoding: UTF-8
 Suggests: 
@@ -19,118 +19,7 @@ Suggests:
     rmarkdown,
     BiocStyle
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 biocViews: Software, WorkflowStep, Alignment, Preprocessing, QualityControl,
 	   DNASeq, RNASeq, DataImport, ImmunoOncology
 SystemRequirements: nodejs
-Collate: 
-    'RcwlPipelines-package.R'
-    'cwlTools.R'
-    'doc_pipelines.R'
-    'doc_tools.R'
-    'tl_tabix_index.R'
-    'tl_bgzip.R'
-    'tl_ReadBackedPhasing.R'
-    'tl_SortVcf.R'
-    'tl_CombineVariants.R'
-    'tl_RenameSampleInVcf.R'
-    'tl_bcfview.R'
-    'pl_phaseVcf.R'
-    'tl_vcf_expression_annotator.R'
-    'tl_kallisto_quant.R'
-    'pl_vcfExpression.R'
-    'tl_vcf_readcount_annotator.R'
-    'tl_bam_readcount.R'
-    'tl_vt_decompose.R'
-    'pl_vcfCoverage.R'
-    'tl_vep.R'
-    'pl_AnnPhaseVcf.R'
-    'tl_samtools_stats.R'
-    'tl_samtools_flagstat.R'
-    'tl_samtools_index.R'
-    'tl_ApplyBQSR.R'
-    'tl_BaseRecalibrator.R'
-    'pl_BaseRecal.R'
-    'tl_runWDL.R'
-    'tl_mvOut.R'
-    'pl_GAlign.R'
-    'tl_PoN.R'
-    'tl_GenomicsDB.R'
-    'pl_GPoN.R'
-    'tl_FilterOBias.R'
-    'tl_ColSeqArtifact.R'
-    'tl_FilterMutectCalls.R'
-    'tl_CalculateContamination.R'
-    'tl_GetPileupSummaries.R'
-    'tl_Mutect2.R'
-    'pl_Mutect2PL.R'
-    'tl_geneBody_coverage.R'
-    'tl_read_distribution.R'
-    'tl_genePredToBed.R'
-    'tl_gtfToGenePred.R'
-    'pl_RSeQC.R'
-    'tl_neusomatic_postprocess.R'
-    'tl_neusomatic_call.R'
-    'tl_neusomatic_preprocess.R'
-    'pl_neusomatic.R'
-    'tl_SomaticSeq_Wrapper.R'
-    'tl_VarScan2_somaticFilter.R'
-    'tl_VarScan2_processSomatic.R'
-    'tl_VarScan2_somatic.R'
-    'tl_samtools_mpileup.R'
-    'pl_VarScan2Somatic.R'
-    'tl_LoFreq.R'
-    'tl_VarDict.R'
-    'tl_SomaticSniper.R'
-    'tl_strelka.R'
-    'tl_manta.R'
-    'pl_mantaStrelka.R'
-    'tl_MuSE.R'
-    'pl_SomaticCallers.R'
-    'tl_markdup.R'
-    'tl_mergeBam.R'
-    'pl_mergeBamDup.R'
-    'tl_sortBam.R'
-    'tl_sam2bam.R'
-    'tl_bwa.R'
-    'pl_bwaAlign.R'
-    'pl_alignMerge.R'
-    'pl_bwaMMRecal.R'
-    'pl_bwaMRecal.R'
-    'pl_hapCall.R'
-    'pl_jdCall.R'
-    'tl_miRDeep2.R'
-    'tl_miRMapper.R'
-    'pl_miRDeep2PL.R'
-    'tl_featureCounts.R'
-    'tl_STAR.R'
-    'tl_fastqc.R'
-    'pl_rnaseq_Sf.R'
-    'tl_BedToIntervalList.R'
-    'tl_DepthOfCoverage.R'
-    'tl_Funcotator.R'
-    'tl_SVE.R'
-    'tl_SVE_VP.R'
-    'tl_SamToFastq.R'
-    'tl_VarScan2.R'
-    'tl_annovar.R'
-    'tl_bamCoverage.R'
-    'tl_blastn.R'
-    'tl_bowtie2.R'
-    'tl_bowtie2_build.R'
-    'tl_bowtie_build.R'
-    'tl_bwa_index.R'
-    'tl_cnvkit_batch.R'
-    'tl_cutadapt.R'
-    'tl_hisat2_align.R'
-    'tl_hisat2_build.R'
-    'tl_htseq.R'
-    'tl_kallisto_index.R'
-    'tl_lancet.R'
-    'tl_makeblastdb.R'
-    'tl_multiqc.R'
-    'tl_polysolver.R'
-    'tl_pvacseq.R'
-    'tl_salmon_index.R'
-    'tl_salmon_quant.R'
-    'tl_starFusion.R'
