@@ -1,10 +1,13 @@
 Package: RcwlPipelines
 Title: Bioinformatics pipelines based on Rcwl
-Version: 1.5.0
+Version: 1.5.1
 Authors@R: 
     c(person(given = "Qiang", family = "Hu",
              role = c("aut", "cre"),
              email = "qiang.hu@roswellpark.org"),
+      person(given = "Qian", family = "Liu",
+             role = c("aut"),
+             email = "qian.liu@roswellpark.org"),
       person(given = "Shuang", family = "Gao",
 	     role = c("aut"),
 	     email = "shuang.gao@roswellpark.org"))
