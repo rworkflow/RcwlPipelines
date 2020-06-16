@@ -30,6 +30,12 @@ cwlInstall <- function(file, rname, bfc = NULL, env = .GlobalEnv) {
         cachePath <- user_cache_dir("Rcwl")
         bfc <- BiocFileCache(cachePath, ask = FALSE)
     }
+    if(missing(file)){
+        file <- bfcrpath(bfc)[bfcinfo(bfc)$rname == rname]
+    }
+    if(!file.exists(file)){
+        rname = file
+    }
     if(!missing(rname)){
         file <- bfcrpath(bfc)[bfcinfo(bfc)$rname == rname]
     }
