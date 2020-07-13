@@ -4,23 +4,33 @@
 \alias{cwlInstall}
 \title{cwlInstall}
 \usage{
-cwlInstall(file, rname, bfc = NULL, env = .GlobalEnv)
+cwlInstall(rname, bfc = NULL, env = .GlobalEnv)
 }
 \arguments{
-\item{file}{The Rcwl tool or pipeline receipes. The dependent
-Rcwl scripts should be included with @include tag.}
+\item{rname}{The name or filepath of tool or pipeline to install
+(`rname` or `fpath` column from the `bfc` object returned from
+`cwlSearch`).}
 
-\item{rname}{The `rname` to install from the `bfc` object.}
+\item{bfc}{The `BiocFileCache` object for the recipes returned from
+`cwlUpdate`. The default is NULL which automatically detect the
+"Rcwl" cache directory.}
 
-\item{bfc}{The BiocFileCache object for the recipes.}
-
-\item{env}{The enviroment to export.}
+\item{env}{The R enviroment to export to. The default is
+`.GlobalEnv`.}
 }
 \description{
 To source Rcwl scripts
 }
+\details{
+Note to developers that the dependent Rcwl scripts should
+    be included in the recipe with `@include` tag.
+}
 \examples{
 \dontrun{
-cwlInstall(rname = "tl_bwa")
+tls <- cwlSearch("bwa")
+tls$rname
+cwlInstall("tl_bwa")
+cwlInstall(tls$fpath[tls$rname == "tl_bwa"])  ## equivalent
+bwa
 }
 }

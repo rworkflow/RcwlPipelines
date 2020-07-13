@@ -1,10 +1,11 @@
 #' cwlUpdate
 #'
-#' Function to update the Rcwl recipes from the RcwlRecipes github
-#' repository.
+#' Function to sync and get the most updated Rcwl recipes from the
+#' RcwlRecipes github repository.
 #' @param cachePath The cache path of the BiocFileCache object to
-#'     store the Rcwl tools and pipelines recipes.
-#' @param force Whether to clean existing recipes cache.
+#'     store the Rcwl tools and pipelines recipes. Default is "Rcwl".
+#' @param force Whether to clean existing recipes cache. Default is
+#'     FALSE.
 #' @importFrom rappdirs user_cache_dir
 #' @import BiocFileCache
 #' @import utils

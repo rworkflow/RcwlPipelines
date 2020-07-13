@@ -8,13 +8,14 @@ cwlUpdate(cachePath = "Rcwl", force = FALSE)
 }
 \arguments{
 \item{cachePath}{The cache path of the BiocFileCache object to
-store the Rcwl tools and pipelines recipes.}
+store the Rcwl tools and pipelines recipes. Default is "Rcwl".}
 
-\item{force}{Whether to clean existing recipes cache.}
+\item{force}{Whether to clean existing recipes cache. Default is
+FALSE.}
 }
 \description{
-Function to update the Rcwl recipes from the RcwlRecipes github
-repository.
+Function to sync and get the most updated Rcwl recipes from the
+RcwlRecipes github repository.
 }
 \examples{
 \dontrun{
