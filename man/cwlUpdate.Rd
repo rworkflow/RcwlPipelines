@@ -16,3 +16,8 @@ store the Rcwl tools and pipelines recipes.}
 Function to update the Rcwl recipes from the RcwlRecipes github
 repository.
 }
+\examples{
+\dontrun{
+tools <- cwlUpdate()
+}
+}

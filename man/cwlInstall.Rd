@@ -19,3 +19,8 @@ Rcwl scripts should be included with @include tag.}
 \description{
 To source Rcwl scripts
 }
+\examples{
+\dontrun{
+cwlInstall(rname = "tl_bwa")
+}
+}
