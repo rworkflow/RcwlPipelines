@@ -19,3 +19,8 @@ A BiocFileCache tibble.
 \description{
 Function to search Rcwl tools and pipelines.
 }
+\examples{
+\dontrun{
+cwlSearch("bwa")
+}
+}

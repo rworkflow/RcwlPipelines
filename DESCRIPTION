@@ -1,6 +1,6 @@
 Package: RcwlPipelines
 Title: Bioinformatics pipelines based on Rcwl
-Version: 1.4.1
+Version: 1.4.2
 Authors@R: 
     c(person(given = "Qiang", family = "Hu",
              role = c("aut", "cre"),
@@ -22,7 +22,7 @@ Suggests:
     rmarkdown,
     BiocStyle
 VignetteBuilder: knitr
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 biocViews: Software, WorkflowStep, Alignment, Preprocessing, QualityControl,
 	   DNASeq, RNASeq, DataImport, ImmunoOncology
 SystemRequirements: nodejs
