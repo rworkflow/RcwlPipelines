@@ -39,17 +39,16 @@ cwlInstall <- function(rname, bfc = NULL, env = .GlobalEnv) {
         cachePath <- user_cache_dir("Rcwl")
         bfc <- BiocFileCache(cachePath, ask = FALSE)
     }
-    if (missing(rname)) {
+    if (missing(rname))
         stop("Please provide a valid name or filepath for the tool/pipeline.")
+    idx <- match(rname, bfcinfo(bfc)$rname)
+    if (!is.na(idx)) {
+        fpath <- bfcrpath(bfc)[idx]
     } else {
-        idx <- match(rname, bfcinfo(bfc)$rname)
-        if (is.na(idx)) {
-            idx <- match(rname, bfcinfo(bfc)$fpath)
-        }
-        if (is.na(idx)) {
-            stop("Please provide a valid name or filepath for the tool/pipeline.")
+        if (file.exists(rname)){
+            fpath <- rname
         } else {
-            fpath <- bfcrpath(bfc)[idx]
+            stop("Please provide a valid name or filepath for the tool/pipeline.")
         }
     }
     scripts <- readLines(fpath)
