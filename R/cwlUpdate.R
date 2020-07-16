@@ -1,11 +1,13 @@
 #' cwlUpdate
 #'
 #' Function to sync and get the most updated Rcwl recipes from the
-#' RcwlRecipes github repository.
+#' RcwlRecipes github 
 #' @param cachePath The cache path of the BiocFileCache object to
-#'     store the Rcwl tools and pipelines recipes. Default is "Rcwl".
-#' @param force Whether to clean existing recipes cache. Default is
-#'     FALSE.
+#'     store the Rcwl tools and pipelines recipes.
+#' @param force Whether to clean existing recipes cache.
+#' @param branch The branch of github recipes repository. It can be
+#'     "master" and "dev". "force = TRUE" is recommended when swithing
+#'     branch.
 #' @importFrom rappdirs user_cache_dir
 #' @import BiocFileCache
 #' @import utils
@@ -14,7 +16,7 @@
 #' \dontrun{
 #' tools <- cwlUpdate()
 #' }
-cwlUpdate <- function(cachePath = "Rcwl", force = FALSE) {
+cwlUpdate <- function(cachePath = "Rcwl", force = FALSE, branch = "master") {
     if(!file.exists(cachePath) & !grepl("^/", cachePath)){
         cachePath <- user_cache_dir(cachePath)
     }
@@ -32,10 +34,10 @@ cwlUpdate <- function(cachePath = "Rcwl", force = FALSE) {
     }
 
     message("Update scripts...")
-    download.file("https://github.com/hubentu/RcwlRecipes/archive/master.zip",
-                  file.path(cachePath, "master.zip"))
-    unzip(file.path(cachePath, "master.zip"), exdir = cachePath)
-    fpath <- list.files(file.path(cachePath, "RcwlRecipes-master/Rcwl"),
+    download.file(paste0("https://github.com/hubentu/RcwlRecipes/archive/", branch, ".zip"),
+                  file.path(cachePath, paste0(branch, ".zip")))
+    unzip(file.path(cachePath, paste0(branch, ".zip")), exdir = cachePath)
+    fpath <- list.files(file.path(cachePath, paste0("RcwlRecipes-", branch, "/Rcwl")),
                         full.names = TRUE)
     
     ## fpath <- setdiff(fpath, bfcinfo(cwlBFC)$fpath)
