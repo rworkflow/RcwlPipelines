@@ -4,18 +4,21 @@
 \alias{cwlUpdate}
 \title{cwlUpdate}
 \usage{
-cwlUpdate(cachePath = "Rcwl", force = FALSE)
+cwlUpdate(cachePath = "Rcwl", force = FALSE, branch = "master")
 }
 \arguments{
 \item{cachePath}{The cache path of the BiocFileCache object to
-store the Rcwl tools and pipelines recipes. Default is "Rcwl".}
+store the Rcwl tools and pipelines recipes.}
 
-\item{force}{Whether to clean existing recipes cache. Default is
-FALSE.}
+\item{force}{Whether to clean existing recipes cache.}
+
+\item{branch}{The branch of github recipes repository. It can be
+"master" and "dev". "force = TRUE" is recommended when swithing
+branch.}
 }
 \description{
 Function to sync and get the most updated Rcwl recipes from the
-RcwlRecipes github repository.
+RcwlRecipes github
 }
 \examples{
 \dontrun{

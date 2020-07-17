@@ -1,4 +1,6 @@
 .sourceCWL <- function(rscript, env = .GlobalEnv){
+
+
     .env <- new.env()
     source(rscript, .env)
     objs <- ls(.env)
@@ -61,7 +63,7 @@ cwlInstall <- function(rname, bfc = NULL, env = .GlobalEnv) {
             sapply(rscripts, function(x){
                 rscript <- file.path(dirname(fpath), x)
                 if(any(grepl("cwlStepParam", readLines(rscript)))){
-                    cwlInstall(fpath = rscript, bfc = bfc, env = env)
+                    cwlInstall(rscript, bfc = bfc, env = env)
                 }else{
                     .sourceCWL(rscript, env)
                 }
