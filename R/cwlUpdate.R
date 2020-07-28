@@ -84,7 +84,7 @@ cwlUpdate <- function(cachePath = "Rcwl", force = FALSE, branch = "master") {
                 rname <- sub("^pl_", "", rname)
                 Type <- "pipeline"
                 ss <- readLines(bfcrpath(cwlBFC)[rid])
-                ss <- gsub("\\s*", "", ss[grep("run", ss)])
+                ss <- gsub("\\s*", "", ss[grep("run\\s*=\\s*", ss)])
                 Command <- paste(sub(".*run=(.*),", "\\1", ss), collapse = " + ")
                 Container <- NA
             }
