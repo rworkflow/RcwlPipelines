@@ -17,8 +17,8 @@ store the Rcwl tools and pipelines recipes.}
 branch.}
 }
 \description{
-Function to update the Rcwl recipes from the RcwlRecipes github
-repository.
+Function to sync and get the most updated Rcwl recipes from the
+RcwlRecipes github
 }
 \examples{
 \dontrun{

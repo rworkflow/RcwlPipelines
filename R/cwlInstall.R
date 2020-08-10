@@ -1,4 +1,6 @@
 .sourceCWL <- function(rscript, env = .GlobalEnv){
+
+
     .env <- new.env()
     source(rscript, .env)
     objs <- ls(.env)
@@ -14,32 +16,44 @@
 #' cwlInstall
 #' 
 #' To source Rcwl scripts
-#' @param file The Rcwl tool or pipeline receipes. The dependent
-#'     Rcwl scripts should be included with @include tag.
-#' @param rname The `rname` to install from the `bfc` object.
-#' @param bfc The BiocFileCache object for the recipes.
-#' @param env The enviroment to export.
+#' @param rname The name or filepath of tool or pipeline to install
+#'     (`rname` or `fpath` column from the `bfc` object returned from
+#'     `cwlSearch`).
+#' @param bfc The `BiocFileCache` object for the recipes returned from
+#'     `cwlUpdate`. The default is NULL which automatically detect the
+#'     "Rcwl" cache directory.
+#' @param env The R enviroment to export to. The default is
+#'     `.GlobalEnv`.
+#' @details Note to developers that the dependent Rcwl scripts should
+#'     be included in the recipe with `@include` tag.
 #' @import methods
 #' @export
 #' @examples
 #' \dontrun{
-#' cwlInstall(rname = "tl_bwa")
+#' tls <- cwlSearch("bwa")
+#' tls$rname
+#' cwlInstall("tl_bwa")
+#' cwlInstall(tls$fpath[tls$rname == "tl_bwa"])  ## equivalent
+#' bwa
 #' }
-cwlInstall <- function(file, rname, bfc = NULL, env = .GlobalEnv) {
+cwlInstall <- function(rname, bfc = NULL, env = .GlobalEnv) {
     if(is.null(bfc)){
         cachePath <- user_cache_dir("Rcwl")
         bfc <- BiocFileCache(cachePath, ask = FALSE)
     }
-    if(missing(file)){
-        file <- bfcrpath(bfc)[bfcinfo(bfc)$rname == rname]
+    if (missing(rname))
+        stop("Please provide a valid name or filepath for the tool/pipeline.")
+    idx <- match(rname, bfcinfo(bfc)$rname)
+    if (!is.na(idx)) {
+        fpath <- bfcrpath(bfc)[idx]
+    } else {
+        if (file.exists(rname)){
+            fpath <- rname
+        } else {
+            stop("Please provide a valid name or filepath for the tool/pipeline.")
+        }
     }
-    if(!file.exists(file)){
-        rname = file
-    }
-    if(!missing(rname)){
-        file <- bfcrpath(bfc)[bfcinfo(bfc)$rname == rname]
-    }
-    scripts <- readLines(file)
+    scripts <- readLines(fpath)
     iscripts <- grep("@include", scripts, value = TRUE)
     if(length(iscripts) > 0){
         rscripts <- grep(".R$",
@@ -47,14 +61,14 @@ cwlInstall <- function(file, rname, bfc = NULL, env = .GlobalEnv) {
                          value = TRUE)
         if(length(rscripts) > 0){
             sapply(rscripts, function(x){
-                rscript <- file.path(dirname(file), x)
+                rscript <- file.path(dirname(fpath), x)
                 if(any(grepl("cwlStepParam", readLines(rscript)))){
-                    cwlInstall(file = rscript, bfc = bfc, env = env)
+                    cwlInstall(rscript, bfc = bfc, env = env)
                 }else{
                     .sourceCWL(rscript, env)
                 }
             })
         }
     }
-    .sourceCWL(file, env)
+    .sourceCWL(fpath, env)
 }

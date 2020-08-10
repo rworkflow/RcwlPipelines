@@ -7,11 +7,16 @@
 cwlSearch(keyword, bfc = NULL, ...)
 }
 \arguments{
-\item{keyword}{The keyword to search.}
+\item{keyword}{A (vector of) character string as keywords to search
+for tools or pipelines. Will be used to match patterns against
+`rname`, `rpath`, `fpath`, `Command` and `Container` column in
+the `bfc` object.}
 
-\item{bfc}{The BiocFileCache object for the recipes.}
+\item{bfc}{The `BiocFileCache` object for the recipes returned from
+`cwlUpdate`. The default is NULL which automatically detect the
+"Rcwl" cache directory.}
 
-\item{...}{More options from `bfcquery`.}
+\item{...}{More options from the internal `bfcquery` function.}
 }
 \value{
 A BiocFileCache tibble.
@@ -21,6 +26,7 @@ Function to search Rcwl tools and pipelines.
 }
 \examples{
 \dontrun{
-cwlSearch("bwa")
+tls <- cwlSearch(c("bwa", "mem"))
+data.frame(tls)
 }
 }
