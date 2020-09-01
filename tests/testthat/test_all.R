@@ -11,3 +11,10 @@ test_that("check tool type", {
 test_that("check pipeline type", {
     expect_equal(cwlSearch("pl_neusomatic", tools)$Type, "pipeline")
 })
+
+test_that("check cwlLoad", {
+    bwaMRecal <- cwlLoad(cwlSearch("pl_bwaMRecal")$rname)
+    expect_true(exists("bwaMRecal"))
+    expect_true(exists("bwa"))
+    expect_true(exists("BaseRecal"))
+})
