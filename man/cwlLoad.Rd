@@ -4,12 +4,19 @@
 \alias{cwlLoad}
 \title{cwlLoad}
 \usage{
-cwlLoad(rname, bfc = NULL, env = .GlobalEnv)
+cwlLoad(
+  rname,
+  bfc = NULL,
+  env = .GlobalEnv,
+  cwlfile = NULL,
+  dir = tempdir(),
+  ...
+)
 }
 \arguments{
 \item{rname}{The name or filepath of tool or pipeline to install
 (`rname` or `fpath` column from the `bfc` object returned from
-`cwlSearch`).}
+`cwlSearch`). It can also be a CWL url or a github repo.}
 
 \item{bfc}{The `BiocFileCache` object for the recipes returned from
 `cwlUpdate`. The default is NULL which automatically detect the
@@ -17,6 +24,13 @@ cwlLoad(rname, bfc = NULL, env = .GlobalEnv)
 
 \item{env}{The R enviroment to export to. The default is
 `.GlobalEnv`.}
+
+\item{cwlfile}{For github repo input, The relative path of a CWL
+file inside of the github repo.}
+
+\item{dir}{For github repo input, the directory to clone the repo.}
+
+\item{...}{More options from git2r::clone.}
 }
 \value{
 A `cwlParam` object. For pipelines, the dependent tools

@@ -13,7 +13,7 @@ Authors@R:
 	     email = "shuang.gao@roswellpark.org"))
 Description: A collection of Bioinformatics tools and pipelines based on R and the Common Workflow Language.
 Depends: R (>= 3.6), Rcwl, BiocFileCache
-Imports: rappdirs, methods, utils
+Imports: rappdirs, methods, utils, git2r
 License: GPL-2
 Encoding: UTF-8
 Suggests: 
