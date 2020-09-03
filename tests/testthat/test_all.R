@@ -13,7 +13,7 @@ test_that("check pipeline type", {
 })
 
 test_that("check cwlLoad", {
-    bwaMRecal <- cwlLoad(cwlSearch("pl_bwaMRecal")$rname)
+    bwaMRecal <- cwlLoad(cwlSearch("pl_bwaMRecal", tools)$rname, tools)
     expect_true(exists("bwaMRecal"))
     expect_true(exists("bwa"))
     expect_true(exists("BaseRecal"))

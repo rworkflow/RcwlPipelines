@@ -71,17 +71,17 @@ data.frame(tl)
 ```
 
 ## Loading tools and pipelines
-The function `cwlInstall` can be used to "install" to tools or
+The function `cwlLoad` can be used to "install" to tools or
 pipelines to current environment by given the script path.
 
 ```{r}
-cwlInstall(tl$rpath)
+bwa <- cwlLoad(tl$rpath)
 bwa
 ```
 
 Or we can install the tools by its `rname` directly.
 ```{r}
-cwlInstall(rname = 'tl_bwa', bfc = tools)
+bwa <- cwlLoad(rname = 'tl_bwa', bfc = tools)
 ```
 
 That's it! The tool "bwa" is ready to use.
@@ -103,7 +103,7 @@ tls
 
 To load all the tools.
 ```{r}
-invisible(sapply(tls$rpath, cwlInstall))
+invisible(sapply(tls$rpath, cwlLoad))
 ```
 
 Next, we define the input parameters.
@@ -176,7 +176,7 @@ format. It can take paired fastqs, read groups from multiple batches
 as input.
 
 ```{r}
-cwlInstall(rname = "pl_alignMerge", bfc = tools)
+alignMerge <- cwlLoad(rname = "pl_alignMerge", bfc = tools)
 inputs(alignMerge)
 ```
 
@@ -221,7 +221,7 @@ quantification by `featureCounts` and `RSeQC` quality control. Here
 are the inputs.
 
 ```{r}
-cwlInstall(rname = "pl_rnaseq_Sf", bfc = tools)
+ranseq_Sf <- cwlLoad(rname = "pl_rnaseq_Sf", bfc = tools)
 inputs(rnaseq_Sf)
 ```
 
@@ -283,8 +283,8 @@ the best practice documents.
 <https://software.broadinstitute.org/gatk/best-practices/workflow?id=11146>
 
 ```{r}
-cwlInstall(rname = "pl_GPoN", bfc = tools)
-cwlInstall(rname = "pl_Mutect2PL", bfc = tools)
+GPoN <- cwlLoad(rname = "pl_GPoN", bfc = tools)
+Mutect2PL <- cwlLoad(rname = "pl_Mutect2PL", bfc = tools)
 ```
 
 1. Variant calling on normal samples
