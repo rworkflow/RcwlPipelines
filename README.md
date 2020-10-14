@@ -1,14 +1,22 @@
 # RcwlPipelines
 
-A collection of Bioinformatics pipeline recipes based on Rcwl.
+The RcwlPipelines package manages a collection of Bioinformatics tools and pipeline recipes based on Rcwl.
 
-## Pipeline examples
-* [RNASeq alignment, QC and quantification pipeline](https://hubentu.github.io/others/Rcwl_RNASeq.html)
+## Installation
 
-* [DNASeq alignment](https://hubentu.github.io/others/Rcwl_DNASeq_Align.html)
+The package can be installed from Bioconductor (>= 3.9):
 
-* [TCGA MC3 pipeline for Somatic calling](https://hubentu.github.io/others/Rcwl_MC3.html)
+``` r
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("RcwlPipelines")
+	
+# Or from github
+BiocManager::install("hubentu/RcwlPipelines")
+```
 
-* [GATK4 pipeline for Germline calling](https://hubentu.github.io/others/Rcwl_GATK4.html)
+## User Guide
 
-* [cwlParam to Shiny App](https://hubentu.github.io/others/cwlShiny.html)
+``` r
+vignette(package = "RcwlPipelines")
+```
