@@ -11,7 +11,11 @@
         message(objs[oidx][i], " loaded")
     }
     if(return){
-        get(objs[oidx], envir = .env)
+        oclass <- sapply(objs,
+                         function(x)class(get(x, envir = .env)))
+        idx <- oclass == "cwlStepParam"
+        if(sum(idx)==0) idx <- tail(which(oidx), 1)
+        get(objs[idx], envir = .env)
     }
 }
 
