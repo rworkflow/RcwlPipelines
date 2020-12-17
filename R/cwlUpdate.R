@@ -21,12 +21,6 @@ cwlUpdate <- function(cachePath = "Rcwl", force = FALSE, branch = "master") {
         cachePath <- user_cache_dir(cachePath)
     }
     cwlBFC <- BiocFileCache(cachePath, ask = FALSE)
-    
-    ## req <- GET("https://api.github.com/repos/hubentu/RcwlRecipes/git/trees/master?recursive=1")
-    ## stop_for_status(req)
-    ## filelist <- unlist(lapply(content(req)$tree, "[", "path"), use.names = F)
-    ## filelist <- filelist[grep("Rcwl/", filelist)]
-    ## fpath <- paste0("https://raw.githubusercontent.com/hubentu/RcwlRecipes/master/", filelist)
 
     if(force){
         message("Warning: existing caches will be removed")
@@ -40,65 +34,49 @@ cwlUpdate <- function(cachePath = "Rcwl", force = FALSE, branch = "master") {
     fpath <- list.files(file.path(cachePath, paste0("RcwlRecipes-", branch, "/Rcwl")),
                         full.names = TRUE)
     
-    ## fpath <- setdiff(fpath, bfcinfo(cwlBFC)$fpath)
-    if("cwlMeta" %in% bfcmetalist(cwlBFC) & !force){
-        BM <- bfcmeta(cwlBFC, "cwlMeta")
-    }else{
-        BM <- data.frame()
-    }
     if(length(fpath) > 0){
-        for(i in seq_along(fpath)){
-            rname <- sub(".R$", "", basename(fpath[i]))
-            ## add BFC
-            if(!rname %in% bfcinfo(cwlBFC)$rname){
-                add1 <- bfcadd(cwlBFC, rname, fpath = fpath[i],
+        rnames <- sub(".R$", "", basename(fpath))
+        ex <- rnames %in% bfcinfo(cwlBFC)$rname
+        if(sum(!ex)>0){
+            idx <- which(!ex)
+            for(i in idx){
+                add1 <- bfcadd(cwlBFC, rnames[i], fpath = fpath[i],
                                rtype = "local", action = "asis")
-                rid <- names(add1)
-            }else{
-                rid <- bfcrid(cwlBFC)[bfcinfo(cwlBFC)$rname == rname]
-            }
-            ## if(fpath[i] %in% bfcinfo(cwlBFC)$fpath){
-            ##     rid  <- unique(bfcinfo(cwlBFC)$rid[bfcinfo(cwlBFC)$fpath == fpath[i]])
-            ##     cwlBFC <- bfcupdate(cwlBFC, rid, fpath = fpath[i], ask = F)
-            ## }else{
-            ##     ## add1 <- bfcadd(cwlBFC, rname, fpath = fpath[i],
-            ##     ##                rtype = "web")
-            ##     add1 <- bfcadd(cwlBFC, rname, fpath = fpath[i],
-            ##                    rtype = "local", action = "asis")
-            ##     rid <- names(add1)
-            ## }
-            ## collect meta
-            if(grepl("^tl_", rname)){
-                rname <- sub("^tl_", "", rname)
-                Type <- "tool"
-                source(bfcrpath(cwlBFC)[rid], environment())
-                cwl <- get(rname, environment())
-                if(is(baseCommand(cwl), "function")){
-                    Command <- "R function"
-                }else{
-                    Command <- paste(baseCommand(cwl), collapse = " ")
-                }
-                Container <- unlist(requirements(cwl))["dockerPull"]
-                if(is.null(Container)) Container <- NA
-            }else{
-                rname <- sub("^pl_", "", rname)
-                Type <- "pipeline"
-                ss <- readLines(bfcrpath(cwlBFC)[rid])
-                ss <- gsub("\\s*", "", ss[grep("run\\s*=\\s*", ss)])
-                Command <- paste(sub(".*run=(.*),", "\\1", ss), collapse = " + ")
-                Container <- NA
-            }
-            bm <- data.frame(rid = rid, Type, Command, Container,
-                             stringsAsFactors = FALSE)
-            idx <- match(bm$rid, BM$rid)
-            if(!is.na(idx)){
-                BM[idx,] <- bm
-            }else{
-                BM <- rbind(BM, bm)
+                message(basename(add1), " added")
             }
         }
     }
-    BM <- BM[match(bfcrid(cwlBFC), BM$rid),]
+    meta <- read.csv(file.path(cachePath, paste0("RcwlRecipes-", branch, "/cwlMeta.csv")), row.names = 1)
+    BM <- data.frame(rid = bfcinfo(cwlBFC)$rid,
+                     meta[match(bfcinfo(cwlBFC)$rname, rownames(meta)), ])
     bfcmeta(cwlBFC, "cwlMeta", overwrite = TRUE) <- BM
     return(cwlBFC)
+}
+
+cwlMeta <- function(fpaths){
+    BM <- c()
+    for(i in 1:length(fpaths)){
+        fpath <- fpaths[i]
+        rname <- sub(".R$", "", basename(fpath))
+        if(grepl("^tl_", rname)){
+            Type <- "tool"
+            t1 <- cwlLoad(fpath)
+            if(is(baseCommand(t1), "function")){
+                Command <- "R function"
+            }else{
+                Command <- paste(baseCommand(t1), collapse = " ")
+            }
+            Container <- unlist(requirements(t1))["dockerPull"]
+            if(is.null(Container)) Container <- NA
+        }else{
+            Type <- "pipeline"
+            p1 <- cwlLoad(fpath)
+            Command <- paste(names(runs(p1)), collapse = "+")
+            Container <- NA
+        }
+        bm <- data.frame(row.names = rname, Type, Command, Container,
+                         stringsAsFactors = FALSE)
+        BM <- rbind(BM, bm)
+    }
+    BM
 }
