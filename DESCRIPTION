@@ -1,6 +1,6 @@
 Package: RcwlPipelines
 Title: Bioinformatics pipelines based on Rcwl
-Version: 1.7.1
+Version: 1.7.2
 Authors@R: 
     c(person(given = "Qiang", family = "Hu",
              role = c("aut", "cre"),
@@ -13,7 +13,7 @@ Authors@R:
 	     email = "shuang.gao@roswellpark.org"))
 Description: A collection of Bioinformatics tools and pipelines based on R and the Common Workflow Language.
 Depends: R (>= 3.6), Rcwl, BiocFileCache
-Imports: rappdirs, methods, utils, git2r
+Imports: rappdirs, methods, utils, git2r, httr, S4Vectors
 License: GPL-2
 Encoding: UTF-8
 Suggests: 
