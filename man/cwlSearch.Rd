@@ -4,7 +4,7 @@
 \alias{cwlSearch}
 \title{cwlSearch}
 \usage{
-cwlSearch(keyword, bfc = NULL, ...)
+cwlSearch(keyword, bfc = NULL, type = NULL, ...)
 }
 \arguments{
 \item{keyword}{A (vector of) character string as keywords to search
@@ -15,6 +15,8 @@ the `bfc` object.}
 \item{bfc}{The `BiocFileCache` object for the recipes returned from
 `cwlUpdate`. The default is NULL which automatically detect the
 "Rcwl" cache directory.}
+
+\item{type}{The `Type` to filter the results, "pipeline" or "tool".}
 
 \item{...}{More options from the internal `bfcquery` function.}
 }

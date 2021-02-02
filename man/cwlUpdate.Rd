@@ -4,7 +4,7 @@
 \alias{cwlUpdate}
 \title{cwlUpdate}
 \usage{
-cwlUpdate(cachePath = "Rcwl", force = FALSE, branch = "master")
+cwlUpdate(cachePath = "Rcwl", force = FALSE, branch = NULL)
 }
 \arguments{
 \item{cachePath}{The cache path of the BiocFileCache object to

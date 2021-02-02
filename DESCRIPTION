@@ -1,6 +1,6 @@
 Package: RcwlPipelines
 Title: Bioinformatics pipelines based on Rcwl
-Version: 1.7.2
+Version: 1.7.3
 Authors@R: 
     c(person(given = "Qiang", family = "Hu",
              role = c("aut", "cre"),
@@ -20,8 +20,7 @@ Suggests:
     testthat,
     knitr,
     rmarkdown,
-    BiocStyle,
-    dplyr
+    BiocStyle
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1
 biocViews: Software, WorkflowStep, Alignment, Preprocessing, QualityControl,

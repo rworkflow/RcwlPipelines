@@ -3,19 +3,30 @@
     source(rscript, .env)
     objs <- ls(.env)
     oidx <- sapply(objs,
-                   function(x)is(get(x, envir = .env), "cwlParam"))
-    for(i in seq(sum(oidx))){
-        assign(objs[oidx][i],
-               get(objs[oidx][i], envir = .env),
-               envir = env)
-        message(objs[oidx][i], " loaded")
-    }
-    if(return){
+                   function(x)is(get(x, envir = .env), "cwlProcess"))
+    if(sum(oidx)==1){
+        idx <- oidx
+    }else if(sum(oidx)>1){
         oclass <- sapply(objs,
                          function(x)class(get(x, envir = .env)))
-        idx <- oclass == "cwlStepParam"
+        idx <- oclass == "cwlWorkflow"
         if(sum(idx)==0) idx <- tail(which(oidx), 1)
+        oidx <- oidx & !idx
+
+        for(i in seq(sum(oidx))){
+            assign(objs[oidx][i],
+                   get(objs[oidx][i], envir = .env),
+                   envir = env)
+            message(objs[oidx][i], " loaded")
+        }
+    }
+    if(return){
         get(objs[idx], envir = .env)
+    }else{
+        assign(objs[idx],
+               get(objs[idx], envir = .env),
+               envir = env)
+        message(objs[idx], " loaded")
     }
 }
 
@@ -51,7 +62,7 @@
 #'     file inside of the github repo.
 #' @param dir For github repo input, the directory to clone the repo.
 #' @param ... More options from git2r::clone.
-#' @return A `cwlParam` object. For pipelines, the dependent tools
+#' @return A `cwlProcess` object. For pipelines, the dependent tools
 #'     will also loaded.
 #' @details Note to developers that the dependent Rcwl scripts should
 #'     be included in the recipe with `@include` tag.
@@ -98,8 +109,8 @@ cwlLoad <- function(rname, bfc = NULL, env = .GlobalEnv,
             if(length(rscripts) > 0){
                 sapply(rscripts, function(x){
                     rscript <- file.path(dirname(fpath), x)
-                    if(any(grepl("cwlStepParam", readLines(rscript)))){
-                        cwlLoad(rscript, bfc = bfc, env = env)
+                    if(any(grepl("cwlWorkflow", readLines(rscript)))){
+                        cwlInstall(rscript, bfc = bfc, env = env)
                     }else{
                         .loadCWL(rscript, env)
                     }

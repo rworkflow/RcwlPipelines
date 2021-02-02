@@ -33,7 +33,7 @@ file inside of the github repo.}
 \item{...}{More options from git2r::clone.}
 }
 \value{
-A `cwlParam` object. For pipelines, the dependent tools
+A `cwlProcess` object. For pipelines, the dependent tools
     will also loaded.
 }
 \description{

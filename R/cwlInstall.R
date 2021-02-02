@@ -5,7 +5,7 @@
     source(rscript, .env)
     objs <- ls(.env)
     oidx <- sapply(objs,
-                   function(x)is(get(x, envir = .env), "cwlParam"))
+                   function(x)is(get(x, envir = .env), "cwlProcess"))
     for(i in seq(sum(oidx))){
         assign(objs[oidx][i],
                get(objs[oidx][i], envir = .env),
@@ -62,7 +62,7 @@ cwlInstall <- function(rname, bfc = NULL, env = .GlobalEnv) {
         if(length(rscripts) > 0){
             sapply(rscripts, function(x){
                 rscript <- file.path(dirname(fpath), x)
-                if(any(grepl("cwlStepParam", readLines(rscript)))){
+                if(any(grepl("cwlWorkflow", readLines(rscript)))){
                     cwlInstall(rscript, bfc = bfc, env = env)
                 }else{
                     .sourceCWL(rscript, env)

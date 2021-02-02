@@ -35,7 +35,6 @@ BiocManager::install("hubentu/RcwlPipelines")
 2. Load the package into the R session.
 ```{r Load, message=FALSE}
 library(RcwlPipelines)
-library(dplyr)
 ```
 
 # Tools and pipelines scripts
@@ -67,7 +66,7 @@ mem`.
 
 ```{r}
 tl <- cwlSearch(c("bwa", "mem"), tools)
-data.frame(tl)
+tl
 ```
 
 ## Loading tools and pipelines
@@ -75,13 +74,13 @@ The function `cwlLoad` can be used to "install" to tools or
 pipelines to current environment by given the script path.
 
 ```{r}
-bwa <- cwlLoad(tl$rpath)
+bwa <- cwlLoad(mcols(tl)$rpath)
 bwa
 ```
 
-Or we can install the tools by its `rname` directly.
+Or we can install the tools by its `title` directly.
 ```{r}
-bwa <- cwlLoad(rname = 'tl_bwa', bfc = tools)
+bwa <- cwlLoad(title(tl), bfc = tools)
 ```
 
 That's it! The tool "bwa" is ready to use.
@@ -95,15 +94,14 @@ First, we check whether the required tools (bwa, samtools and picard
 markduplicates) are available.
 
 ```{r}
-tls <- cwlSearch("bwa|sam2bam|sortBam|samtools_index|markdup", tools) %>%
-    filter(Type == "tool") %>%
-    select(rname, rpath, Command, Container)
+tls <- cwlSearch("bwa|sam2bam|sortBam|samtools_index|markdup",
+                 tools, type = "tool")
 tls
 ```
 
 To load all the tools.
 ```{r}
-invisible(sapply(tls$rpath, cwlLoad))
+invisible(sapply(title(tls), cwlInstall))
 ```
 
 Next, we define the input parameters.
@@ -146,15 +144,15 @@ s5 <- Step(id = "idxBam", run = samtools_index,
 
 Last, we define the outputs and connect the steps to a new pipeline.
 ```{r}
-req1 <- list(class = "StepInputExpressionRequirement")
-req2 <- list(class = "InlineJavascriptRequirement")
+req1 <- requireStepInputExpression()
+req2 <- requireJS()
 ## outputs
 o1 <- OutputParam(id = "Bam", type = "File", outputSource = "markdup/mBam")
 o2 <- OutputParam(id = "Idx", type = "File", outputSource = "idxBam/idx")
 ## stepParam
-Align <- cwlStepParam(requirements = list(req1, req2),
-                      inputs = InputParamList(p1, p2, p3, p4, p5),
-                      outputs = OutputParamList(o1, o2))
+Align <- cwlWorkflow(requirements = list(req1, req2),
+                     inputs = InputParamList(p1, p2, p3, p4, p5),
+                     outputs = OutputParamList(o1, o2))
 ## build pipeline
 Align <- Align + s1 + s2 + s3 + s4 + s5
 ```
@@ -165,9 +163,9 @@ The pipeline is ready for use. We can plot the pipeline with
 plotCWL(Align)
 ```
 
-# Pipelines summary
-There are mainly 4 pipelines are collected in this package. Here is a
-brief introduction to these pipelines. More pipelines and tools are
+# Pipelines examples
+There are over 20 pipelines collected in this package. Here is a
+brief introduction to three of them. More pipelines and tools are
 expected to be included in the future.
 
 ## DNASeq alignment pipeline
@@ -176,16 +174,16 @@ format. It can take paired fastqs, read groups from multiple batches
 as input.
 
 ```{r}
-alignMerge <- cwlLoad(rname = "pl_alignMerge", bfc = tools)
-inputs(alignMerge)
+bwaMRecal <- cwlLoad("pl_bwaMRecal", bfc = tools)
+inputs(bwaMRecal)
 ```
 
 The pipeline includes two steps and several jobs will be run in each
 step.
 
-1. ``r names(runs(alignMerge))[[1]]``: bwa alignment by read groups.
+1. ``r names(runs(bwaMRecal))[[1]]``: bwa alignment by read groups.
 ```{r}
-runs(runs(alignMerge)[[1]])
+runs(runs(bwaMRecal)[[1]])
 ```
 
    * `bwa`: To align fastqs and read groups to reference genome with `bwa`.
@@ -194,26 +192,30 @@ runs(runs(alignMerge)[[1]])
    * `sortBam`: To sort the "bam" file by coordinates with `samtools`.
    * `idxBam`: To index "bam" file with `samtools`.
   
-2. ``r names(runs(alignMerge))[[2]]``: Merge by samples and markduplicates.
+2. ``r names(runs(bwaMRecal))[[2]]``: Markduplicates by `picard`.
 ```{r}
-runs(runs(alignMerge)[[2]])
+runs(bwaMRecal)[[2]]
 ```
 
-   * `mergeBam`: To merge bam files from multiple batches with `picard`.
-   * `markdup`: To mark duplicates with `picard`.
-   * `samtools_index`: To index bam file with `samtools`.
-   * `samtools_flagstat`: To summarize flags in bam with `samtools`.
+3. ``r names(runs(bwaMRecal))[[3]]``: Alignment recalibration by `GATK` toolkit.
+```{r}
+runs(runs(bwaMRecal)[[3]])
+```
 
-The final bam files after duplicates marked, bam index, duplicates
-matrix, and flag statistics summary will be in the output folder.
+   * `BaseRecalibrator` and `ApplyBQSR`. Alignment recalibration by `GATK` toolkit.
+   * `samtools_index`: To index bam file with `samtools`.
+   * `samtools_flagstat` and `samtools_stats`: To summarize alignments with `samtools`.
+
+The final processed bam files, bam index, duplicates matrix, and flag
+statistics summary will be in the output folder.
 
 ```{r}
-outputs(alignMerge)
+outputs(bwaMRecal)
 ```
 
 Here you can find an example to run the pipeline.
 
-<https://hubentu.github.io/others/Rcwl/application.html#dnaseq-alignment-pipeline>
+<https://hubentu.github.io/Rcwl/application.html#dnaseq-alignment-pipeline>
 
 ## RNASeq pipeline
 The pipeline was built with reads quality summary, `STAR` alignment,
@@ -221,7 +223,7 @@ quantification by `featureCounts` and `RSeQC` quality control. Here
 are the inputs.
 
 ```{r}
-ranseq_Sf <- cwlLoad(rname = "pl_rnaseq_Sf", bfc = tools)
+rnaseq_Sf <- cwlLoad(rname = "pl_rnaseq_Sf", bfc = tools)
 inputs(rnaseq_Sf)
 ```
 
@@ -244,37 +246,8 @@ generated by `multiqc`, which is also available in the data package.
 
 An example to run the pipeline.
 
-<https://hubentu.github.io/others/Rcwl/application.html#rnaseq-pipeline>
+<https://hubentu.github.io/Rcwl/application.html#rnaseq-pipeline>
 
-## GATK4 germline variant calling pipeline
-The GATK4 best practice pipeline for germline variant calling was
-implemented with Workflow Description Language (WDL). We wrapped the
-WDL pipeline into 3 steps with `Rcwl`. The details of the pipeline can
-be find here:
-<https://software.broadinstitute.org/gatk/best-practices/workflow?id=11145>
-
-1. `GAlign` GATK alignment.
-
-The fastqs, sample information and customized json files for WDL are
-required as inputs. Multiple steps will run in this step, including
-`bwa` alignment, mark duplicates and base quality recalibration. GATK
-ready BAM files will be collected to the output directory.
-
-2. `hapCall` HaplotypeCaller.
-
-The GATK ready BAM and customized json files are inputs in this
-step. The local paths of GATK bundle files are required to be modified
-in your json file. A "gVCF" files will be generated.
-
-3. `jdCall` Joint variant discovery
-
-This step will combine the "gVCF" files and then call germline
-variants in all samples. The paths of the local bundle files are also
-required to be changed in the json template file. The final VCF file
-of germline variants will be collected.
-
-An example to run the pipeline.\
-<https://hubentu.github.io/others/Rcwl/application.html#gatk4-germline-variant-calling-pipeline>
 
 ## GATK4 Somatic short variant pipeline
 The GATK4 Mutect2 pipeline for germline variant calling was also

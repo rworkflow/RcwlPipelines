@@ -16,7 +16,13 @@
 #' \dontrun{
 #' tools <- cwlUpdate()
 #' }
-cwlUpdate <- function(cachePath = "Rcwl", force = FALSE, branch = "master") {
+cwlUpdate <- function(cachePath = "Rcwl", force = FALSE, branch = NULL) {
+    if(is.null(branch) & grepl("alpha|unstable", version$status)){
+        branch <- "dev"
+    }else{
+        branch <- "master"
+    }
+    
     if(!file.exists(cachePath) & !grepl("^/", cachePath)){
         cachePath <- user_cache_dir(cachePath)
     }
@@ -50,12 +56,12 @@ cwlUpdate <- function(cachePath = "Rcwl", force = FALSE, branch = "master") {
     BM <- data.frame(rid = bfcinfo(cwlBFC)$rid,
                      meta[match(bfcinfo(cwlBFC)$rname, rownames(meta)), ])
     bfcmeta(cwlBFC, "cwlMeta", overwrite = TRUE) <- BM
-    return(cwlBFC)
+    return(cwlHub(cwlBFC))
 }
 
 cwlMeta <- function(fpaths){
     BM <- c()
-    for(i in 1:length(fpaths)){
+    for(i in seq(length(fpaths))){
         fpath <- fpaths[i]
         rname <- sub(".R$", "", basename(fpath))
         if(grepl("^tl_", rname)){
@@ -74,7 +80,8 @@ cwlMeta <- function(fpaths){
             Command <- paste(names(runs(p1)), collapse = "+")
             Container <- NA
         }
-        bm <- data.frame(row.names = rname, Type, Command, Container,
+        mtime <- file.info(fpath)$mtime
+        bm <- data.frame(row.names = rname, Type, Command, Container, mtime,
                          stringsAsFactors = FALSE)
         BM <- rbind(BM, bm)
     }
