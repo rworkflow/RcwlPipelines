@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://rworkflow.github.io/RcwlPipelines/index.html</loc>
+  </url>
+  <url>
+    <loc>https://rworkflow.github.io/RcwlPipelines/reference/RcwlPipelines.html</loc>
+  </url>
+  <url>
+    <loc>https://rworkflow.github.io/RcwlPipelines/reference/cwlHub-methods.html</loc>
+  </url>
+  <url>
+    <loc>https://rworkflow.github.io/RcwlPipelines/reference/cwlHub.html</loc>
+  </url>
+  <url>
+    <loc>https://rworkflow.github.io/RcwlPipelines/reference/cwlInstall.html</loc>
+  </url>
+  <url>
+    <loc>https://rworkflow.github.io/RcwlPipelines/reference/cwlLoad.html</loc>
+  </url>
+  <url>
+    <loc>https://rworkflow.github.io/RcwlPipelines/reference/cwlSearch.html</loc>
+  </url>
+  <url>
+    <loc>https://rworkflow.github.io/RcwlPipelines/reference/cwlUpdate.html</loc>
+  </url>
+  <url>
+    <loc>https://rworkflow.github.io/RcwlPipelines/reference/mcols-cwlHub-method.html</loc>
+  </url>
+  <url>
+    <loc>https://rworkflow.github.io/RcwlPipelines/reference/searchContainer.html</loc>
+  </url>
+  <url>
+    <loc>https://rworkflow.github.io/RcwlPipelines/articles/RcwlPipelines.html</loc>
+  </url>
+</urlset>
