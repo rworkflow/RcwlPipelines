@@ -19,7 +19,7 @@
 cwlUpdate <- function(cachePath = "Rcwl", force = FALSE, branch = NULL) {
     if(is.null(branch) & grepl("alpha|unstable", version$status)){
         branch <- "dev"
-    }else{
+    }else if(is.null(branch)){
         branch <- "master"
     }
     
