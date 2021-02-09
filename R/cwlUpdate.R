@@ -34,7 +34,7 @@ cwlUpdate <- function(cachePath = "Rcwl", force = FALSE, branch = NULL) {
     }
 
     message("Update scripts...")
-    download.file(paste0("https://github.com/hubentu/RcwlRecipes/archive/", branch, ".zip"),
+    download.file(paste0("https://github.com/rworkflow/RcwlRecipes/archive/", branch, ".zip"),
                   file.path(cachePath, paste0(branch, ".zip")))
     unzip(file.path(cachePath, paste0(branch, ".zip")), exdir = cachePath)
     fpath <- list.files(file.path(cachePath, paste0("RcwlRecipes-", branch, "/Rcwl")),
