@@ -101,7 +101,7 @@ tls
 
 To load all the tools.
 ```{r}
-invisible(sapply(title(tls), cwlInstall))
+invisible(sapply(title(tls), cwlInstall, bfc = tools))
 ```
 
 Next, we define the input parameters.
