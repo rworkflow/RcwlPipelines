@@ -48,16 +48,18 @@ setMethod("show", "cwlHub", function(object){
                sprintf("%s...", substring(answer, 1L, width-3L)),
                answer)
     }
-    nhead <- get_showHeadLines()
-    ntail <- get_showTailLines()
-    rownames <- paste0("  ", .some(rid, nhead, ntail))
-    out <- matrix(c(.some(rep("|", length(rid)), nhead, ntail, fill=""),
-                    .some(mc$rname, nhead, ntail),
-                    .some(mc$Command, nhead, ntail)),
-                  ncol=3L,
-                  dimnames=list(rownames, c("", "title", "Command")))
-    cat("\n")
-    print(out, quote=FALSE, right=FALSE)
+    if (length(rid) > 0) {
+        nhead <- get_showHeadLines()
+        ntail <- get_showTailLines()
+        rownames <- paste0("  ", .some(rid, nhead, ntail))
+        out <- matrix(c(.some(rep("|", length(rid)), nhead, ntail, fill=""),
+                        .some(mc$rname, nhead, ntail),
+                        .some(mc$Command, nhead, ntail)),
+                      ncol=3L,
+                      dimnames=list(rownames, c("", "title", "Command")))
+        cat("\n")
+        print(out, quote=FALSE, right=FALSE)
+    }
 })
 
 #' extract
