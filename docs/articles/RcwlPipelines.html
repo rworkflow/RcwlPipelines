@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rcwl Pipelines • RcwlPipelines</title>
+<title>RcwlPipelines: Bioinformatics tools and pipelines based on Rcwl • RcwlPipelines</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Rcwl Pipelines">
+<script src="../pkgdown.js"></script><meta property="og:title" content="RcwlPipelines: Bioinformatics tools and pipelines based on Rcwl">
 <meta property="og:description" content="RcwlPipelines">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RcwlPipelines</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.5</span>
       </span>
     </div>
 
@@ -73,14 +73,14 @@
 
       
 
-      </header><script src="RcwlPipelines_files/header-attrs-2.6/header-attrs.js"></script><script src="RcwlPipelines_files/htmlwidgets-1.5.3/htmlwidgets.js"></script><script src="RcwlPipelines_files/viz-1.8.2/viz.js"></script><link href="RcwlPipelines_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+      </header><script src="RcwlPipelines_files/header-attrs-2.7/header-attrs.js"></script><script src="RcwlPipelines_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="RcwlPipelines_files/htmlwidgets-1.5.3/htmlwidgets.js"></script><script src="RcwlPipelines_files/viz-1.8.2/viz.js"></script><link href="RcwlPipelines_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="RcwlPipelines_files/grViz-binding-1.0.6.1/grViz.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Rcwl Pipelines</h1>
-                        <h4 class="author">Qiang Hu</h4>
+      <h1 data-toc-skip>RcwlPipelines: Bioinformatics tools and pipelines based on Rcwl</h1>
+                        <h4 class="author">Qiang Hu, Qian Liu</h4>
             
-            <h4 class="date">2021-02-03</h4>
+            <h4 class="date">2021-02-24</h4>
       
       
       <div class="hidden name"><code>RcwlPipelines.Rmd</code></div>
@@ -89,11 +89,13 @@
 
     
     
+<p><code>RcwlPipelines</code> is a <em>Bioconductor</em> package that manages a collection of commonly used bioinformatics tools and pipeline based on <code>Rcwl</code>. These pre-built and pre-tested tools and pipelines are highly modularized with easy customization to meet different bioinformatics data analysis needs.</p>
+<p><code>Rcwl</code> and <code>RcwlPipelines</code> together forms a <em>Bioconductor</em> toolchain for use and development of reproducible bioinformatics pipelines in Common Workflow Language (CWL). The project also aims to develop a community-driven platform for open source, open development, and open review of best-practice CWL bioinformatics pipelines.</p>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
 <ol style="list-style-type: decimal">
-<li>Install the package from Bioconductor.</li>
+<li>Install the package from <em>Bioconductor</em>.</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
@@ -101,24 +103,43 @@
 <span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"RcwlPipelines"</span><span class="op">)</span></code></pre></div>
 <p>The development version is also available to download from Github.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"hubentu/RcwlPipelines"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"rworkflow/RcwlPipelines"</span><span class="op">)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Load the package into the R session.</li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RcwlPipelines</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="tools-and-pipelines-scripts" class="section level1">
+<div id="project-resources" class="section level1">
 <h1 class="hasAnchor">
-<a href="#tools-and-pipelines-scripts" class="anchor"></a>Tools and pipelines scripts</h1>
-<p>The R scripts to build the CWL tools and pipelines are collected in a github repository now (<a href="https://github.com/hubentu/RcwlRecipes" class="uri">https://github.com/hubentu/RcwlRecipes</a>), which is community effort to collect Bioinformatics tools and pipelines using Rcwl and CWL (Common Workflow Language).</p>
-<p>Three functions are used to collect the <code>Rcwl</code> scripts, search tools recipes by keywords and load the scripts to current <code>R</code> environment.</p>
-<div id="indexing-recipe-scripts" class="section level2">
+<a href="#project-resources" class="anchor"></a>Project resources</h1>
+<p>The project website <a href="https://rcwl.org/" class="uri">https://rcwl.org/</a> serves as a central hub for all related resources. It provides guidance for new users and tutorials for both users and developers. Specific resources are listed below.</p>
+<div id="the-r-recipies-and-cwl-scripts" class="section level2">
 <h2 class="hasAnchor">
-<a href="#indexing-recipe-scripts" class="anchor"></a>Indexing recipe scripts</h2>
-<p>The <code>cwlUpdate</code> function can update the recipe scripts from the github repository and collect meta data to a local cache by the <code>BiocFileCache</code> package. By default the local cache will be created under your home directory for the first time. Here we use temporary directory for example.</p>
+<a href="#the-r-recipies-and-cwl-scripts" class="anchor"></a>The <em>R</em> recipies and cwl scripts</h2>
+<p>The <em>R</em> scripts to build the CWL tools and pipelines are now residing in a dedicated <a href="https://github.com/rworkflow/RcwlRecipes">GitHub repository</a>, which is intended to be a community effort to collect and contribute Bioinformatics tools and pipelines using <code>Rcwl</code> and CWL.</p>
+</div>
+<div id="tutorial-book" class="section level2">
+<h2 class="hasAnchor">
+<a href="#tutorial-book" class="anchor"></a>Tutorial book</h2>
+<p>The <a href="https://rcwl.org/RcwlBook/">tutorial book</a> provides detailed instructions for developing <code>Rcwl</code> tools/pipelines, and also includes examples of some commonly-used tools and pipelines that covers a wide range of Bioionformatics data analysis needs.</p>
+</div>
+</div>
+<div id="rcwlpipelines-core-functions" class="section level1">
+<h1 class="hasAnchor">
+<a href="#rcwlpipelines-core-functions" class="anchor"></a><code>RcwlPipelines</code> core functions</h1>
+<p>Here we show the usage of 3 core functions: <code>cwlUpdate</code>, <code>cwlSearch</code> and <code>cwlLoad</code> for updating, searching, and loading the needed tools or pipelines in <em>R</em>.</p>
+<div id="cwlupdate" class="section level2">
+<h2 class="hasAnchor">
+<a href="#cwlupdate" class="anchor"></a><code>cwlUpdate</code>
+</h2>
+<p>The <code>cwlUpdate</code> function syncs the current <code>Rcwl</code> recipes and returns a <code>cwlHub</code> object which contains the most updated <code>Rcwl</code> recipes. The <code>mcols()</code> function returns all related information about each available tool or pipeline.</p>
+<p>The recipes will be locally cached, so users don’t need to call <code>cwlUpdate</code> everytime unless they want to use a tool/pipeline that is newly added to <code>RcwlPipelines</code>. Here we are using the recipes from Bioc devel version.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tools</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlUpdate.html">cwlUpdate</a></span><span class="op">(</span>cachePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="co">## For vignette use only. users don't need to do this step.</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span>cachePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">atls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlUpdate.html">cwlUpdate</a></span><span class="op">(</span>branch <span class="op">=</span> <span class="st">"dev"</span><span class="op">)</span> <span class="co">## sync the tools/pipelines.</span>
 <span class="co">#&gt; Update scripts...</span>
 <span class="co">#&gt; pl_alignMerge.R added</span>
 <span class="co">#&gt; pl_AnnPhaseVcf.R added</span>
@@ -259,10 +280,10 @@
 <span class="co">#&gt; tl_vcf_readcount_annotator.R added</span>
 <span class="co">#&gt; tl_vep.R added</span>
 <span class="co">#&gt; tl_vt_decompose.R added</span>
-<span class="va">tools</span>
+<span class="va">atls</span>
 <span class="co">#&gt; cwlHub with 139 records</span>
-<span class="co">#&gt; cache path:  /var/folders/pv/qm6yts0j7hdgggvq53hrzfr0vfyhvv/T//RtmpRMkAT7/file182c6789e162c </span>
-<span class="co">#&gt; # last modified date:  2021-02-01 </span>
+<span class="co">#&gt; cache path:  /var/folders/7t/9l4kkf_j2sqbpn321y9g5558z96ck_/T//RtmpGNh1jV/Rcwl </span>
+<span class="co">#&gt; # last modified date:  2021-02-22 </span>
 <span class="co">#&gt; # cwlSearch() to query scripts</span>
 <span class="co">#&gt; # cwlLoad('title') to load the script</span>
 <span class="co">#&gt; # additional mcols(): rid, rpath, Type, Container, mtime, ...</span>
@@ -290,31 +311,53 @@
 <span class="co">#&gt;   BFC136 vcf-expression-annotator                                           </span>
 <span class="co">#&gt;   BFC137 vcf-readcount-annotator                                            </span>
 <span class="co">#&gt;   BFC138 vep                                                                </span>
-<span class="co">#&gt;   BFC139 vt decompose</span></code></pre></div>
+<span class="co">#&gt;   BFC139 vt decompose</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu">mcols</span><span class="op">(</span><span class="va">atls</span><span class="op">)</span><span class="op">$</span><span class="va">Type</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; pipeline     tool </span>
+<span class="co">#&gt;       26      113</span></code></pre></div>
+<p>Currently, we have integrated 113 command line tools and 26 pipelines.</p>
 </div>
-<div id="search-by-keyword" class="section level2">
+<div id="cwlsearch" class="section level2">
 <h2 class="hasAnchor">
-<a href="#search-by-keyword" class="anchor"></a>Search by keyword</h2>
-<p>The function <code>cwlSearch</code> can help to search indexed recipes by keywords. For example, here we try to find the alignment tool <code>bwa mem</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlSearch.html">cwlSearch</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bwa"</span>, <span class="st">"mem"</span><span class="op">)</span>, <span class="va">tools</span><span class="op">)</span>
-<span class="va">tl</span>
+<a href="#cwlsearch" class="anchor"></a><code>cwlSearch</code>
+</h2>
+<p>We can use (multiple) keywords to search for specific tools/pipelines of interest, which internally search the <code>mcols</code> of “rname”, “rpath”, “fpath”, “Command” and “Containers”. Here we show how to search the alignment tool <code>bwa mem</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlSearch.html">cwlSearch</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bwa"</span>, <span class="st">"mem"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">t1</span>
 <span class="co">#&gt; cwlHub with 1 records</span>
-<span class="co">#&gt; cache path:  /var/folders/pv/qm6yts0j7hdgggvq53hrzfr0vfyhvv/T//RtmpRMkAT7/file182c6789e162c </span>
-<span class="co">#&gt; # last modified date:  2021-02-01 </span>
+<span class="co">#&gt; cache path:  /var/folders/7t/9l4kkf_j2sqbpn321y9g5558z96ck_/T//RtmpGNh1jV/Rcwl </span>
+<span class="co">#&gt; # last modified date:  2021-02-22 </span>
 <span class="co">#&gt; # cwlSearch() to query scripts</span>
 <span class="co">#&gt; # cwlLoad('title') to load the script</span>
 <span class="co">#&gt; # additional mcols(): rid, rpath, Type, Container, mtime, ...</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;           title  Command</span>
-<span class="co">#&gt;   BFC44 | tl_bwa bwa mem</span></code></pre></div>
+<span class="co">#&gt;   BFC44 | tl_bwa bwa mem</span>
+<span class="fu">mcols</span><span class="op">(</span><span class="va">t1</span><span class="op">)</span>
+<span class="co">#&gt; DataFrame with 1 row and 14 columns</span>
+<span class="co">#&gt;           rid       rname         create_time         access_time</span>
+<span class="co">#&gt;   &lt;character&gt; &lt;character&gt;         &lt;character&gt;         &lt;character&gt;</span>
+<span class="co">#&gt; 1       BFC44      tl_bwa 2021-02-24 05:50:45 2021-02-24 05:50:45</span>
+<span class="co">#&gt;                    rpath       rtype                  fpath last_modified_time</span>
+<span class="co">#&gt;              &lt;character&gt; &lt;character&gt;            &lt;character&gt;          &lt;numeric&gt;</span>
+<span class="co">#&gt; 1 /var/folders/7t/9l4k..       local /var/folders/7t/9l4k..                 NA</span>
+<span class="co">#&gt;          etag   expires        Type     Command              Container</span>
+<span class="co">#&gt;   &lt;character&gt; &lt;numeric&gt; &lt;character&gt; &lt;character&gt;            &lt;character&gt;</span>
+<span class="co">#&gt; 1          NA        NA        tool     bwa mem biocontainers/bwa:v0..</span>
+<span class="co">#&gt;                 mtime</span>
+<span class="co">#&gt;           &lt;character&gt;</span>
+<span class="co">#&gt; 1 2021-02-22 14:45:16</span></code></pre></div>
 </div>
-<div id="loading-tools-and-pipelines" class="section level2">
+<div id="cwlload" class="section level2">
 <h2 class="hasAnchor">
-<a href="#loading-tools-and-pipelines" class="anchor"></a>Loading tools and pipelines</h2>
-<p>The function <code>cwlLoad</code> can be used to “install” to tools or pipelines to current environment by given the script path.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bwa</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlLoad.html">cwlLoad</a></span><span class="op">(</span><span class="fu">mcols</span><span class="op">(</span><span class="va">tl</span><span class="op">)</span><span class="op">$</span><span class="va">rpath</span><span class="op">)</span>
+<a href="#cwlload" class="anchor"></a><code>cwlLoad</code>
+</h2>
+<p>The last core function <code>cwlLoad</code> loads the <code>Rcwl</code> tool/pipeline into the <em>R</em> working environment. The code below loads the tool with a user-defined name <code>bwa</code> to do the read alignment.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">bwa</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlLoad.html">cwlLoad</a></span><span class="op">(</span><span class="fu"><a href="../reference/%5B,cwlHub,ANY,ANY,ANY-method.html">title</a></span><span class="op">(</span><span class="va">t1</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>  <span class="co">## "tl_bwa"</span>
+<span class="va">bwa</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlLoad.html">cwlLoad</a></span><span class="op">(</span><span class="fu">mcols</span><span class="op">(</span><span class="va">t1</span><span class="op">)</span><span class="op">$</span><span class="va">fpath</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="co">## equivalent to the above. </span>
 <span class="va">bwa</span>
 <span class="co">#&gt; class: cwlProcess </span>
 <span class="co">#&gt;  cwlClass: CommandLineTool </span>
@@ -335,201 +378,15 @@
 <span class="co">#&gt;   outputBinding:</span>
 <span class="co">#&gt;     glob: '*.sam'</span>
 <span class="co">#&gt; stdout: bwaOutput.sam</span></code></pre></div>
-<p>Or we can install the tools by its <code>title</code> directly.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bwa</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlLoad.html">cwlLoad</a></span><span class="op">(</span><span class="fu"><a href="../reference/%5B,cwlHub,ANY,ANY,ANY-method.html">title</a></span><span class="op">(</span><span class="va">tl</span><span class="op">)</span>, bfc <span class="op">=</span> <span class="va">tools</span><span class="op">)</span></code></pre></div>
-<p>That’s it! The tool “bwa” is ready to use.</p>
+<p>Now the <em>R</em> tool of <code>bwa</code> is ready to use.</p>
 </div>
 </div>
-<div id="build-a-pipeline" class="section level1">
+<div id="customize-a-tool-or-pipeline" class="section level1">
 <h1 class="hasAnchor">
-<a href="#build-a-pipeline" class="anchor"></a>Build a pipeline</h1>
-<p>We can develop a pipline by utilizing the available tools. For example, a simple alignment pipelines with mapping and marking duplicates can be built from the <code>tools</code>.</p>
-<p>First, we check whether the required tools (bwa, samtools and picard markduplicates) are available.</p>
+<a href="#customize-a-tool-or-pipeline" class="anchor"></a>Customize a tool or pipeline</h1>
+<p>To fit users’ specific needs，the existing tool or pipline can be easily customized. Here we use the <code>rnaseq_Sf</code> pipeline to demonstrate how to access and change the arguments of a specific tool inside a pipeline. This pipeline covers RNAseq reads quality summary by <code>fastQC</code>, alignment by <code>STAR</code>, quantification by <code>featureCounts</code> and quality control by <code>RSeQC</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlSearch.html">cwlSearch</a></span><span class="op">(</span><span class="st">"bwa|sam2bam|sortBam|samtools_index|markdup"</span>,
-                 <span class="va">tools</span>, type <span class="op">=</span> <span class="st">"tool"</span><span class="op">)</span>
-<span class="va">tls</span>
-<span class="co">#&gt; cwlHub with 6 records</span>
-<span class="co">#&gt; cache path:  /var/folders/pv/qm6yts0j7hdgggvq53hrzfr0vfyhvv/T//RtmpRMkAT7/file182c6789e162c </span>
-<span class="co">#&gt; # last modified date:  2021-02-01 </span>
-<span class="co">#&gt; # cwlSearch() to query scripts</span>
-<span class="co">#&gt; # cwlLoad('title') to load the script</span>
-<span class="co">#&gt; # additional mcols(): rid, rpath, Type, Container, mtime, ...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;            title             Command              </span>
-<span class="co">#&gt;   BFC43  | tl_bwa_index      bwa index            </span>
-<span class="co">#&gt;   BFC44  | tl_bwa            bwa mem              </span>
-<span class="co">#&gt;   BFC80  | tl_markdup        picard MarkDuplicates</span>
-<span class="co">#&gt;   BFC106 | tl_sam2bam        samtools view        </span>
-<span class="co">#&gt;   BFC110 | tl_samtools_index samtools index       </span>
-<span class="co">#&gt;   BFC116 | tl_sortBam        samtools sort</span></code></pre></div>
-<p>To load all the tools.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="../reference/%5B,cwlHub,ANY,ANY,ANY-method.html">title</a></span><span class="op">(</span><span class="va">tls</span><span class="op">)</span>, <span class="va">cwlInstall</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Next, we define the input parameters.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">InputParam</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"threads"</span>, type <span class="op">=</span> <span class="st">"int"</span><span class="op">)</span>
-<span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">InputParam</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"RG"</span>, type <span class="op">=</span> <span class="st">"string"</span><span class="op">)</span>
-<span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu">InputParam</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"Ref"</span>, type <span class="op">=</span> <span class="st">"string"</span><span class="op">)</span>
-<span class="va">p4</span> <span class="op">&lt;-</span> <span class="fu">InputParam</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"FQ1"</span>, type <span class="op">=</span> <span class="st">"File"</span><span class="op">)</span>
-<span class="va">p5</span> <span class="op">&lt;-</span> <span class="fu">InputParam</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"FQ2"</span>, type <span class="op">=</span> <span class="st">"File?"</span><span class="op">)</span></code></pre></div>
-<p>Then we define the pipeline steps, from raw fastqs to duplicates marked alignments.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## bwa</span>
-<span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu">Step</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"bwa"</span>, run <span class="op">=</span> <span class="va">bwa</span>,
-           In <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>threads <span class="op">=</span> <span class="st">"threads"</span>,
-                     RG <span class="op">=</span> <span class="st">"RG"</span>,
-                     Ref <span class="op">=</span> <span class="st">"Ref"</span>,
-                     FQ1 <span class="op">=</span> <span class="st">"FQ1"</span>,
-                     FQ2 <span class="op">=</span> <span class="st">"FQ2"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">## sam to bam</span>
-<span class="va">s2</span> <span class="op">&lt;-</span> <span class="fu">Step</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"sam2bam"</span>, run <span class="op">=</span> <span class="va">sam2bam</span>,
-           In <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sam <span class="op">=</span> <span class="st">"bwa/sam"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">## sort bam</span>
-<span class="va">s3</span> <span class="op">&lt;-</span> <span class="fu">Step</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"sortBam"</span>, run <span class="op">=</span> <span class="va">sortBam</span>,
-           In <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>bam <span class="op">=</span> <span class="st">"sam2bam/bam"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">## mark duplicates</span>
-<span class="va">s4</span> <span class="op">&lt;-</span> <span class="fu">Step</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"markdup"</span>, run <span class="op">=</span> <span class="va">markdup</span>,
-           In <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>ibam <span class="op">=</span> <span class="st">"sortBam/sbam"</span>,
-                     obam <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-                         valueFrom<span class="op">=</span><span class="st">"$(inputs.ibam.nameroot).mdup.bam"</span><span class="op">)</span>,
-                     matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-                         valueFrom<span class="op">=</span><span class="st">"$(inputs.ibam.nameroot).markdup.txt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">## index bam</span>
-<span class="va">s5</span> <span class="op">&lt;-</span> <span class="fu">Step</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"idxBam"</span>, run <span class="op">=</span> <span class="va">samtools_index</span>,
-           In <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>bam <span class="op">=</span> <span class="st">"markdup/mBam"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Last, we define the outputs and connect the steps to a new pipeline.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">req1</span> <span class="op">&lt;-</span> <span class="fu">requireStepInputExpression</span><span class="op">(</span><span class="op">)</span>
-<span class="va">req2</span> <span class="op">&lt;-</span> <span class="fu">requireJS</span><span class="op">(</span><span class="op">)</span>
-<span class="co">## outputs</span>
-<span class="va">o1</span> <span class="op">&lt;-</span> <span class="fu">OutputParam</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"Bam"</span>, type <span class="op">=</span> <span class="st">"File"</span>, outputSource <span class="op">=</span> <span class="st">"markdup/mBam"</span><span class="op">)</span>
-<span class="va">o2</span> <span class="op">&lt;-</span> <span class="fu">OutputParam</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"Idx"</span>, type <span class="op">=</span> <span class="st">"File"</span>, outputSource <span class="op">=</span> <span class="st">"idxBam/idx"</span><span class="op">)</span>
-<span class="co">## stepParam</span>
-<span class="va">Align</span> <span class="op">&lt;-</span> <span class="fu">cwlWorkflow</span><span class="op">(</span>requirements <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">req1</span>, <span class="va">req2</span><span class="op">)</span>,
-                     inputs <span class="op">=</span> <span class="fu">InputParamList</span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, <span class="va">p3</span>, <span class="va">p4</span>, <span class="va">p5</span><span class="op">)</span>,
-                     outputs <span class="op">=</span> <span class="fu">OutputParamList</span><span class="op">(</span><span class="va">o1</span>, <span class="va">o2</span><span class="op">)</span><span class="op">)</span>
-<span class="co">## build pipeline</span>
-<span class="va">Align</span> <span class="op">&lt;-</span> <span class="va">Align</span> <span class="op">+</span> <span class="va">s1</span> <span class="op">+</span> <span class="va">s2</span> <span class="op">+</span> <span class="va">s3</span> <span class="op">+</span> <span class="va">s4</span> <span class="op">+</span> <span class="va">s5</span></code></pre></div>
-<p>The pipeline is ready for use. We can plot the pipeline with <code>plotCWL</code> from the <code>Rcwl</code> package.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">plotCWL</span><span class="op">(</span><span class="va">Align</span><span class="op">)</span>
-<span class="co">#&gt; Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.</span>
-<span class="co">#&gt; Using compatibility `.name_repair`.</span>
-<span class="co">#&gt; This warning is displayed once every 8 hours.</span>
-<span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span></code></pre></div>
-<div id="htmlwidget-7f3f97722aec2ef8b00c" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7f3f97722aec2ef8b00c">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"threads\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"0,8!\"] \n  \"2\" [label = \"RG\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1,8!\"] \n  \"3\" [label = \"Ref\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,8!\"] \n  \"4\" [label = \"FQ1\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"3,8!\"] \n  \"5\" [label = \"FQ2\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"4,8!\"] \n  \"6\" [label = \"Bam\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,3!\"] \n  \"7\" [label = \"Idx\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,1!\"] \n  \"8\" [label = \"bwa\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,7!\"] \n  \"9\" [label = \"sam2bam\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,6!\"] \n  \"10\" [label = \"sortBam\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,5!\"] \n  \"11\" [label = \"markdup\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,4!\"] \n  \"12\" [label = \"idxBam\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,2!\"] \n  \"1\"->\"8\" \n  \"2\"->\"8\" \n  \"3\"->\"8\" \n  \"4\"->\"8\" \n  \"5\"->\"8\" \n  \"8\"->\"9\" \n  \"9\"->\"10\" \n  \"10\"->\"11\" \n  \"11\"->\"6\" \n  \"6\"->\"12\" \n  \"12\"->\"7\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-</div>
-<div id="pipelines-examples" class="section level1">
-<h1 class="hasAnchor">
-<a href="#pipelines-examples" class="anchor"></a>Pipelines examples</h1>
-<p>There are over 20 pipelines collected in this package. Here is a brief introduction to three of them. More pipelines and tools are expected to be included in the future.</p>
-<div id="dnaseq-alignment-pipeline" class="section level2">
-<h2 class="hasAnchor">
-<a href="#dnaseq-alignment-pipeline" class="anchor"></a>DNASeq alignment pipeline</h2>
-<p>The pipeline can be used to preprocess DNA sequences in fastq format. It can take paired fastqs, read groups from multiple batches as input.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bwaMRecal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlLoad.html">cwlLoad</a></span><span class="op">(</span><span class="st">"pl_bwaMRecal"</span>, bfc <span class="op">=</span> <span class="va">tools</span><span class="op">)</span>
-<span class="co">#&gt; markdup loaded</span>
-<span class="fu">inputs</span><span class="op">(</span><span class="va">bwaMRecal</span><span class="op">)</span>
-<span class="co">#&gt; inputs:</span>
-<span class="co">#&gt;   outBam (string):  </span>
-<span class="co">#&gt;   RG (string):  </span>
-<span class="co">#&gt;   threads (int):  </span>
-<span class="co">#&gt;   Ref (File):  </span>
-<span class="co">#&gt;   FQ1s (File):  </span>
-<span class="co">#&gt;   FQ2s (File):  </span>
-<span class="co">#&gt;   knowSites:</span>
-<span class="co">#&gt;     type: array</span>
-<span class="co">#&gt;     prefix:</span></code></pre></div>
-<p>The pipeline includes two steps and several jobs will be run in each step.</p>
-<ol style="list-style-type: decimal">
-<li>
-<code>bwaAlign</code>: bwa alignment by read groups.</li>
-</ol>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">runs</span><span class="op">(</span><span class="fu">runs</span><span class="op">(</span><span class="va">bwaMRecal</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; List of length 4</span>
-<span class="co">#&gt; names(4): bwa sam2bam sortBam idxBam</span></code></pre></div>
-<ul>
-<li>
-<code>bwa</code>: To align fastqs and read groups to reference genome with <code>bwa</code>.</li>
-<li>
-<code>sam2bam</code>: To convert the alignments in “sam” format to “bam” format with <code>samtools</code>.</li>
-<li>
-<code>sortBam</code>: To sort the “bam” file by coordinates with <code>samtools</code>.</li>
-<li>
-<code>idxBam</code>: To index “bam” file with <code>samtools</code>.</li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
-<li>
-<code>markdup</code>: Markduplicates by <code>picard</code>.</li>
-</ol>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">runs</span><span class="op">(</span><span class="va">bwaMRecal</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>
-<span class="co">#&gt; class: cwlProcess </span>
-<span class="co">#&gt;  cwlClass: CommandLineTool </span>
-<span class="co">#&gt;  cwlVersion: v1.0 </span>
-<span class="co">#&gt;  baseCommand: picard MarkDuplicates </span>
-<span class="co">#&gt; requirements:</span>
-<span class="co">#&gt; - class: DockerRequirement</span>
-<span class="co">#&gt;   dockerPull: quay.io/biocontainers/picard:2.21.1--0</span>
-<span class="co">#&gt; inputs:</span>
-<span class="co">#&gt;   ibam (File): I= </span>
-<span class="co">#&gt;   obam (string): O= </span>
-<span class="co">#&gt;   matrix (string): M= </span>
-<span class="co">#&gt; outputs:</span>
-<span class="co">#&gt; mBam:</span>
-<span class="co">#&gt;   type: File</span>
-<span class="co">#&gt;   outputBinding:</span>
-<span class="co">#&gt;     glob: $(inputs.obam)</span>
-<span class="co">#&gt; Mat:</span>
-<span class="co">#&gt;   type: File</span>
-<span class="co">#&gt;   outputBinding:</span>
-<span class="co">#&gt;     glob: $(inputs.matrix)</span></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li>
-<code>BaseRecal</code>: Alignment recalibration by <code>GATK</code> toolkit.</li>
-</ol>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">runs</span><span class="op">(</span><span class="fu">runs</span><span class="op">(</span><span class="va">bwaMRecal</span><span class="op">)</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; List of length 5</span>
-<span class="co">#&gt; names(5): BaseRecalibrator ApplyBQSR samtools_index samtools_flagstat samtools_stats</span></code></pre></div>
-<ul>
-<li>
-<code>BaseRecalibrator</code> and <code>ApplyBQSR</code>. Alignment recalibration by <code>GATK</code> toolkit.</li>
-<li>
-<code>samtools_index</code>: To index bam file with <code>samtools</code>.</li>
-<li>
-<code>samtools_flagstat</code> and <code>samtools_stats</code>: To summarize alignments with <code>samtools</code>.</li>
-</ul>
-<p>The final processed bam files, bam index, duplicates matrix, and flag statistics summary will be in the output folder.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">outputs</span><span class="op">(</span><span class="va">bwaMRecal</span><span class="op">)</span>
-<span class="co">#&gt; outputs:</span>
-<span class="co">#&gt; BAM:</span>
-<span class="co">#&gt;   type: File</span>
-<span class="co">#&gt;   outputSource: BaseRecal/rcBam</span>
-<span class="co">#&gt; matrix:</span>
-<span class="co">#&gt;   type: File</span>
-<span class="co">#&gt;   outputSource: markdup/Mat</span>
-<span class="co">#&gt; flagstat:</span>
-<span class="co">#&gt;   type: File</span>
-<span class="co">#&gt;   outputSource: BaseRecal/flagstat</span>
-<span class="co">#&gt; stats:</span>
-<span class="co">#&gt;   type: File</span>
-<span class="co">#&gt;   outputSource: BaseRecal/stats</span></code></pre></div>
-<p>Here you can find an example to run the pipeline.</p>
-<p><a href="https://hubentu.github.io/Rcwl/application.html#dnaseq-alignment-pipeline" class="uri">https://hubentu.github.io/Rcwl/application.html#dnaseq-alignment-pipeline</a></p>
-</div>
-<div id="rnaseq-pipeline" class="section level2">
-<h2 class="hasAnchor">
-<a href="#rnaseq-pipeline" class="anchor"></a>RNASeq pipeline</h2>
-<p>The pipeline was built with reads quality summary, <code>STAR</code> alignment, quantification by <code>featureCounts</code> and <code>RSeQC</code> quality control. Here are the inputs.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">rnaseq_Sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlLoad.html">cwlLoad</a></span><span class="op">(</span>rname <span class="op">=</span> <span class="st">"pl_rnaseq_Sf"</span>, bfc <span class="op">=</span> <span class="va">tools</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">rnaseq_Sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlLoad.html">cwlLoad</a></span><span class="op">(</span><span class="st">"pl_rnaseq_Sf"</span><span class="op">)</span>
 <span class="co">#&gt; fastqc loaded</span>
 <span class="co">#&gt; STAR loaded</span>
 <span class="co">#&gt; sortBam loaded</span>
@@ -542,123 +399,116 @@
 <span class="co">#&gt; geneBody_coverage loaded</span>
 <span class="co">#&gt; gCoverage loaded</span>
 <span class="co">#&gt; STAR loaded</span>
-<span class="fu">inputs</span><span class="op">(</span><span class="va">rnaseq_Sf</span><span class="op">)</span>
-<span class="co">#&gt; inputs:</span>
-<span class="co">#&gt;   in_seqfiles (File[]):  </span>
-<span class="co">#&gt;   in_prefix (string):  </span>
-<span class="co">#&gt;   in_genomeDir (Directory):  </span>
-<span class="co">#&gt;   in_GTFfile (File):  </span>
-<span class="co">#&gt;   in_runThreadN (int):  1</span></code></pre></div>
-<p>The pipeline includes 6 steps.</p>
-<ul>
-<li>
-<code>fastqc</code>: To run quality summary for raw fastqs with <code>fastqc</code>.</li>
-<li>
-<code>STAR</code>: To align fastqs with <code>STAR</code>.</li>
-<li>
-<code>samtools_index</code>: To index aligned bam file.</li>
-<li>
-<code>samtools_flagstat</code>: To summary alignment flags.</li>
-<li>
-<code>featureCounts</code>: To quantify gene abundances.</li>
-<li>
-<code>RSeQC</code>: Several steps included.<br><ul>
-<li>
-<code>gtfToGenePred</code>: To convert GTF annotation to “genePred” format.</li>
-<li>
-<code>genePredToBed</code>: To convert “genePred” annotation to “bed” format.</li>
-<li>
-<code>r_distribution</code>: To run reads distribution over genome features.</li>
-<li>
-<code>gCoverage</code>: To summarize read coverage over gene body.</li>
-</ul>
-</li>
-</ul>
-<p>The outputs and logs from alignment, quantification and QC steps are collected together to the output folder. A final QC report could be generated by <code>multiqc</code>, which is also available in the data package.</p>
-<p>An example to run the pipeline.</p>
-<p><a href="https://hubentu.github.io/Rcwl/application.html#rnaseq-pipeline" class="uri">https://hubentu.github.io/Rcwl/application.html#rnaseq-pipeline</a></p>
+<span class="fu">plotCWL</span><span class="op">(</span><span class="va">rnaseq_Sf</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-037896641611d54aef18" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-037896641611d54aef18">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"in_seqfiles\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"-1,7!\"] \n  \"2\" [label = \"in_prefix\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"0,7!\"] \n  \"3\" [label = \"in_genomeDir\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1.5,7!\"] \n  \"4\" [label = \"in_GTFfile\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"3.5,7!\"] \n  \"5\" [label = \"in_runThreadN\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2.5,7!\"] \n  \"6\" [label = \"out_fastqc\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"-1,5!\"] \n  \"7\" [label = \"out_BAM\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1,3!\"] \n  \"8\" [label = \"out_Log\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"0,5!\"] \n  \"9\" [label = \"out_Count\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"4,5!\"] \n  \"10\" [label = \"out_stat\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,3!\"] \n  \"11\" [label = \"out_count\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"5.5,1!\"] \n  \"12\" [label = \"out_distribution\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"0,1!\"] \n  \"13\" [label = \"out_gCovP\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1,1!\"] \n  \"14\" [label = \"out_gCovT\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2.5,1!\"] \n  \"15\" [label = \"fastqc\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"-1,6!\"] \n  \"16\" [label = \"STAR\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1.5,6!\"] \n  \"17\" [label = \"sortBam\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1.5,5!\"] \n  \"18\" [label = \"samtools_index\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1,4!\"] \n  \"19\" [label = \"samtools_flagstat\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,4!\"] \n  \"20\" [label = \"featureCounts\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"5.5,2!\"] \n  \"21\" [label = \"gtfToGenePred\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"3.5,6!\"] \n  \"22\" [label = \"genePredToBed\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"3,5!\"] \n  \"23\" [label = \"r_distribution\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"0,2!\"] \n  \"24\" [label = \"gCoverage\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,2!\"] \n  \"1\"->\"15\" \n  \"15\"->\"6\" \n  \"2\"->\"16\" \n  \"3\"->\"16\" \n  \"4\"->\"16\" \n  \"1\"->\"16\" \n  \"5\"->\"16\" \n  \"16\"->\"8\" \n  \"16\"->\"9\" \n  \"16\"->\"17\" \n  \"17\"->\"18\" \n  \"18\"->\"7\" \n  \"17\"->\"19\" \n  \"19\"->\"10\" \n  \"4\"->\"20\" \n  \"7\"->\"20\" \n  \"20\"->\"11\" \n  \"4\"->\"21\" \n  \"21\"->\"22\" \n  \"7\"->\"23\" \n  \"22\"->\"23\" \n  \"23\"->\"12\" \n  \"7\"->\"24\" \n  \"22\"->\"24\" \n  \"24\"->\"13\" \n  \"24\"->\"14\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>There are many default arguments defined for the tool of <code>STAR</code> inside the pipeline. Users might want to change some of them. For example, we can change the value for <code>--outFilterMismatchNmax</code> argument from 2 to 5 for longer reads.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">arguments</span><span class="op">(</span><span class="va">rnaseq_Sf</span>, <span class="st">"STAR"</span><span class="op">)</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] "--outFilterMismatchNmax"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] "2"</span>
+<span class="fu">arguments</span><span class="op">(</span><span class="va">rnaseq_Sf</span>, <span class="st">"STAR"</span><span class="op">)</span><span class="op">[[</span><span class="fl">6</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">5</span>
+<span class="fu">arguments</span><span class="op">(</span><span class="va">rnaseq_Sf</span>, <span class="st">"STAR"</span><span class="op">)</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] "--outFilterMismatchNmax"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] "5"</span></code></pre></div>
+<p>We can also change the docker image for a specific tool (e.g., to a specific version). First, we search for all available docker images for <code>STAR</code> in biocontainers repository. The Source server could be <a href="https://quay.io/">quay</a> or <a href="https://hub.docker.com">dockerhub</a>.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/searchContainer.html">searchContainer</a></span><span class="op">(</span><span class="st">"STAR"</span>, repo <span class="op">=</span> <span class="st">"biocontainers"</span>, source <span class="op">=</span> <span class="st">"quay"</span><span class="op">)</span>
+<span class="co">#&gt; DataFrame with 29 rows and 5 columns</span>
+<span class="co">#&gt;                  tool          repo        name          last_modified</span>
+<span class="co">#&gt;           &lt;character&gt;   &lt;character&gt; &lt;character&gt;            &lt;character&gt;</span>
+<span class="co">#&gt; 2.7.8a--0        STAR biocontainers   2.7.8a--0 Sun, 21 Feb 2021 12:..</span>
+<span class="co">#&gt; 2.7.7a--0        STAR biocontainers   2.7.7a--0 Tue, 29 Dec 2020 13:..</span>
+<span class="co">#&gt; 2.7.6a--0        STAR biocontainers   2.7.6a--0 Sun, 20 Sep 2020 09:..</span>
+<span class="co">#&gt; 2.7.5c--0        STAR biocontainers   2.7.5c--0 Mon, 17 Aug 2020 09:..</span>
+<span class="co">#&gt; 2.7.5b--0        STAR biocontainers   2.7.5b--0 Sat, 01 Aug 2020 17:..</span>
+<span class="co">#&gt; ...               ...           ...         ...                    ...</span>
+<span class="co">#&gt; 2.4.0j--0        STAR biocontainers   2.4.0j--0 Tue, 06 Mar 2018 12:..</span>
+<span class="co">#&gt; 2.5.4a--0        STAR biocontainers   2.5.4a--0 Fri, 26 Jan 2018 21:..</span>
+<span class="co">#&gt; 2.5.3a--0        STAR biocontainers   2.5.3a--0 Sat, 18 Mar 2017 11:..</span>
+<span class="co">#&gt; 2.5.2b--0        STAR biocontainers   2.5.2b--0 Tue, 06 Sep 2016 07:..</span>
+<span class="co">#&gt; 2.5.1b--0        STAR biocontainers   2.5.1b--0 Wed, 11 May 2016 08:..</span>
+<span class="co">#&gt;                  size</span>
+<span class="co">#&gt;           &lt;character&gt;</span>
+<span class="co">#&gt; 2.7.8a--0     7985763</span>
+<span class="co">#&gt; 2.7.7a--0     7824392</span>
+<span class="co">#&gt; 2.7.6a--0     7820491</span>
+<span class="co">#&gt; 2.7.5c--0     7806635</span>
+<span class="co">#&gt; 2.7.5b--0     7805390</span>
+<span class="co">#&gt; ...               ...</span>
+<span class="co">#&gt; 2.4.0j--0     4734325</span>
+<span class="co">#&gt; 2.5.4a--0     9225952</span>
+<span class="co">#&gt; 2.5.3a--0     9119736</span>
+<span class="co">#&gt; 2.5.2b--0     9086803</span>
+<span class="co">#&gt; 2.5.1b--0    11291827</span></code></pre></div>
+<p>Then, we can change the <code>STAR</code> version into 2.7.8a (tag name: 2.7.8a–0).</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">requirements</span><span class="op">(</span><span class="va">rnaseq_Sf</span>, <span class="st">"STAR"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
+<span class="co">#&gt; $class</span>
+<span class="co">#&gt; [1] "DockerRequirement"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $dockerPull</span>
+<span class="co">#&gt; [1] "quay.io/biocontainers/star:2.7.3a--0"</span>
+<span class="fu">requirements</span><span class="op">(</span><span class="va">rnaseq_Sf</span>, <span class="st">"STAR"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">requireDocker</span><span class="op">(</span>
+    docker <span class="op">=</span> <span class="st">"quay.io/biocontainers/star:2.7.8a--0"</span><span class="op">)</span>
+<span class="fu">requirements</span><span class="op">(</span><span class="va">rnaseq_Sf</span>, <span class="st">"STAR"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
+<span class="co">#&gt; $class</span>
+<span class="co">#&gt; [1] "DockerRequirement"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $dockerPull</span>
+<span class="co">#&gt; [1] "quay.io/biocontainers/star:2.7.8a--0"</span></code></pre></div>
 </div>
-<div id="gatk4-somatic-short-variant-pipeline" class="section level2">
-<h2 class="hasAnchor">
-<a href="#gatk4-somatic-short-variant-pipeline" class="anchor"></a>GATK4 Somatic short variant pipeline</h2>
-<p>The GATK4 Mutect2 pipeline for germline variant calling was also available in WDL. The pipeline was reimplemented with <code>Rcwl</code> based on the best practice documents. <a href="https://software.broadinstitute.org/gatk/best-practices/workflow?id=11146" class="uri">https://software.broadinstitute.org/gatk/best-practices/workflow?id=11146</a></p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">GPoN</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlLoad.html">cwlLoad</a></span><span class="op">(</span>rname <span class="op">=</span> <span class="st">"pl_GPoN"</span>, bfc <span class="op">=</span> <span class="va">tools</span><span class="op">)</span>
-<span class="co">#&gt; GenomicsDB loaded</span>
-<span class="co">#&gt; PoN loaded</span>
-<span class="va">Mutect2PL</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlLoad.html">cwlLoad</a></span><span class="op">(</span>rname <span class="op">=</span> <span class="st">"pl_Mutect2PL"</span>, bfc <span class="op">=</span> <span class="va">tools</span><span class="op">)</span>
-<span class="co">#&gt; Mutect2 loaded</span>
-<span class="co">#&gt; GetPileupSummaries loaded</span>
-<span class="co">#&gt; CalculateContamination loaded</span>
-<span class="co">#&gt; LearnReadOrientationModel loaded</span>
-<span class="co">#&gt; FilterMutectCalls loaded</span>
-<span class="co">#&gt; bcfview loaded</span></code></pre></div>
-<ol style="list-style-type: decimal">
-<li>Variant calling on normal samples</li>
-</ol>
-<p>First, we need to run Mutect2 in tumor-only mode for each normal sample by the tool <code>Mutect2</code>. The argument “–max-mnp-distance 0” is required to be added because the next step, “GenpmicsDBImport”, can’t handle MNPs.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">arguments</span><span class="op">(</span><span class="va">Mutect2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"--max-mnp-distance"</span>, <span class="st">"0"</span><span class="op">)</span>
-<span class="va">Mutect2</span>
-<span class="co">#&gt; class: cwlProcess </span>
-<span class="co">#&gt;  cwlClass: CommandLineTool </span>
-<span class="co">#&gt;  cwlVersion: v1.0 </span>
-<span class="co">#&gt;  baseCommand: gatk Mutect2 </span>
-<span class="co">#&gt; requirements:</span>
-<span class="co">#&gt; - class: DockerRequirement</span>
-<span class="co">#&gt;   dockerPull: broadinstitute/gatk:latest</span>
-<span class="co">#&gt; arguments: --max-mnp-distance 0 </span>
-<span class="co">#&gt; inputs:</span>
-<span class="co">#&gt;   tbam (File): -I </span>
-<span class="co">#&gt;   nbam (File?): -I </span>
-<span class="co">#&gt;   Ref (File): -R </span>
-<span class="co">#&gt;   normal (string?): -normal </span>
-<span class="co">#&gt;   germline (File?): --germline-resource </span>
-<span class="co">#&gt;   pon (File?): --panel-of-normals </span>
-<span class="co">#&gt;   interval (File?): -L </span>
-<span class="co">#&gt;   out (string): -O </span>
-<span class="co">#&gt;   f1r2 (string?): --f1r2-tar-gz f1r2.tar.gz</span>
-<span class="co">#&gt; outputs:</span>
-<span class="co">#&gt; vout:</span>
-<span class="co">#&gt;   type: File</span>
-<span class="co">#&gt;   secondaryFiles:</span>
-<span class="co">#&gt;   - .idx</span>
-<span class="co">#&gt;   - .stats</span>
-<span class="co">#&gt;   outputBinding:</span>
-<span class="co">#&gt;     glob: $(inputs.out)</span>
-<span class="co">#&gt; F1r2:</span>
-<span class="co">#&gt;   type: File</span>
-<span class="co">#&gt;   outputBinding:</span>
-<span class="co">#&gt;     glob: $(inputs.f1r2)</span></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li>Panel of normals</li>
-</ol>
-<p>This step is to create a GenomicsDB and then combine to a VCF output for the panel of normals from all the normal Mutect2 calls. A cwl pipeline <code>GPoN</code> was built to create the panel VCF.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">runs</span><span class="op">(</span><span class="va">GPoN</span><span class="op">)</span>
-<span class="co">#&gt; List of length 2</span>
-<span class="co">#&gt; names(2): GenomicsDB PoN</span></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li>Mutect2 and variant filtering</li>
-</ol>
-<p>This pipeline includes two main steps. First we call a large set of candidate somatic variants, then filter them by estimated contamination and orientation bias artifacts. We can plot the <code>Mutect2PL</code> pipeline to show the details.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">plotCWL</span><span class="op">(</span><span class="va">Mutect2PL</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-50a1ddac1c380ca66214" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-50a1ddac1c380ca66214">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"tbam\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"4.5,8!\"] \n  \"2\" [label = \"nbam\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"7.5,8!\"] \n  \"3\" [label = \"Ref\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"-0.5,8!\"] \n  \"4\" [label = \"normal\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"0.5,8!\"] \n  \"5\" [label = \"tumor\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"6.5,8!\"] \n  \"6\" [label = \"gresource\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1.5,8!\"] \n  \"7\" [label = \"pon\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"3.5,8!\"] \n  \"8\" [label = \"interval\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2.5,8!\"] \n  \"9\" [label = \"comvcf\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"8.5,8!\"] \n  \"10\" [label = \"filter\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"10,8!\"] \n  \"11\" [label = \"filterVCF\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"3,3!\"] \n  \"12\" [label = \"passVCF\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"7,1!\"] \n  \"13\" [label = \"conTable\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"4.5,5!\"] \n  \"14\" [label = \"segment\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"6.5,5!\"] \n  \"15\" [label = \"Mutect2\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2.5,7!\"] \n  \"16\" [label = \"GetPileupSummariesT\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"6.5,7!\"] \n  \"17\" [label = \"GetPileupSummariesN\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"8,7!\"] \n  \"18\" [label = \"CalculateContamination\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"6,6!\"] \n  \"19\" [label = \"LearnReadOrientationModel\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"3.5,6!\"] \n  \"20\" [label = \"FilterMutectCalls\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"3,4!\"] \n  \"21\" [label = \"bcfview\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"7,2!\"] \n  \"1\"->\"15\" \n  \"2\"->\"15\" \n  \"3\"->\"15\" \n  \"4\"->\"15\" \n  \"6\"->\"15\" \n  \"7\"->\"15\" \n  \"8\"->\"15\" \n  \"4\"->\"15\" \n  \"5\"->\"15\" \n  \"1\"->\"16\" \n  \"9\"->\"16\" \n  \"9\"->\"16\" \n  \"2\"->\"17\" \n  \"9\"->\"17\" \n  \"9\"->\"17\" \n  \"16\"->\"18\" \n  \"17\"->\"18\" \n  \"5\"->\"18\" \n  \"5\"->\"18\" \n  \"18\"->\"13\" \n  \"18\"->\"14\" \n  \"15\"->\"19\" \n  \"15\"->\"20\" \n  \"13\"->\"20\" \n  \"14\"->\"20\" \n  \"19\"->\"20\" \n  \"3\"->\"20\" \n  \"4\"->\"20\" \n  \"5\"->\"20\" \n  \"20\"->\"11\" \n  \"11\"->\"21\" \n  \"10\"->\"21\" \n  \"21\"->\"12\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-</div>
+<div id="run-a-tool-or-pipeline" class="section level1">
+<h1 class="hasAnchor">
+<a href="#run-a-tool-or-pipeline" class="anchor"></a>Run a tool or pipeline</h1>
+<p>Once the tool or pipeline is ready, we only need to assign values for each of the input parameters, and then submit using one of the functions: <code>runCWL</code>, <code>runCWLBatch</code> and <code>cwlShiny</code>. More detailed Usage and examples can be refer to the <code>Rcwl</code> <a href="https://bioconductor.org/packages/devel/bioc/vignettes/Rcwl/inst/doc/Rcwl.html">vignette</a>.</p>
+<p>To successfully run the tool or pipeline, users either need to have all required command line tools pre-installed locally, or using the docker/singularity runtime by specifying <code>docker = TRUE</code> or <code>docker = "singularity"</code> argument inside <code>runCWL</code> or <code>runCWLBatch</code> function. Since the <em>Bioconductor</em> building machine doesn’t have all the tools installed, neither support the docker runtime, here we use some pseudo-code to demonstrate the tool/pipeline execution.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">inputs</span><span class="op">(</span><span class="va">rnaseq_Sf</span><span class="op">)</span>
+<span class="va">rnaseq_Sf</span><span class="op">$</span><span class="va">in_seqfiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"sample_R1.fq.gz"</span>,
+                              <span class="st">"sample_R2.fq.gz"</span><span class="op">)</span>
+<span class="va">rnaseq_Sf</span><span class="op">$</span><span class="va">in_prefix</span> <span class="op">&lt;-</span> <span class="st">"sample"</span>
+<span class="va">rnaseq_Sf</span><span class="op">$</span><span class="va">in_genomeDir</span> <span class="op">&lt;-</span> <span class="st">"genome_STAR_index_Dir"</span>
+<span class="va">rnaseq_Sf</span><span class="op">$</span><span class="va">in_GTFfile</span> <span class="op">&lt;-</span> <span class="st">"GENCODE_version.gtf"</span>
+
+<span class="fu">runCWL</span><span class="op">(</span><span class="va">rnaseq_Sf</span>, outdir <span class="op">=</span> <span class="st">"output/sample"</span>, docker <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p>Users can also submit parallel jobs to HPC for multiple samples using <code>runCWLBatch</code> function. Different cluster job managers, such as “multicore”, “sge” and “slurm”, are supported using the <code><a href="https://rdrr.io/pkg/BiocParallel/man/BatchtoolsParam-class.html">BiocParallel::BatchtoolsParam</a></code>.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">BioParallel</span><span class="op">)</span>
+<span class="va">bpparam</span> <span class="op">&lt;-</span> <span class="fu">BatchtoolsParam</span><span class="op">(</span>workers <span class="op">=</span> <span class="fl">2</span>, cluster <span class="op">=</span> <span class="st">"sge"</span>,
+                           template <span class="op">=</span> <span class="fu">batchtoolsTemplate</span><span class="op">(</span><span class="st">"sge"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">inputList</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>in_seqfiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sample1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"sample1_R1.fq.gz"</span>,
+                                                    <span class="st">"sample1_R2.fq.gz"</span><span class="op">)</span>,
+                                     sample2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"sample2_R1.fq.gz"</span>,
+                                                    <span class="st">"sample2_R2.fq.gz"</span><span class="op">)</span><span class="op">)</span>,
+                  in_prefix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sample1 <span class="op">=</span> <span class="st">"sample1"</span>,
+                                   sample2 <span class="op">=</span> <span class="st">"sample2"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">paramList</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>in_genomeDir <span class="op">=</span> <span class="st">"genome_STAR_index_Dir"</span>,
+                  in_GTFfile <span class="op">=</span> <span class="st">"GENCODE_version.gtf"</span>,
+                  in_runThreadN <span class="op">=</span> <span class="fl">16</span><span class="op">)</span>
+
+<span class="fu">runCWLBatch</span><span class="op">(</span><span class="va">rnaseq_Sf</span>, outdir <span class="op">=</span> <span class="st">"output"</span>,
+            <span class="va">inputList</span>, <span class="va">paramList</span>,
+            BPPARAM <span class="op">=</span> <span class="va">bpparam</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="sessioninfo" class="section level1">
 <h1 class="hasAnchor">
 <a href="#sessioninfo" class="anchor"></a>SessionInfo</h1>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; R Under development (unstable) (2020-12-09 r79601)</span>
+<span class="co">#&gt; R version 4.0.3 (2020-10-10)</span>
 <span class="co">#&gt; Platform: x86_64-apple-darwin13.4.0 (64-bit)</span>
-<span class="co">#&gt; Running under: macOS Big Sur 11.1</span>
+<span class="co">#&gt; Running under: macOS Catalina 10.15.7</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Matrix products: default</span>
-<span class="co">#&gt; BLAS/LAPACK: /Users/qi28068/miniconda3/envs/r-dev/lib/libopenblasp-r0.3.12.dylib</span>
+<span class="co">#&gt; BLAS/LAPACK: /Users/qi31566/miniconda3/envs/r-base/lib/libopenblasp-r0.3.12.dylib</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; locale:</span>
 <span class="co">#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span>
@@ -668,39 +518,41 @@
 <span class="co">#&gt; [8] methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] RcwlPipelines_1.7.3  BiocFileCache_1.15.1 dbplyr_2.0.0        </span>
-<span class="co">#&gt; [4] Rcwl_1.7.6           S4Vectors_0.29.6     BiocGenerics_0.37.0 </span>
-<span class="co">#&gt; [7] yaml_2.2.1           BiocStyle_2.19.1    </span>
+<span class="co">#&gt; [1] RcwlPipelines_1.7.5  BiocFileCache_1.14.0 dbplyr_2.1.0        </span>
+<span class="co">#&gt; [4] Rcwl_1.7.10          S4Vectors_0.28.1     BiocGenerics_0.36.0 </span>
+<span class="co">#&gt; [7] yaml_2.2.1           BiocStyle_2.18.1    </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] httr_1.4.2           tidyr_1.1.2          bit64_4.0.5         </span>
-<span class="co">#&gt;  [4] jsonlite_1.7.2       R.utils_2.10.1       shiny_1.5.0         </span>
-<span class="co">#&gt;  [7] assertthat_0.2.1     BiocManager_1.30.10  base64url_1.4       </span>
-<span class="co">#&gt; [10] blob_1.2.1           progress_1.2.2       pillar_1.4.7        </span>
-<span class="co">#&gt; [13] RSQLite_2.2.3        backports_1.2.1      lattice_0.20-41     </span>
-<span class="co">#&gt; [16] glue_1.4.2           reticulate_1.18      digest_0.6.27       </span>
-<span class="co">#&gt; [19] RColorBrewer_1.1-2   promises_1.1.1       checkmate_2.0.0     </span>
-<span class="co">#&gt; [22] htmltools_0.5.1.1    httpuv_1.5.5         Matrix_1.3-2        </span>
-<span class="co">#&gt; [25] R.oo_1.24.0          pkgconfig_2.0.3      bookdown_0.21       </span>
-<span class="co">#&gt; [28] DiagrammeR_1.0.6.1   purrr_0.3.4          xtable_1.8-4        </span>
-<span class="co">#&gt; [31] brew_1.0-6           later_1.1.0.1        BiocParallel_1.25.3 </span>
-<span class="co">#&gt; [34] git2r_0.28.0         tibble_3.0.5         generics_0.1.0      </span>
-<span class="co">#&gt; [37] ellipsis_0.3.1       withr_2.4.0          magrittr_2.0.1      </span>
-<span class="co">#&gt; [40] crayon_1.3.4         mime_0.9             memoise_1.1.0       </span>
-<span class="co">#&gt; [43] evaluate_0.14        R.methodsS3_1.8.1    fs_1.5.0            </span>
-<span class="co">#&gt; [46] textshaping_0.2.1    tools_4.1.0          data.table_1.13.6   </span>
-<span class="co">#&gt; [49] prettyunits_1.1.1    hms_1.0.0            lifecycle_0.2.0     </span>
-<span class="co">#&gt; [52] basilisk.utils_1.3.5 stringr_1.4.0        compiler_4.1.0      </span>
-<span class="co">#&gt; [55] pkgdown_1.6.1        systemfonts_0.3.2    rlang_0.4.10        </span>
-<span class="co">#&gt; [58] grid_4.1.0           rstudioapi_0.13      rappdirs_0.3.1      </span>
-<span class="co">#&gt; [61] htmlwidgets_1.5.3    visNetwork_2.0.9     igraph_1.2.6        </span>
-<span class="co">#&gt; [64] rmarkdown_2.6        basilisk_1.3.6       codetools_0.2-18    </span>
-<span class="co">#&gt; [67] curl_4.3             DBI_1.1.1            R6_2.5.0            </span>
-<span class="co">#&gt; [70] knitr_1.30           dplyr_1.0.3          fastmap_1.0.1       </span>
-<span class="co">#&gt; [73] bit_4.0.4            filelock_1.0.2       rprojroot_2.0.2     </span>
-<span class="co">#&gt; [76] ragg_0.4.1           desc_1.2.0           stringi_1.5.3       </span>
-<span class="co">#&gt; [79] Rcpp_1.0.6           vctrs_0.3.6          batchtools_0.9.15   </span>
-<span class="co">#&gt; [82] tidyselect_1.1.0     xfun_0.20</span></code></pre></div>
+<span class="co">#&gt;  [1] fs_1.5.0             bit64_4.0.5          filelock_1.0.2      </span>
+<span class="co">#&gt;  [4] RColorBrewer_1.1-2   progress_1.2.2       httr_1.4.2          </span>
+<span class="co">#&gt;  [7] rprojroot_2.0.2      tools_4.0.3          backports_1.2.1     </span>
+<span class="co">#&gt; [10] bslib_0.2.4          utf8_1.1.4           R6_2.5.0            </span>
+<span class="co">#&gt; [13] DBI_1.1.1            withr_2.4.1          tidyselect_1.1.0    </span>
+<span class="co">#&gt; [16] prettyunits_1.1.1    bit_4.0.4            curl_4.3            </span>
+<span class="co">#&gt; [19] compiler_4.0.3       git2r_0.28.0         textshaping_0.3.1   </span>
+<span class="co">#&gt; [22] basilisk.utils_1.2.2 desc_1.2.0           bookdown_0.21       </span>
+<span class="co">#&gt; [25] sass_0.3.1           checkmate_2.0.0      rappdirs_0.3.3      </span>
+<span class="co">#&gt; [28] pkgdown_1.6.1        systemfonts_1.0.1    stringr_1.4.0       </span>
+<span class="co">#&gt; [31] digest_0.6.27        rmarkdown_2.7        R.utils_2.10.1      </span>
+<span class="co">#&gt; [34] basilisk_1.2.1       pkgconfig_2.0.3      htmltools_0.5.1.1   </span>
+<span class="co">#&gt; [37] fastmap_1.1.0        htmlwidgets_1.5.3    rlang_0.4.10        </span>
+<span class="co">#&gt; [40] rstudioapi_0.13      RSQLite_2.2.3        shiny_1.6.0         </span>
+<span class="co">#&gt; [43] visNetwork_2.0.9     jquerylib_0.1.3      generics_0.1.0      </span>
+<span class="co">#&gt; [46] jsonlite_1.7.2       BiocParallel_1.24.1  dplyr_1.0.4         </span>
+<span class="co">#&gt; [49] R.oo_1.24.0          magrittr_2.0.1       Matrix_1.3-2        </span>
+<span class="co">#&gt; [52] Rcpp_1.0.6           fansi_0.4.2          reticulate_1.18     </span>
+<span class="co">#&gt; [55] lifecycle_1.0.0      R.methodsS3_1.8.1    stringi_1.5.3       </span>
+<span class="co">#&gt; [58] grid_4.0.3           blob_1.2.1           promises_1.2.0.1    </span>
+<span class="co">#&gt; [61] crayon_1.4.1         lattice_0.20-41      hms_1.0.0           </span>
+<span class="co">#&gt; [64] batchtools_0.9.15    knitr_1.31           pillar_1.5.0        </span>
+<span class="co">#&gt; [67] igraph_1.2.6         base64url_1.4        codetools_0.2-18    </span>
+<span class="co">#&gt; [70] glue_1.4.2           evaluate_0.14        data.table_1.14.0   </span>
+<span class="co">#&gt; [73] BiocManager_1.30.10  vctrs_0.3.6          httpuv_1.5.5        </span>
+<span class="co">#&gt; [76] purrr_0.3.4          tidyr_1.1.2          assertthat_0.2.1    </span>
+<span class="co">#&gt; [79] cachem_1.0.4         xfun_0.21            mime_0.10           </span>
+<span class="co">#&gt; [82] xtable_1.8-4         later_1.1.0.1        ragg_1.1.0          </span>
+<span class="co">#&gt; [85] tibble_3.0.6         memoise_2.0.0        DiagrammeR_1.0.6.1  </span>
+<span class="co">#&gt; [88] ellipsis_0.3.1       brew_1.0-6</span></code></pre></div>
 </div>
   </div>
 
