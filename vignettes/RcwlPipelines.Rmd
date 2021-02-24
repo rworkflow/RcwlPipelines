@@ -1,13 +1,13 @@
 ---
-title: "Rcwl Pipelines"
-author: "Qiang Hu"
+title: "RcwlPipelines: Bioinformatics tools and pipelines based on Rcwl"
+author: "Qiang Hu, Qian Liu"
 date: "`r Sys.Date()`"
 output:
   BiocStyle::html_document:
     toc: true
     toc_float: true
 vignette: >
-  %\VignetteIndexEntry{Rcwl Pipelines}
+  %\VignetteIndexEntry{RcwlPipelines}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,8 +19,21 @@ knitr::opts_chunk$set(
 )
 ```
 
+`RcwlPipelines` is a _Bioconductor_ package that manages a collection
+of commonly used bioinformatics tools and pipeline based on
+`Rcwl`. These pre-built and pre-tested tools and pipelines are highly
+modularized with easy customization to meet different bioinformatics
+data analysis needs.  
+
+`Rcwl` and `RcwlPipelines` together forms a _Bioconductor_ toolchain
+for use and development of reproducible bioinformatics pipelines in
+Common Workflow Language (CWL). The project also aims to develop a
+community-driven platform for open source, open development, and open
+review of best-practice CWL bioinformatics pipelines.
+
+
 # Installation
-1. Install the package from Bioconductor.
+1. Install the package from _Bioconductor_.
 
 ```{r, eval=FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -29,271 +42,187 @@ BiocManager::install("RcwlPipelines")
 ```
 The development version is also available to download from Github. 
 ```{r getDevel, eval=FALSE}
-BiocManager::install("hubentu/RcwlPipelines")
+BiocManager::install("rworkflow/RcwlPipelines")
 ```
 
 2. Load the package into the R session.
 ```{r Load, message=FALSE}
 library(RcwlPipelines)
 ```
+		
+# Project resources 
 
-# Tools and pipelines scripts
-The R scripts to build the CWL tools and pipelines are collected in a
-github repository now (https://github.com/hubentu/RcwlRecipes), which
-is community effort to collect Bioinformatics tools and pipelines
-using Rcwl and CWL (Common Workflow Language).
+The project website https://rcwl.org/ serves as a central hub for all
+related resources. It provides guidance for new users and tutorials
+for both users and developers. Specific resources are listed below. 
 
-Three functions are used to collect the `Rcwl` scripts, search tools
-recipes by keywords and load the scripts to current `R` environment.
+## The _R_ recipies and cwl scripts
 
-## Indexing recipe scripts
+The _R_ scripts to build the CWL tools and pipelines are now residing
+in a dedicated [GitHub
+repository](https://github.com/rworkflow/RcwlRecipes), which is
+intended to be a community effort to collect and contribute
+Bioinformatics tools and pipelines using `Rcwl` and CWL.
 
-The `cwlUpdate` function can update the recipe scripts from the github
-repository and collect meta data to a local cache by the
-`BiocFileCache` package. By default the local cache will be created
-under your home directory for the first time. Here we use temporary
-directory for example.
+## Tutorial book
+
+The [tutorial book](https://rcwl.org/RcwlBook/) provides detailed
+instructions for developing `Rcwl` tools/pipelines, and also includes
+examples of some commonly-used tools and pipelines that covers a wide
+range of Bioionformatics data analysis needs.
+
+
+# `RcwlPipelines` core functions
+
+Here we show the usage of 3 core functions: `cwlUpdate`, `cwlSearch`
+and `cwlLoad` for updating, searching, and loading the needed tools
+or pipelines in _R_.
+
+## `cwlUpdate` 
+
+The `cwlUpdate` function syncs the current `Rcwl` recipes and returns
+a `cwlHub` object which contains the most updated `Rcwl` recipes. The
+`mcols()` function returns all related information about each
+available tool or pipeline. 
+
+The recipes will be locally cached, so users don't need to call
+`cwlUpdate` everytime unless they want to use a tool/pipeline that is
+newly added to `RcwlPipelines`. Here we are using the recipes from
+Bioc devel version.
+	
+```{r}
+atls <- cwlUpdate(branch = "dev") ## sync the tools/pipelines.
+atls
+table(mcols(atls)$Type)
+```
+Currently, we have integrated `r sum(Type(atls)=="tool")` command
+line tools and `r sum(Type(atls)=="pipeline")` pipelines.
+
+## `cwlSearch`
+
+We can use (multiple) keywords to search for specific tools/pipelines
+of interest, which internally search the `mcols` of "rname", "rpath",
+"fpath", "Command" and "Containers". Here we show how to search the
+alignment tool `bwa mem`.
 
 ```{r}
-tools <- cwlUpdate(cachePath = tempfile())
-tools
+t1 <- cwlSearch(c("bwa", "mem"))
+t1
+mcols(t1)
 ```
 
-## Search by keyword
-The function `cwlSearch` can help to search indexed recipes by
-keywords. For example, here we try to find the alignment tool `bwa
-mem`.
+## `cwlLoad`
+
+The last core function `cwlLoad` loads the `Rcwl` tool/pipeline into
+the _R_ working environment. The code below loads the tool with a
+user-defined name `bwa` to do the read alignment. 
 
 ```{r}
-tl <- cwlSearch(c("bwa", "mem"), tools)
-tl
-```
-
-## Loading tools and pipelines
-The function `cwlLoad` can be used to "install" to tools or
-pipelines to current environment by given the script path.
-
-```{r}
-bwa <- cwlLoad(mcols(tl)$rpath)
+bwa <- cwlLoad(title(t1)[1])  ## "tl_bwa"
+bwa <- cwlLoad(mcols(t1)$fpath[1]) ## equivalent to the above. 
 bwa
 ```
 
-Or we can install the tools by its `title` directly.
-```{r}
-bwa <- cwlLoad(title(tl), bfc = tools)
+Now the _R_ tool of `bwa` is ready to use. 
+
+# Customize a tool or pipeline
+
+To fit users' specific needs，the existing tool or pipline can be
+easily customized. Here we use the `rnaseq_Sf` pipeline to demonstrate
+how to access and change the arguments of a specific tool inside a
+pipeline. This pipeline covers RNAseq reads quality summary by
+`fastQC`, alignment by `STAR`, quantification by `featureCounts` and
+quality control by `RSeQC`.
+
+```{r, warning=FALSE}
+rnaseq_Sf <- cwlLoad("pl_rnaseq_Sf")
+plotCWL(rnaseq_Sf)
 ```
 
-That's it! The tool "bwa" is ready to use.
-
-# Build a pipeline
-We can develop a pipline by utilizing the available tools. For
-example, a simple alignment pipelines with mapping and marking
-duplicates can be built from the `tools`.
-
-First, we check whether the required tools (bwa, samtools and picard
-markduplicates) are available.
+There are many default arguments defined for the tool of `STAR` inside
+the pipeline. Users might want to change some of them. For example, we
+can change the value for `--outFilterMismatchNmax` argument from 2 to
+5 for longer reads.
 
 ```{r}
-tls <- cwlSearch("bwa|sam2bam|sortBam|samtools_index|markdup",
-                 tools, type = "tool")
-tls
+arguments(rnaseq_Sf, "STAR")[5:6]
+arguments(rnaseq_Sf, "STAR")[[6]] <- 5
+arguments(rnaseq_Sf, "STAR")[5:6]
 ```
 
-To load all the tools.
+We can also change the docker image for a specific tool (e.g., to a
+specific version). First, we search for all available docker images
+for `STAR` in biocontainers repository. The Source server could be
+[quay](https://quay.io/) or [dockerhub](https://hub.docker.com).
+
 ```{r}
-invisible(sapply(title(tls), cwlInstall, bfc = tools))
+searchContainer("STAR", repo = "biocontainers", source = "quay")
 ```
 
-Next, we define the input parameters.
+Then, we can change the `STAR` version into 2.7.8a (tag name: 2.7.8a--0). 
+
 ```{r}
-p1 <- InputParam(id = "threads", type = "int")
-p2 <- InputParam(id = "RG", type = "string")
-p3 <- InputParam(id = "Ref", type = "string")
-p4 <- InputParam(id = "FQ1", type = "File")
-p5 <- InputParam(id = "FQ2", type = "File?")
+requirements(rnaseq_Sf, "STAR")[[1]]
+requirements(rnaseq_Sf, "STAR")[[1]] <- requireDocker(
+    docker = "quay.io/biocontainers/star:2.7.8a--0")
+requirements(rnaseq_Sf, "STAR")[[1]]
 ```
 
-Then we define the pipeline steps, from raw fastqs to duplicates
-marked alignments.
+# Run the tool or pipeline
 
-```{r}
-## bwa
-s1 <- Step(id = "bwa", run = bwa,
-           In = list(threads = "threads",
-                     RG = "RG",
-                     Ref = "Ref",
-                     FQ1 = "FQ1",
-                     FQ2 = "FQ2"))
-## sam to bam
-s2 <- Step(id = "sam2bam", run = sam2bam,
-           In = list(sam = "bwa/sam"))
-## sort bam
-s3 <- Step(id = "sortBam", run = sortBam,
-           In = list(bam = "sam2bam/bam"))
-## mark duplicates
-s4 <- Step(id = "markdup", run = markdup,
-           In = list(ibam = "sortBam/sbam",
-                     obam = list(
-                         valueFrom="$(inputs.ibam.nameroot).mdup.bam"),
-                     matrix = list(
-                         valueFrom="$(inputs.ibam.nameroot).markdup.txt")))
-## index bam
-s5 <- Step(id = "idxBam", run = samtools_index,
-           In = list(bam = "markdup/mBam"))
-```
+Once the tool or pipeline is ready, we only need to assign values for
+each of the input parameters, and then submit using one of the
+functions: `runCWL`, `runCWLBatch` and `cwlShiny`. More detailed Usage
+and examples can be refer to the `Rcwl`
+[vignette](https://bioconductor.org/packages/devel/bioc/vignettes/Rcwl/inst/doc/Rcwl.html).
 
-Last, we define the outputs and connect the steps to a new pipeline.
-```{r}
-req1 <- requireStepInputExpression()
-req2 <- requireJS()
-## outputs
-o1 <- OutputParam(id = "Bam", type = "File", outputSource = "markdup/mBam")
-o2 <- OutputParam(id = "Idx", type = "File", outputSource = "idxBam/idx")
-## stepParam
-Align <- cwlWorkflow(requirements = list(req1, req2),
-                     inputs = InputParamList(p1, p2, p3, p4, p5),
-                     outputs = OutputParamList(o1, o2))
-## build pipeline
-Align <- Align + s1 + s2 + s3 + s4 + s5
-```
+To successfully run the tool or pipeline, users either need to have
+all required command line tools pre-installed locally, or using the
+docker/singularity runtime by specifying `docker = TRUE` or `docker =
+"singularity"` argument inside `runCWL` or `runCWLBatch`
+function. Since the _Bioconductor_ building machine doesn't have all the
+tools installed, neither support the docker runtime, here we use some
+pseudo-code to demonstrate the tool/pipeline execution.
 
-The pipeline is ready for use. We can plot the pipeline with
-`plotCWL` from the `Rcwl` package.
-```{r}
-plotCWL(Align)
-```
-
-# Pipelines examples
-There are over 20 pipelines collected in this package. Here is a
-brief introduction to three of them. More pipelines and tools are
-expected to be included in the future.
-
-## DNASeq alignment pipeline
-The pipeline can be used to preprocess DNA sequences in fastq
-format. It can take paired fastqs, read groups from multiple batches
-as input.
-
-```{r}
-bwaMRecal <- cwlLoad("pl_bwaMRecal", bfc = tools)
-inputs(bwaMRecal)
-```
-
-The pipeline includes two steps and several jobs will be run in each
-step.
-
-1. ``r names(runs(bwaMRecal))[[1]]``: bwa alignment by read groups.
-```{r}
-runs(runs(bwaMRecal)[[1]])
-```
-
-   * `bwa`: To align fastqs and read groups to reference genome with `bwa`.
-   * `sam2bam`: To convert the alignments in "sam" format to "bam"
-     format with `samtools`.
-   * `sortBam`: To sort the "bam" file by coordinates with `samtools`.
-   * `idxBam`: To index "bam" file with `samtools`.
-  
-2. ``r names(runs(bwaMRecal))[[2]]``: Markduplicates by `picard`.
-```{r}
-runs(bwaMRecal)[[2]]
-```
-
-3. ``r names(runs(bwaMRecal))[[3]]``: Alignment recalibration by `GATK` toolkit.
-```{r}
-runs(runs(bwaMRecal)[[3]])
-```
-
-   * `BaseRecalibrator` and `ApplyBQSR`. Alignment recalibration by `GATK` toolkit.
-   * `samtools_index`: To index bam file with `samtools`.
-   * `samtools_flagstat` and `samtools_stats`: To summarize alignments with `samtools`.
-
-The final processed bam files, bam index, duplicates matrix, and flag
-statistics summary will be in the output folder.
-
-```{r}
-outputs(bwaMRecal)
-```
-
-Here you can find an example to run the pipeline.
-
-<https://hubentu.github.io/Rcwl/application.html#dnaseq-alignment-pipeline>
-
-## RNASeq pipeline
-The pipeline was built with reads quality summary, `STAR` alignment,
-quantification by `featureCounts` and `RSeQC` quality control. Here
-are the inputs.
-
-```{r}
-rnaseq_Sf <- cwlLoad(rname = "pl_rnaseq_Sf", bfc = tools)
+```{r, eval=FALSE}
 inputs(rnaseq_Sf)
+rnaseq_Sf$in_seqfiles <- list("sample_R1.fq.gz",
+                              "sample_R2.fq.gz")
+rnaseq_Sf$in_prefix <- "sample"
+rnaseq_Sf$in_genomeDir <- "genome_STAR_index_Dir"
+rnaseq_Sf$in_GTFfile <- "GENCODE_version.gtf"
+
+runCWL(rnaseq_Sf, outdir = "output/sample", docker = TRUE)
 ```
 
-The pipeline includes 6 steps.
+Users can also submit parallel jobs to HPC for multiple samples using
+`runCWLBatch` function. Different cluster job managers, such as
+"multicore", "sge" and "slurm", are supported using the
+`BiocParallel::BatchtoolsParam`.
 
-* `fastqc`: To run quality summary for raw fastqs with `fastqc`.
-* `STAR`: To align fastqs with `STAR`.
-* `samtools_index`: To index aligned bam file.
-* `samtools_flagstat`: To summary alignment flags.
-* `featureCounts`: To quantify gene abundances.
-* `RSeQC`: Several steps included.\
-    - `gtfToGenePred`: To convert GTF annotation to "genePred" format.
-    - `genePredToBed`: To convert "genePred" annotation to "bed" format.
-    - `r_distribution`: To run reads distribution over genome features.
-    - `gCoverage`: To summarize read coverage over gene body.
+```{r, eval=FALSE}
+library(BioParallel)
+bpparam <- BatchtoolsParam(workers = 2, cluster = "sge",
+                           template = batchtoolsTemplate("sge"))
 
-The outputs and logs from alignment, quantification and QC steps are
-collected together to the output folder. A final QC report could be
-generated by `multiqc`, which is also available in the data package.
+inputList <- list(in_seqfiles = list(sample1 = list("sample1_R1.fq.gz",
+                                                    "sample1_R2.fq.gz"),
+                                     sample2 = list("sample2_R1.fq.gz",
+                                                    "sample2_R2.fq.gz")),
+                  in_prefix = list(sample1 = "sample1",
+                                   sample2 = "sample2"))
 
-An example to run the pipeline.
+paramList <- list(in_genomeDir = "genome_STAR_index_Dir",
+                  in_GTFfile = "GENCODE_version.gtf",
+                  in_runThreadN = 16)
 
-<https://hubentu.github.io/Rcwl/application.html#rnaseq-pipeline>
-
-
-## GATK4 Somatic short variant pipeline
-The GATK4 Mutect2 pipeline for germline variant calling was also
-available in WDL. The pipeline was reimplemented with `Rcwl` based on
-the best practice documents.
-<https://software.broadinstitute.org/gatk/best-practices/workflow?id=11146>
-
-```{r}
-GPoN <- cwlLoad(rname = "pl_GPoN", bfc = tools)
-Mutect2PL <- cwlLoad(rname = "pl_Mutect2PL", bfc = tools)
-```
-
-1. Variant calling on normal samples
-
-First, we need to run Mutect2 in tumor-only mode for each normal
-sample by the tool `Mutect2`. The argument "--max-mnp-distance 0" is
-required to be added because the next step, "GenpmicsDBImport", can't
-handle MNPs.
-
-```{r}
-arguments(Mutect2) <- list("--max-mnp-distance", "0")
-Mutect2
-```
-
-2. Panel of normals 
-
-This step is to create a GenomicsDB and then combine to a VCF output
-for the panel of normals from all the normal Mutect2 calls. A cwl
-pipeline `GPoN` was built to create the panel VCF.
-
-```{r}
-runs(GPoN)
-```
-
-3. Mutect2 and variant filtering
-
-This pipeline includes two main steps. First we call a large set of
-candidate somatic variants, then filter them by estimated
-contamination and orientation bias artifacts. We can plot the
-`Mutect2PL` pipeline to show the details.
-
-```{r}
-plotCWL(Mutect2PL)
+runCWLBatch(rnaseq_Sf, outdir = "output",
+            inputList, paramList,
+            BPPARAM = bpparam)
 ```
 
 # SessionInfo
 ```{r}
 sessionInfo()
 ```
+
