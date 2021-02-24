@@ -95,7 +95,7 @@ Bioc devel version.
 Sys.setenv(cachePath = tempdir()) 
 ```
 
-```{r}
+```{r, message=FALSE}
 atls <- cwlUpdate(branch = "dev") ## sync the tools/pipelines.
 atls
 table(mcols(atls)$Type)
@@ -186,7 +186,7 @@ all required command line tools pre-installed locally, or using the
 docker/singularity runtime by specifying `docker = TRUE` or `docker =
 "singularity"` argument inside `runCWL` or `runCWLBatch`
 function. Since the _Bioconductor_ building machine doesn't have all the
-tools installed, neither support the docker runtime, here we use some
+tools installed, nor does it support the docker runtime, here we use some
 pseudo-code to demonstrate the tool/pipeline execution.
 
 ```{r, eval=FALSE}

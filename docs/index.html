@@ -78,7 +78,7 @@
 <div id="rcwlpipelines" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#rcwlpipelines" class="anchor"></a>RcwlPipelines</h1></div>
-<p>The RcwlPipelines package manages a collection of Bioinformatics tools and pipeline recipes based on Rcwl.</p>
+<p>The RcwlPipelines package manages a collection of Bioinformatics tools and pipeline recipes based on Rcwl. The pre-built and pre-tested tools and pipelines are highly modularized with easy customization to meet different bioinformatics data analysis needs.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -89,12 +89,20 @@
 <span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"RcwlPipelines"</span><span class="op">)</span>
     
 <span class="co"># Or from github</span>
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"hubentu/RcwlPipelines"</span><span class="op">)</span></code></pre></div>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"rworkflow/RcwlPipelines"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="get-started" class="section level2">
+<h2 class="hasAnchor">
+<a href="#get-started" class="anchor"></a>Get started</h2>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/cwlUpdate.html">cwlUpdate</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="reference/cwlSearch.html">cwlSearch</a></span><span class="op">(</span><span class="st">"STAR"</span><span class="op">)</span>
+<span class="va">STAR</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cwlLoad.html">cwlLoad</a></span><span class="op">(</span><span class="st">"tl_STAR"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="user-guide" class="section level2">
 <h2 class="hasAnchor">
 <a href="#user-guide" class="anchor"></a>User Guide</h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"RcwlPipelines"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
