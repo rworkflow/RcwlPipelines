@@ -83,7 +83,11 @@ cwlLoad <- function(rname, bfc = NULL, env = .GlobalEnv,
     }else if(!file.exists(rname) && grepl("\\/", rname)){
         .loadCWLgit(rname, cwlfile = cwlfile, dir = dir, ...)
     }else{
-        if(is.null(bfc)){
+        bfcpath <- Sys.getenv("cachePath")
+        if(bfcpath != ""){
+            cachePath <- file.path(bfcpath, "Rcwl")
+            bfc <- BiocFileCache(cachePath, ask = FALSE)
+        }else if(is.null(bfc)){
             cachePath <- user_cache_dir("Rcwl")
             bfc <- BiocFileCache(cachePath, ask = FALSE)
         }

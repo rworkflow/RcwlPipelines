@@ -22,12 +22,17 @@ cwlUpdate <- function(cachePath = "Rcwl", force = FALSE, branch = NULL) {
     }else if(is.null(branch)){
         branch <- "master"
     }
-    
-    if(!file.exists(cachePath) & !grepl("^/", cachePath)){
-        cachePath <- user_cache_dir(cachePath)
+
+    bfcpath <- Sys.getenv("cachePath")
+    if(bfcpath != ""){
+        cachePath <- file.path(bfcpath, "Rcwl")
+    }else{
+        if(!file.exists(cachePath) & !grepl("^/", cachePath)){
+            cachePath <- user_cache_dir(cachePath)
+        }
     }
     cwlBFC <- BiocFileCache(cachePath, ask = FALSE)
-
+    
     if(force){
         message("Warning: existing caches will be removed")
         bfcremove(cwlBFC, bfcinfo(cwlBFC)$rid)

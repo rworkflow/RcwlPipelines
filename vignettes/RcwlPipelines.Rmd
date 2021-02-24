@@ -91,6 +91,11 @@ newly added to `RcwlPipelines`. Here we are using the recipes from
 Bioc devel version.
 	
 ```{r}
+## For vignette use only. users don't need to do this step.
+Sys.setenv(cachePath = tempdir()) 
+```
+
+```{r}
 atls <- cwlUpdate(branch = "dev") ## sync the tools/pipelines.
 atls
 table(mcols(atls)$Type)
@@ -168,7 +173,7 @@ requirements(rnaseq_Sf, "STAR")[[1]] <- requireDocker(
 requirements(rnaseq_Sf, "STAR")[[1]]
 ```
 
-# Run the tool or pipeline
+# Run a tool or pipeline
 
 Once the tool or pipeline is ready, we only need to assign values for
 each of the input parameters, and then submit using one of the

@@ -19,7 +19,11 @@
 #' }
 
 cwlSearch <- function(keyword, bfc = NULL, type = NULL, ...){
-    if(is.null(bfc)){
+    bfcpath <- Sys.getenv("cachePath")
+    if(bfcpath != ""){
+        cachePath <- file.path(bfcpath, "Rcwl")
+        bfc <- BiocFileCache(cachePath, ask = FALSE)
+    }else if(is.null(bfc)){
         cachePath <- user_cache_dir("Rcwl")
         bfc <- BiocFileCache(cachePath, ask = FALSE)
     }

@@ -1,5 +1,5 @@
 
-tools <- cwlUpdate(tempdir())
+tools <- cwlUpdate(tempdir(), branch = "dev")
 test_that("check source tool scripts", {
     expect_is(tools, "cwlHub")
 })
