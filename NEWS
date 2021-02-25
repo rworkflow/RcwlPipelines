@@ -1,3 +1,8 @@
+Changes in version 1.7.7 (2021-02-24)
++ Moved all recipes to https://github.com/rworkflow/RcwlRecipes.
++ Added new core functions: cwlUpdate, cwlSearch and cwlLoad.
++ Core functions return a 'cwlHub' object.
+
 Changes in version 1.1.14 (2019-10-21)
 + Add pvactools neoantigen prediction pipeline
 

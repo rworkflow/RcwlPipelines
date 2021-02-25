@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RcwlPipelines</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.7</span>
       </span>
     </div>
 
@@ -101,7 +101,7 @@
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
     <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
 <span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"RcwlPipelines"</span><span class="op">)</span></code></pre></div>
-<p>The development version is also available to download from Github.</p>
+<p>The development version is also available to download from GitHub.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"rworkflow/RcwlPipelines"</span><span class="op">)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
@@ -114,15 +114,15 @@
 <h1 class="hasAnchor">
 <a href="#project-resources" class="anchor"></a>Project resources</h1>
 <p>The project website <a href="https://rcwl.org/" class="uri">https://rcwl.org/</a> serves as a central hub for all related resources. It provides guidance for new users and tutorials for both users and developers. Specific resources are listed below.</p>
-<div id="the-r-recipies-and-cwl-scripts" class="section level2">
+<div id="the-r-recipes-and-cwl-scripts" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-r-recipies-and-cwl-scripts" class="anchor"></a>The <em>R</em> recipies and cwl scripts</h2>
+<a href="#the-r-recipes-and-cwl-scripts" class="anchor"></a>The <em>R</em> recipes and cwl scripts</h2>
 <p>The <em>R</em> scripts to build the CWL tools and pipelines are now residing in a dedicated <a href="https://github.com/rworkflow/RcwlRecipes">GitHub repository</a>, which is intended to be a community effort to collect and contribute Bioinformatics tools and pipelines using <code>Rcwl</code> and CWL.</p>
 </div>
 <div id="tutorial-book" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tutorial-book" class="anchor"></a>Tutorial book</h2>
-<p>The <a href="https://rcwl.org/RcwlBook/">tutorial book</a> provides detailed instructions for developing <code>Rcwl</code> tools/pipelines, and also includes examples of some commonly-used tools and pipelines that covers a wide range of Bioionformatics data analysis needs.</p>
+<p>The <a href="https://rcwl.org/RcwlBook/">tutorial book</a> provides detailed instructions for developing <code>Rcwl</code> tools/pipelines, and also includes examples of some commonly-used tools and pipelines that covers a wide range of Bioinformatics data analysis needs.</p>
 </div>
 </div>
 <div id="rcwlpipelines-core-functions" class="section level1">
@@ -134,7 +134,7 @@
 <a href="#cwlupdate" class="anchor"></a><code>cwlUpdate</code>
 </h2>
 <p>The <code>cwlUpdate</code> function syncs the current <code>Rcwl</code> recipes and returns a <code>cwlHub</code> object which contains the most updated <code>Rcwl</code> recipes. The <code>mcols()</code> function returns all related information about each available tool or pipeline.</p>
-<p>The recipes will be locally cached, so users don’t need to call <code>cwlUpdate</code> everytime unless they want to use a tool/pipeline that is newly added to <code>RcwlPipelines</code>. Here we are using the recipes from Bioc devel version.</p>
+<p>The recipes will be locally cached, so users don’t need to call <code>cwlUpdate</code> every time unless they want to use a tool/pipeline that is newly added to <code>RcwlPipelines</code>. Here we are using the recipes from <em>Bioconductor</em> devel version.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## For vignette use only. users don't need to do this step.</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span>cachePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
@@ -142,7 +142,7 @@
 <code class="sourceCode R"><span class="va">atls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlUpdate.html">cwlUpdate</a></span><span class="op">(</span>branch <span class="op">=</span> <span class="st">"dev"</span><span class="op">)</span> <span class="co">## sync the tools/pipelines.</span>
 <span class="va">atls</span>
 <span class="co">#&gt; cwlHub with 139 records</span>
-<span class="co">#&gt; cache path:  /var/folders/7t/9l4kkf_j2sqbpn321y9g5558z96ck_/T//RtmpVcYcBK/Rcwl </span>
+<span class="co">#&gt; cache path:  /var/folders/7t/9l4kkf_j2sqbpn321y9g5558z96ck_/T//RtmpRbRoGf/Rcwl </span>
 <span class="co">#&gt; # last modified date:  2021-02-22 </span>
 <span class="co">#&gt; # cwlSearch() to query scripts</span>
 <span class="co">#&gt; # cwlLoad('title') to load the script</span>
@@ -187,7 +187,7 @@
 <code class="sourceCode R"><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlSearch.html">cwlSearch</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bwa"</span>, <span class="st">"mem"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">t1</span>
 <span class="co">#&gt; cwlHub with 1 records</span>
-<span class="co">#&gt; cache path:  /var/folders/7t/9l4kkf_j2sqbpn321y9g5558z96ck_/T//RtmpVcYcBK/Rcwl </span>
+<span class="co">#&gt; cache path:  /var/folders/7t/9l4kkf_j2sqbpn321y9g5558z96ck_/T//RtmpRbRoGf/Rcwl </span>
 <span class="co">#&gt; # last modified date:  2021-02-22 </span>
 <span class="co">#&gt; # cwlSearch() to query scripts</span>
 <span class="co">#&gt; # cwlLoad('title') to load the script</span>
@@ -199,7 +199,7 @@
 <span class="co">#&gt; DataFrame with 1 row and 14 columns</span>
 <span class="co">#&gt;           rid       rname         create_time         access_time</span>
 <span class="co">#&gt;   &lt;character&gt; &lt;character&gt;         &lt;character&gt;         &lt;character&gt;</span>
-<span class="co">#&gt; 1       BFC44      tl_bwa 2021-02-24 17:41:31 2021-02-24 17:41:31</span>
+<span class="co">#&gt; 1       BFC44      tl_bwa 2021-02-25 04:02:11 2021-02-25 04:02:11</span>
 <span class="co">#&gt;                    rpath       rtype                  fpath last_modified_time</span>
 <span class="co">#&gt;              &lt;character&gt; &lt;character&gt;            &lt;character&gt;          &lt;numeric&gt;</span>
 <span class="co">#&gt; 1 /var/folders/7t/9l4k..       local /var/folders/7t/9l4k..                 NA</span>
@@ -244,7 +244,7 @@
 <div id="customize-a-tool-or-pipeline" class="section level1">
 <h1 class="hasAnchor">
 <a href="#customize-a-tool-or-pipeline" class="anchor"></a>Customize a tool or pipeline</h1>
-<p>To fit users’ specific needs，the existing tool or pipline can be easily customized. Here we use the <code>rnaseq_Sf</code> pipeline to demonstrate how to access and change the arguments of a specific tool inside a pipeline. This pipeline covers RNAseq reads quality summary by <code>fastQC</code>, alignment by <code>STAR</code>, quantification by <code>featureCounts</code> and quality control by <code>RSeQC</code>.</p>
+<p>To fit users’ specific needs，the existing tool or pipline can be easily customized. Here we use the <code>rnaseq_Sf</code> pipeline to demonstrate how to access and change the arguments of a specific tool inside a pipeline. This pipeline covers RNA-seq reads quality summary by <code>fastQC</code>, alignment by <code>STAR</code>, quantification by <code>featureCounts</code> and quality control by <code>RSeQC</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rnaseq_Sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cwlLoad.html">cwlLoad</a></span><span class="op">(</span><span class="st">"pl_rnaseq_Sf"</span><span class="op">)</span>
 <span class="co">#&gt; fastqc loaded</span>
@@ -260,8 +260,8 @@
 <span class="co">#&gt; gCoverage loaded</span>
 <span class="co">#&gt; STAR loaded</span>
 <span class="fu">plotCWL</span><span class="op">(</span><span class="va">rnaseq_Sf</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-471e8baf50c99dd3474f" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-471e8baf50c99dd3474f">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"in_seqfiles\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"-1,7!\"] \n  \"2\" [label = \"in_prefix\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"0,7!\"] \n  \"3\" [label = \"in_genomeDir\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1.5,7!\"] \n  \"4\" [label = \"in_GTFfile\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"3.5,7!\"] \n  \"5\" [label = \"in_runThreadN\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2.5,7!\"] \n  \"6\" [label = \"out_fastqc\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"-1,5!\"] \n  \"7\" [label = \"out_BAM\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1,3!\"] \n  \"8\" [label = \"out_Log\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"0,5!\"] \n  \"9\" [label = \"out_Count\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"4,5!\"] \n  \"10\" [label = \"out_stat\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,3!\"] \n  \"11\" [label = \"out_count\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"5.5,1!\"] \n  \"12\" [label = \"out_distribution\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"0,1!\"] \n  \"13\" [label = \"out_gCovP\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1,1!\"] \n  \"14\" [label = \"out_gCovT\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2.5,1!\"] \n  \"15\" [label = \"fastqc\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"-1,6!\"] \n  \"16\" [label = \"STAR\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1.5,6!\"] \n  \"17\" [label = \"sortBam\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1.5,5!\"] \n  \"18\" [label = \"samtools_index\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1,4!\"] \n  \"19\" [label = \"samtools_flagstat\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,4!\"] \n  \"20\" [label = \"featureCounts\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"5.5,2!\"] \n  \"21\" [label = \"gtfToGenePred\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"3.5,6!\"] \n  \"22\" [label = \"genePredToBed\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"3,5!\"] \n  \"23\" [label = \"r_distribution\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"0,2!\"] \n  \"24\" [label = \"gCoverage\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,2!\"] \n  \"1\"->\"15\" \n  \"15\"->\"6\" \n  \"2\"->\"16\" \n  \"3\"->\"16\" \n  \"4\"->\"16\" \n  \"1\"->\"16\" \n  \"5\"->\"16\" \n  \"16\"->\"8\" \n  \"16\"->\"9\" \n  \"16\"->\"17\" \n  \"17\"->\"18\" \n  \"18\"->\"7\" \n  \"17\"->\"19\" \n  \"19\"->\"10\" \n  \"4\"->\"20\" \n  \"7\"->\"20\" \n  \"20\"->\"11\" \n  \"4\"->\"21\" \n  \"21\"->\"22\" \n  \"7\"->\"23\" \n  \"22\"->\"23\" \n  \"23\"->\"12\" \n  \"7\"->\"24\" \n  \"22\"->\"24\" \n  \"24\"->\"13\" \n  \"24\"->\"14\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>There are many default arguments defined for the tool of <code>STAR</code> inside the pipeline. Users might want to change some of them. For example, we can change the value for <code>--outFilterMismatchNmax</code> argument from 2 to 5 for longer reads.</p>
+<div id="htmlwidget-3ed283123b5f4463d729" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3ed283123b5f4463d729">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"in_seqfiles\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"-1,7!\"] \n  \"2\" [label = \"in_prefix\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"0,7!\"] \n  \"3\" [label = \"in_genomeDir\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1.5,7!\"] \n  \"4\" [label = \"in_GTFfile\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"3.5,7!\"] \n  \"5\" [label = \"in_runThreadN\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2.5,7!\"] \n  \"6\" [label = \"out_fastqc\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"-1,5!\"] \n  \"7\" [label = \"out_BAM\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1,3!\"] \n  \"8\" [label = \"out_Log\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"0,5!\"] \n  \"9\" [label = \"out_Count\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"4,5!\"] \n  \"10\" [label = \"out_stat\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,3!\"] \n  \"11\" [label = \"out_count\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"5.5,1!\"] \n  \"12\" [label = \"out_distribution\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"0,1!\"] \n  \"13\" [label = \"out_gCovP\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1,1!\"] \n  \"14\" [label = \"out_gCovT\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2.5,1!\"] \n  \"15\" [label = \"fastqc\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"-1,6!\"] \n  \"16\" [label = \"STAR\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1.5,6!\"] \n  \"17\" [label = \"sortBam\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1.5,5!\"] \n  \"18\" [label = \"samtools_index\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"1,4!\"] \n  \"19\" [label = \"samtools_flagstat\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,4!\"] \n  \"20\" [label = \"featureCounts\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"5.5,2!\"] \n  \"21\" [label = \"gtfToGenePred\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"3.5,6!\"] \n  \"22\" [label = \"genePredToBed\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"3,5!\"] \n  \"23\" [label = \"r_distribution\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"0,2!\"] \n  \"24\" [label = \"gCoverage\", shape = \"diamond\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\", pos = \"2,2!\"] \n  \"1\"->\"15\" \n  \"15\"->\"6\" \n  \"2\"->\"16\" \n  \"3\"->\"16\" \n  \"4\"->\"16\" \n  \"1\"->\"16\" \n  \"5\"->\"16\" \n  \"16\"->\"8\" \n  \"16\"->\"9\" \n  \"16\"->\"17\" \n  \"17\"->\"18\" \n  \"18\"->\"7\" \n  \"17\"->\"19\" \n  \"19\"->\"10\" \n  \"4\"->\"20\" \n  \"7\"->\"20\" \n  \"20\"->\"11\" \n  \"4\"->\"21\" \n  \"21\"->\"22\" \n  \"7\"->\"23\" \n  \"22\"->\"23\" \n  \"23\"->\"12\" \n  \"7\"->\"24\" \n  \"22\"->\"24\" \n  \"24\"->\"13\" \n  \"24\"->\"14\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>There are many default arguments defined for the tool of <code>STAR</code> inside the pipeline. Users might want to change some of them. For example, we can change the value for <code>--outFilterMismatchNmax</code> argument from 2 to 5 for longer reads.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">arguments</span><span class="op">(</span><span class="va">rnaseq_Sf</span>, <span class="st">"STAR"</span><span class="op">)</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
 <span class="co">#&gt; [[1]]</span>
@@ -378,7 +378,7 @@
 <span class="co">#&gt; [8] methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] RcwlPipelines_1.7.5  BiocFileCache_1.14.0 dbplyr_2.1.0        </span>
+<span class="co">#&gt; [1] RcwlPipelines_1.7.7  BiocFileCache_1.14.0 dbplyr_2.1.0        </span>
 <span class="co">#&gt; [4] Rcwl_1.7.10          S4Vectors_0.28.1     BiocGenerics_0.36.0 </span>
 <span class="co">#&gt; [7] yaml_2.2.1           BiocStyle_2.18.1    </span>
 <span class="co">#&gt; </span>

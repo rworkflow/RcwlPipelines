@@ -40,7 +40,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 BiocManager::install("RcwlPipelines")
 ```
-The development version is also available to download from Github. 
+The development version is also available to download from GitHub. 
 ```{r getDevel, eval=FALSE}
 BiocManager::install("rworkflow/RcwlPipelines")
 ```
@@ -56,7 +56,7 @@ The project website https://rcwl.org/ serves as a central hub for all
 related resources. It provides guidance for new users and tutorials
 for both users and developers. Specific resources are listed below. 
 
-## The _R_ recipies and cwl scripts
+## The _R_ recipes and cwl scripts
 
 The _R_ scripts to build the CWL tools and pipelines are now residing
 in a dedicated [GitHub
@@ -69,7 +69,7 @@ Bioinformatics tools and pipelines using `Rcwl` and CWL.
 The [tutorial book](https://rcwl.org/RcwlBook/) provides detailed
 instructions for developing `Rcwl` tools/pipelines, and also includes
 examples of some commonly-used tools and pipelines that covers a wide
-range of Bioionformatics data analysis needs.
+range of Bioinformatics data analysis needs.
 
 
 # `RcwlPipelines` core functions
@@ -86,9 +86,9 @@ a `cwlHub` object which contains the most updated `Rcwl` recipes. The
 available tool or pipeline. 
 
 The recipes will be locally cached, so users don't need to call
-`cwlUpdate` everytime unless they want to use a tool/pipeline that is
+`cwlUpdate` every time unless they want to use a tool/pipeline that is
 newly added to `RcwlPipelines`. Here we are using the recipes from
-Bioc devel version.
+_Bioconductor_ devel version.
 	
 ```{r}
 ## For vignette use only. users don't need to do this step.
@@ -135,7 +135,7 @@ Now the _R_ tool of `bwa` is ready to use.
 To fit users' specific needs，the existing tool or pipline can be
 easily customized. Here we use the `rnaseq_Sf` pipeline to demonstrate
 how to access and change the arguments of a specific tool inside a
-pipeline. This pipeline covers RNAseq reads quality summary by
+pipeline. This pipeline covers RNA-seq reads quality summary by
 `fastQC`, alignment by `STAR`, quantification by `featureCounts` and
 quality control by `RSeQC`.
 
