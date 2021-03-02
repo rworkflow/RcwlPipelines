@@ -16,7 +16,7 @@
 #' \dontrun{
 #' tools <- cwlUpdate()
 #' }
-cwlUpdate <- function(cachePath = "Rcwl", force = FALSE, branch = "master") {
+cwlUpdate <- function(cachePath = "Rcwl", force = FALSE, branch = "rcwl1.6") {
     if(!file.exists(cachePath) & !grepl("^/", cachePath)){
         cachePath <- user_cache_dir(cachePath)
     }
