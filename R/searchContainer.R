@@ -29,7 +29,7 @@ searchQuay <- function(tool, repo = "biocontainers"){
         tags <- do.call(rbind, cont$tags)
         tags <- apply(tags, 2, unlist)
         tags <- tags[, c("name", "last_modified", "size")]
-        res <- cbind(tool, repo, tags)
+        res <- cbind(tool, paste0("quay.io/", repo), tags)
         dates <- as.Date(tags[, "last_modified"], "%a, %d %b %Y %T")
         DataFrame(res[order(dates, decreasing = TRUE), ])
     }else{
@@ -41,7 +41,7 @@ searchDockerhub <- function(tool, repo = "biocontainers"){
     api <- "https://registry.hub.docker.com/v2/repositories/"
     url <- paste(api, repo, tool, "tags", sep = "/")
     res <- GET(url)
-    if(res$status_code == 200){
+    if(res$status_code == 200 & content(res)$count > 0){
         res <- content(res)
         res <- do.call(rbind, res$results)
         res <- res[, c("name", "last_updated", "full_size")]
