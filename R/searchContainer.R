@@ -31,9 +31,11 @@ searchQuay <- function(tool, repo = "biocontainers"){
         tags <- tags[, c("name", "last_modified", "size")]
         res <- cbind(tool, paste0("quay.io/", repo), tags)
         dates <- as.Date(tags[, "last_modified"], "%a, %d %b %Y %T")
-        DataFrame(res[order(dates, decreasing = TRUE), ])
+        df <- DataFrame(res[order(dates, decreasing = TRUE), ])
+        df$container <- paste0(df$V2, "/", df$tool, ":", df$name)
+        return(df)
     }else{
-        DataFrame()
+        return(DataFrame())
     }
 }
 
@@ -48,8 +50,10 @@ searchDockerhub <- function(tool, repo = "biocontainers"){
         res <- apply(res, 2, unlist)
         res <- cbind(tool, repo, res)
         dates <- as.Date(res[,"last_updated"], "%Y-%m-%d")
-        DataFrame(res[order(dates, decreasing = TRUE),])
+        df <- DataFrame(res[order(dates, decreasing = TRUE),])
+        df$container <- paste0(df$repo, "/", df$tool, ":", df$name)
+        return(df)
     }else{
-        DataFrame()
+        return(DataFrame())
     }
 }
