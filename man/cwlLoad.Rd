@@ -18,9 +18,8 @@ cwlLoad(
 (`rname` or `fpath` column from the `bfc` object returned from
 `cwlSearch`). It can also be a CWL url or a github repo.}
 
-\item{bfc}{The `BiocFileCache` object for the recipes returned from
-`cwlUpdate`. The default is NULL which automatically detect the
-"Rcwl" cache directory.}
+\item{bfc}{The `BiocFileCache` object for the recipes. The default
+is NULL which automatically detect the "Rcwl" cache directory.}
 
 \item{env}{The R enviroment to export to. The default is
 `.GlobalEnv`.}
@@ -46,7 +45,7 @@ Note to developers that the dependent Rcwl scripts should
 \examples{
 \dontrun{
 tls <- cwlSearch("bwa")
-tls$rname
+title(tls)
 bwa <- cwlLoad("tl_bwa")
 bwa <- cwlLoad(tls$fpath[tls$rname == "tl_bwa"])  ## equivalent
 bwa
