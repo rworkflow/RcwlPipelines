@@ -3,7 +3,7 @@
 #' `cwlHub` class, constructor, and methods. 
 #' @rdname cwlHub-class 
 #' @exportClass cwlHub
-#' 
+#' @export
 setClass("cwlHub", contains = "BiocFileCacheReadOnly")
 
 #' @rdname cwlHub-class
@@ -12,7 +12,7 @@ setClass("cwlHub", contains = "BiocFileCacheReadOnly")
 #' @importFrom S4Vectors DataFrame
 #' @export
 cwlHub <- function(BFC){
-    if(class(BFC) == "BiocFileCache"){
+    if(is(BFC, "BiocFileCache")){
         BFC <- new("BiocFileCacheReadOnly",
                    cache = BFC@cache,
                    rid = bfcrid(BFC))
