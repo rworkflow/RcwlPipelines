@@ -8,9 +8,9 @@ cwlSearch(keyword, bfc = NULL, type = NULL, ...)
 }
 \arguments{
 \item{keyword}{A (vector of) character string as keywords to search
-for tools or pipelines. Will be used to match patterns against
-`rname`, `rpath`, `fpath`, `Command` and `Container` column in
-the `bfc` object.}
+for tools or pipelines.  Will be used to match patterns
+(case-insensitive) against `rname`, `rpath`, `fpath`, `Command`
+and `Container` column in the `bfc` object.}
 
 \item{bfc}{The `BiocFileCache` object for the recipes returned from
 `cwlUpdate`. The default is NULL which automatically detect the

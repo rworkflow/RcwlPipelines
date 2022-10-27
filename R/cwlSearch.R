@@ -2,13 +2,13 @@
 #'
 #' Function to search Rcwl tools and pipelines.
 #' @param keyword A (vector of) character string as keywords to search
-#'     for tools or pipelines. Will be used to match patterns against
-#'     `rname`, `rpath`, `fpath`, `Command` and `Container` column in
-#'     the `bfc` object.
+#'     for tools or pipelines.  Will be used to match patterns
+#'     (case-insensitive) against `rname`, `rpath`, `fpath`, `Command`
+#'     and `Container` column in the `bfc` object. 
 #' @param bfc The `BiocFileCache` object for the recipes returned from
 #'     `cwlUpdate`. The default is NULL which automatically detect the
 #'     "Rcwl" cache directory.
-#' @param type The `Type` to filter the results, "pipeline" or "tool". 
+#' @param type The `Type` to filter the results, "pipeline" or "tool".
 #' @param ... More options from the internal `bfcquery` function.
 #' @return A BiocFileCache tibble.
 #' @export
@@ -29,7 +29,7 @@ cwlSearch <- function(keyword, bfc = NULL, type = NULL, ...){
     }
     res <- bfcquery(bfc, query = keyword,
                     field = c("rname", "rpath", "fpath", "Command", "Container"),
-                    ...)
+                    ignore.case = TRUE, ...)
     if(!is.null(type)){
         res <- res[res$Type == type,]
     }
