@@ -1,6 +1,6 @@
 Package: RcwlPipelines
 Title: Bioinformatics pipelines based on Rcwl
-Version: 1.14.0
+Version: 1.15.0
 Authors@R: 
     c(person(given = "Qiang", family = "Hu",
              role = c("aut", "cre"),
