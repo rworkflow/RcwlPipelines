@@ -19,7 +19,7 @@ cwlHub(BFC)
 
 \S4method{show}{cwlHub}(object)
 
-\S4method{[}{cwlHub,ANY,ANY,ANY}(x, value)
+\S4method{[}{cwlHub,ANY,ANY,ANY}(x, value, ..., drop = TRUE)
 
 title(object)
 
@@ -37,6 +37,10 @@ Type(object)
 \item{object}{A `cwlHub` object}
 
 \item{value}{The "BFC" ID to extract the subset.}
+
+\item{...}{Option from `[`.}
+
+\item{drop}{Option from `[`.}
 }
 \value{
 cwlHub: a `cwlHub` object with slots of `rid` and `cache` path.

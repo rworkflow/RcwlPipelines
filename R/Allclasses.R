@@ -75,10 +75,12 @@ setMethod("show", "cwlHub", function(object){
 #' @rdname cwlHub-class
 #' @param x A `cwlHub` object.
 #' @param value The "BFC" ID to extract the subset.
+#' @param ... Option from `[`.
+#' @param drop Option from `[`.
 #' @return [: a subset of `cwlHub` records.
 #' @exportMethod [
 #' 
-setMethod("[", "cwlHub", function(x, value){
+setMethod("[", "cwlHub", function(x, value, ..., drop=TRUE){
     idx <- match(value, x@rid)
     isNA <- is.na(idx)
     x@rid[idx[!isNA]] <- value[!isNA]
